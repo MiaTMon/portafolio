@@ -136,6 +136,17 @@ h1 em{ font-style: italic; font-weight:500; color: var(--forest-2); }
 .card:hover{ transform: translateY(-4px); box-shadow: 6px 6px 0 var(--ink); }
 .card.hidden{ display:none; }
 
+.section-divider{
+  grid-column: 1 / -1; display:flex; align-items:baseline; gap:14px; flex-wrap:wrap;
+  padding: 18px 0 6px; border-top: 1.5px solid var(--ink); margin-top: 6px;
+}
+.section-divider-label{
+  font-family:'Fraunces', serif; font-weight:600; font-size:17px; color: var(--ink);
+}
+.section-divider-note{
+  font-family:'IBM Plex Mono', monospace; font-size:11.5px; color: var(--ink-soft);
+}
+
 .preview{ height:172px; position:relative; overflow:hidden; border-bottom: 1.5px solid var(--ink); }
 .preview .dot-row{ position:absolute; top:12px; left:14px; display:flex; gap:5px; z-index:2; }
 .preview .dot{ width:7px; height:7px; border-radius:50%; }
@@ -323,181 +334,7 @@ footer{
   </div>
   <div class="grid" id="grid">
 
-    <div class="card" data-id="portal-docente" data-cat="web edu" onclick="openDossier('portal-docente')">
-      <div class="preview pv-portal">
-        <div class="dot-row"><div class="dot" style="background:#E0876A"></div><div class="dot" style="background:#D8B242"></div><div class="dot" style="background:#3FA98B"></div></div>
-        <div class="card1" style="top:44px;left:16px;width:78px;height:44px;"></div>
-        <div class="card1" style="top:44px;left:104px;width:78px;height:44px;"></div>
-        <div class="card1" style="top:44px;left:192px;width:78px;height:44px;"></div>
-        <div class="bar" style="top:66px;left:24px;width:40px;height:5px;"></div>
-        <div class="bar" style="top:66px;left:112px;width:30px;height:5px;background:#D8B242"></div>
-        <div class="bar" style="top:66px;left:200px;width:50px;height:5px;background:#E0876A"></div>
-        <div class="line" style="top:106px;left:16px;width:200px;"></div>
-        <div class="line" style="top:120px;left:16px;width:150px;"></div>
-        <div class="line" style="top:134px;left:16px;width:170px;"></div>
-      </div>
-      <div class="card-body">
-        <div class="card-top">
-          <span class="category" style="background:var(--forest-2)">Web App</span>
-          <span class="ficha-num">FICHA 01</span>
-        </div>
-        <h3>Portal Docente</h3>
-        <p>Aplicación web completa (backend + frontend) para gestión y envío masivo de documentos, con seguimiento de estado de entrega, previsualización embebida y generación de PDF.</p>
-        <div class="tags">
-          <span class="tag">Apps Script</span>
-          <span class="tag">Tema oscuro</span>
-          <span class="tag">UX de datos</span>
-        </div>
-        <div class="open-hint">Ver expediente →</div>
-      </div>
-    </div>
-
-    <div class="card" data-id="inventario" data-cat="web edu" onclick="openDossier('inventario')">
-      <div class="preview pv-inv">
-        <div class="dot-row"><div class="dot" style="background:#E0876A"></div><div class="dot" style="background:#D8B242"></div><div class="dot" style="background:#3FA98B"></div></div>
-        <div class="cell" style="top:48px;left:16px;width:100px;height:60px;"></div>
-        <div class="num" style="top:64px;left:34px;">128</div>
-        <div class="cell" style="top:48px;left:126px;width:100px;height:60px;"></div>
-        <div class="num" style="top:64px;left:144px;">42</div>
-        <div class="cell" style="top:118px;left:16px;width:210px;height:34px;"></div>
-      </div>
-      <div class="card-body">
-        <div class="card-top">
-          <span class="category" style="background:#8A6320">Dashboard</span>
-          <span class="ficha-num">FICHA 02</span>
-        </div>
-        <h3>Panel de Inventario</h3>
-        <p>Sistema de sincronización de datos: automatiza el paso de archivos fuente a una base central y publica un dashboard en vivo, con reconciliación automática cuando la estructura de datos cambia.</p>
-        <div class="tags">
-          <span class="tag">Apps Script</span>
-          <span class="tag">GitHub Pages</span>
-          <span class="tag">Sync de datos</span>
-        </div>
-        <div class="open-hint">Ver expediente →</div>
-      </div>
-    </div>
-
-    <div class="card" data-id="copass" data-cat="web edu" onclick="openDossier('copass')">
-      <div class="preview pv-copass">
-        <div class="dot-row"><div class="dot" style="background:#F3ECDC"></div><div class="dot" style="background:#D8B242"></div><div class="dot" style="background:#3FA98B"></div></div>
-        <div class="badge" style="top:44px;left:20px;width:54px;height:54px;"></div>
-        <div class="badge" style="top:44px;left:90px;width:54px;height:54px;"></div>
-        <div class="badge" style="top:44px;left:160px;width:54px;height:54px;"></div>
-        <div class="strip" style="top:130px;left:16px;width:220px;height:8px;border-radius:6px;"></div>
-      </div>
-      <div class="card-body">
-        <div class="card-top">
-          <span class="category" style="background:var(--stamp)">Web App</span>
-          <span class="ficha-num">FICHA 03</span>
-        </div>
-        <h3>COPASS 2026</h3>
-        <p>Plataforma de coordinación multi-sede con dos capas: interfaz de usuario para registro y participación gamificada, y panel administrativo con validación de evidencias y auditoría de actividad.</p>
-        <div class="tags">
-          <span class="tag">Apps Script</span>
-          <span class="tag">Panel admin</span>
-          <span class="tag">Gamificación</span>
-        </div>
-        <div class="open-hint">Ver expediente →</div>
-      </div>
-    </div>
-
-    <div class="card" data-id="diario-campo" data-cat="web edu" onclick="openDossier('diario-campo')">
-      <div class="preview pv-diario">
-        <div class="dot-row"><div class="dot" style="background:#B34632"></div><div class="dot" style="background:#B08A3E"></div><div class="dot" style="background:#5C5A4D"></div></div>
-        <div class="chip" style="top:46px;left:16px;">✎ reescribir con IA</div>
-        <div class="txtline" style="top:88px;left:16px;width:210px;"></div>
-        <div class="txtline" style="top:100px;left:16px;width:180px;"></div>
-        <div class="txtline" style="top:112px;left:16px;width:200px;"></div>
-        <div class="txtline" style="top:124px;left:16px;width:140px;"></div>
-      </div>
-      <div class="card-body">
-        <div class="card-top">
-          <span class="category" style="background:var(--forest-2)">Web App + IA</span>
-          <span class="ficha-num">FICHA 04</span>
-        </div>
-        <h3>Diario de Campo</h3>
-        <p>Herramienta de generación de texto asistida por IA: cadena de respaldo entre múltiples modelos vía OpenRouter, con validación de salidas y reconstrucción automática de datos.</p>
-        <div class="tags">
-          <span class="tag">Apps Script</span>
-          <span class="tag">IA / OpenRouter</span>
-          <span class="tag">Redacción asistida</span>
-        </div>
-        <div class="open-hint">Ver expediente →</div>
-      </div>
-    </div>
-
-    <div class="card" data-id="rel" data-cat="disenio" onclick="openDossier('rel')">
-      <div class="preview pv-rel">
-        <div class="dot-row"><div class="dot" style="background:#D9A8B8"></div><div class="dot" style="background:#B98CA6"></div><div class="dot" style="background:#F3ECDC"></div></div>
-        <div class="yoke" style="top:40px;left:86px;width:70px;height:36px;border-radius:30px 30px 0 0;"></div>
-        <div class="sleeve" style="top:52px;left:36px;width:56px;height:24px;"></div>
-        <div class="sleeve" style="top:52px;right:36px;width:56px;height:24px;border-radius:4px 40px 40px 4px;"></div>
-        <div class="jersey" style="top:76px;left:86px;width:70px;height:70px;background:#3A2E3E;border-radius:0 0 8px 8px;"></div>
-      </div>
-      <div class="card-body">
-        <div class="card-top">
-          <span class="category" style="background:#7A5A78">Identidad de marca</span>
-          <span class="ficha-num">FICHA 05</span>
-        </div>
-        <h3>Royal Enfield Ladies</h3>
-        <p>Identidad de marca para un grupo de motociclistas: emblema ilustrado con casco y corona, y mockups de jersey en carbón, malva y rosa polvo.</p>
-        <div class="tags">
-          <span class="tag">Branding</span>
-          <span class="tag">Ilustración vectorial</span>
-          <span class="tag">Mockups</span>
-        </div>
-        <div class="open-hint">Ver expediente →</div>
-      </div>
-    </div>
-
-    <div class="card" data-id="carteleras" data-cat="disenio edu" onclick="openDossier('carteleras')">
-      <div class="preview pv-cart">
-        <div class="slab s1"><div class="moon"></div></div>
-        <div class="slab s2"><div class="rule" style="top:24px;"></div><div class="rule" style="top:40px;"></div><div class="rule" style="top:56px;"></div></div>
-        <div class="slab s3"><div class="leaf" style="top:30px;left:12px;"></div><div class="leaf" style="top:50px;left:20px;"></div></div>
-      </div>
-      <div class="card-body">
-        <div class="card-top">
-          <span class="category" style="background:#3C6E56">Diseño editorial</span>
-          <span class="ficha-num">FICHA 06</span>
-        </div>
-        <h3>Carteleras de Autores</h3>
-        <p>Tres piezas A3 de diseño editorial, cada una con sistema de paleta e identidad propia construido a partir del tono y la obra del autor que representa.</p>
-        <div class="tags">
-          <span class="tag">Diseño editorial</span>
-          <span class="tag">Print / A3</span>
-          <span class="tag">Identidad por autor</span>
-        </div>
-        <div class="open-hint">Ver expediente →</div>
-      </div>
-    </div>
-
-    <div class="card" data-id="mia-gif" data-cat="web edu" onclick="openDossier('mia-gif')">
-      <div class="preview pv-mia">
-        <div class="dot-row"><div class="dot" style="background:#E0876A"></div><div class="dot" style="background:#D8B242"></div><div class="dot" style="background:#3FA98B"></div></div>
-        <div class="frame" style="top:44px;left:18px;width:40px;height:40px;background:#E0876A;"></div>
-        <div class="frame" style="top:44px;left:66px;width:40px;height:40px;background:#D8B242;"></div>
-        <div class="frame" style="top:44px;left:114px;width:40px;height:40px;background:#3FA98B;"></div>
-        <div class="frame" style="top:44px;left:162px;width:40px;height:40px;background:#7B8FE0;"></div>
-        <div class="frame" style="top:94px;left:18px;width:184px;height:6px;background:#2C3650;"></div>
-      </div>
-      <div class="card-body">
-        <div class="card-top">
-          <span class="category" style="background:#3B4B75">Herramienta interactiva</span>
-          <span class="ficha-num">FICHA 07</span>
-        </div>
-        <h3>Generador de GIFs por palabra clave</h3>
-        <p>Motor de animación en el navegador: convierte una palabra clave en una animación de 16 cuadros dibujada en canvas, con un diccionario local de dibujo en lugar de una API externa.</p>
-        <div class="tags">
-          <span class="tag">Canvas / JS</span>
-          <span class="tag">Offline-first</span>
-          <span class="tag">Motor de animación</span>
-        </div>
-        <div class="open-hint">Ver expediente →</div>
-      </div>
-    </div>
-
-    <div class="card" data-id="assetsync" data-cat="3d interactive" onclick="openDossier('assetsync')">
+<div class="card" data-id="assetsync" data-cat="3d interactive" onclick="openDossier('assetsync')">
       <div class="preview pv-unreal">
         <div class="dot-row"><div class="dot" style="background:#4C8DFF"></div><div class="dot" style="background:#4CC38A"></div><div class="dot" style="background:#F0B44E"></div></div>
         <div class="panel" style="top:44px;left:16px;width:90px;height:82px;"></div>
@@ -514,7 +351,7 @@ footer{
       <div class="card-body">
         <div class="card-top">
           <span class="category" style="background:#2E4E8F">Unreal Engine Plugin</span>
-          <span class="ficha-num">FICHA 08</span>
+          <span class="ficha-num">FICHA 01</span>
         </div>
         <h3>AssetSyncManager</h3>
         <p>Plugin nativo para Unreal Engine con interfaz propia dentro del editor: autenticación, escaneo y sincronización de assets. Desarrollado por hitos para un cliente de Upwork.</p>
@@ -527,7 +364,7 @@ footer{
       </div>
     </div>
 
-    <div class="card" data-id="stopmotion" data-cat="web interactive" onclick="openDossier('stopmotion')">
+<div class="card" data-id="stopmotion" data-cat="web interactive" onclick="openDossier('stopmotion')">
       <div class="preview pv-stop">
         <div class="dot-row"><div class="dot" style="background:#E0876A"></div><div class="dot" style="background:#D8B242"></div><div class="dot" style="background:#3FA98B"></div></div>
         <div class="frame-cell" style="top:44px;left:18px;width:52px;height:52px;"></div>
@@ -540,7 +377,7 @@ footer{
       <div class="card-body">
         <div class="card-top">
           <span class="category" style="background:#2A4238">Web App · Multimedia</span>
-          <span class="ficha-num">FICHA 09</span>
+          <span class="ficha-num">FICHA 02</span>
         </div>
         <h3>Stop Motion Web App</h3>
         <p>Aplicación de navegador para crear animaciones stop motion: captura fotografías desde la cámara del dispositivo, arma secuencias y las convierte en GIF, con control de velocidad e intervalo entre cuadros.</p>
@@ -548,6 +385,185 @@ footer{
           <span class="tag">JavaScript</span>
           <span class="tag">Captura de cámara</span>
           <span class="tag">GitHub Pages</span>
+        </div>
+        <div class="open-hint">Ver expediente →</div>
+      </div>
+    </div>
+
+<div class="card" data-id="mia-gif" data-cat="web edu" onclick="openDossier('mia-gif')">
+      <div class="preview pv-mia">
+        <div class="dot-row"><div class="dot" style="background:#E0876A"></div><div class="dot" style="background:#D8B242"></div><div class="dot" style="background:#3FA98B"></div></div>
+        <div class="frame" style="top:44px;left:18px;width:40px;height:40px;background:#E0876A;"></div>
+        <div class="frame" style="top:44px;left:66px;width:40px;height:40px;background:#D8B242;"></div>
+        <div class="frame" style="top:44px;left:114px;width:40px;height:40px;background:#3FA98B;"></div>
+        <div class="frame" style="top:44px;left:162px;width:40px;height:40px;background:#7B8FE0;"></div>
+        <div class="frame" style="top:94px;left:18px;width:184px;height:6px;background:#2C3650;"></div>
+      </div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="category" style="background:#3B4B75">Motor de animación · Canvas/JS</span>
+          <span class="ficha-num">FICHA 03</span>
+        </div>
+        <h3>Generador de GIFs por palabra clave</h3>
+        <p>Pequeño motor de animación en Canvas/JavaScript: genera una secuencia de 16 cuadros a partir de una palabra clave y construye el GIF completo en el navegador, sin backend ni API externa.</p>
+        <div class="tags">
+          <span class="tag">Canvas / JS</span>
+          <span class="tag">Motor de animación</span>
+          <span class="tag">Offline-first</span>
+        </div>
+        <div class="open-hint">Ver expediente →</div>
+      </div>
+    </div>
+
+<div class="card" data-id="rel" data-cat="disenio" onclick="openDossier('rel')">
+      <div class="preview pv-rel">
+        <div class="dot-row"><div class="dot" style="background:#D9A8B8"></div><div class="dot" style="background:#B98CA6"></div><div class="dot" style="background:#F3ECDC"></div></div>
+        <div class="yoke" style="top:40px;left:86px;width:70px;height:36px;border-radius:30px 30px 0 0;"></div>
+        <div class="sleeve" style="top:52px;left:36px;width:56px;height:24px;"></div>
+        <div class="sleeve" style="top:52px;right:36px;width:56px;height:24px;border-radius:4px 40px 40px 4px;"></div>
+        <div class="jersey" style="top:76px;left:86px;width:70px;height:70px;background:#3A2E3E;border-radius:0 0 8px 8px;"></div>
+      </div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="category" style="background:#7A5A78">Identidad de marca</span>
+          <span class="ficha-num">FICHA 04</span>
+        </div>
+        <h3>Royal Enfield Ladies</h3>
+        <p>Identidad de marca para un grupo de motociclistas: emblema ilustrado con casco y corona, y mockups de jersey en carbón, malva y rosa polvo.</p>
+        <div class="tags">
+          <span class="tag">Branding</span>
+          <span class="tag">Ilustración vectorial</span>
+          <span class="tag">Mockups</span>
+        </div>
+        <div class="open-hint">Ver expediente →</div>
+      </div>
+    </div>
+
+    <div class="section-divider">
+      <span class="section-divider-label">Interactive Web Applications · Educational Technology</span>
+      <span class="section-divider-note">Mismo nivel de ingeniería, aplicado a un contexto institucional.</span>
+    </div>
+
+<div class="card" data-id="portal-docente" data-cat="web edu" onclick="openDossier('portal-docente')">
+      <div class="preview pv-portal">
+        <div class="dot-row"><div class="dot" style="background:#E0876A"></div><div class="dot" style="background:#D8B242"></div><div class="dot" style="background:#3FA98B"></div></div>
+        <div class="card1" style="top:44px;left:16px;width:78px;height:44px;"></div>
+        <div class="card1" style="top:44px;left:104px;width:78px;height:44px;"></div>
+        <div class="card1" style="top:44px;left:192px;width:78px;height:44px;"></div>
+        <div class="bar" style="top:66px;left:24px;width:40px;height:5px;"></div>
+        <div class="bar" style="top:66px;left:112px;width:30px;height:5px;background:#D8B242"></div>
+        <div class="bar" style="top:66px;left:200px;width:50px;height:5px;background:#E0876A"></div>
+        <div class="line" style="top:106px;left:16px;width:200px;"></div>
+        <div class="line" style="top:120px;left:16px;width:150px;"></div>
+        <div class="line" style="top:134px;left:16px;width:170px;"></div>
+      </div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="category" style="background:var(--forest-2)">Web App</span>
+          <span class="ficha-num">FICHA 05</span>
+        </div>
+        <h3>Portal Docente</h3>
+        <p>Aplicación web completa (backend + frontend) para gestión y envío masivo de documentos, con seguimiento de estado de entrega, previsualización embebida y generación de PDF.</p>
+        <div class="tags">
+          <span class="tag">Apps Script</span>
+          <span class="tag">Tema oscuro</span>
+          <span class="tag">UX de datos</span>
+        </div>
+        <div class="open-hint">Ver expediente →</div>
+      </div>
+    </div>
+
+<div class="card" data-id="inventario" data-cat="web edu" onclick="openDossier('inventario')">
+      <div class="preview pv-inv">
+        <div class="dot-row"><div class="dot" style="background:#E0876A"></div><div class="dot" style="background:#D8B242"></div><div class="dot" style="background:#3FA98B"></div></div>
+        <div class="cell" style="top:48px;left:16px;width:100px;height:60px;"></div>
+        <div class="num" style="top:64px;left:34px;">128</div>
+        <div class="cell" style="top:48px;left:126px;width:100px;height:60px;"></div>
+        <div class="num" style="top:64px;left:144px;">42</div>
+        <div class="cell" style="top:118px;left:16px;width:210px;height:34px;"></div>
+      </div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="category" style="background:#8A6320">Dashboard</span>
+          <span class="ficha-num">FICHA 06</span>
+        </div>
+        <h3>Panel de Inventario</h3>
+        <p>Sistema de sincronización de datos: automatiza el paso de archivos fuente a una base central y publica un dashboard en vivo, con reconciliación automática cuando la estructura de datos cambia.</p>
+        <div class="tags">
+          <span class="tag">Apps Script</span>
+          <span class="tag">GitHub Pages</span>
+          <span class="tag">Sync de datos</span>
+        </div>
+        <div class="open-hint">Ver expediente →</div>
+      </div>
+    </div>
+
+<div class="card" data-id="copass" data-cat="web edu" onclick="openDossier('copass')">
+      <div class="preview pv-copass">
+        <div class="dot-row"><div class="dot" style="background:#F3ECDC"></div><div class="dot" style="background:#D8B242"></div><div class="dot" style="background:#3FA98B"></div></div>
+        <div class="badge" style="top:44px;left:20px;width:54px;height:54px;"></div>
+        <div class="badge" style="top:44px;left:90px;width:54px;height:54px;"></div>
+        <div class="badge" style="top:44px;left:160px;width:54px;height:54px;"></div>
+        <div class="strip" style="top:130px;left:16px;width:220px;height:8px;border-radius:6px;"></div>
+      </div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="category" style="background:var(--stamp)">Web App</span>
+          <span class="ficha-num">FICHA 07</span>
+        </div>
+        <h3>COPASS 2026</h3>
+        <p>Plataforma de coordinación multi-sede con dos capas: interfaz de usuario para registro y participación gamificada, y panel administrativo con validación de evidencias y auditoría de actividad.</p>
+        <div class="tags">
+          <span class="tag">Apps Script</span>
+          <span class="tag">Panel admin</span>
+          <span class="tag">Gamificación</span>
+        </div>
+        <div class="open-hint">Ver expediente →</div>
+      </div>
+    </div>
+
+<div class="card" data-id="diario-campo" data-cat="web edu" onclick="openDossier('diario-campo')">
+      <div class="preview pv-diario">
+        <div class="dot-row"><div class="dot" style="background:#B34632"></div><div class="dot" style="background:#B08A3E"></div><div class="dot" style="background:#5C5A4D"></div></div>
+        <div class="chip" style="top:46px;left:16px;">✎ reescribir con IA</div>
+        <div class="txtline" style="top:88px;left:16px;width:210px;"></div>
+        <div class="txtline" style="top:100px;left:16px;width:180px;"></div>
+        <div class="txtline" style="top:112px;left:16px;width:200px;"></div>
+        <div class="txtline" style="top:124px;left:16px;width:140px;"></div>
+      </div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="category" style="background:var(--forest-2)">Web App + IA</span>
+          <span class="ficha-num">FICHA 08</span>
+        </div>
+        <h3>Diario de Campo</h3>
+        <p>Herramienta de generación de texto asistida por IA: cadena de respaldo entre múltiples modelos vía OpenRouter, con validación de salidas y reconstrucción automática de datos.</p>
+        <div class="tags">
+          <span class="tag">Apps Script</span>
+          <span class="tag">IA / OpenRouter</span>
+          <span class="tag">Redacción asistida</span>
+        </div>
+        <div class="open-hint">Ver expediente →</div>
+      </div>
+    </div>
+
+<div class="card" data-id="carteleras" data-cat="disenio edu" onclick="openDossier('carteleras')">
+      <div class="preview pv-cart">
+        <div class="slab s1"><div class="moon"></div></div>
+        <div class="slab s2"><div class="rule" style="top:24px;"></div><div class="rule" style="top:40px;"></div><div class="rule" style="top:56px;"></div></div>
+        <div class="slab s3"><div class="leaf" style="top:30px;left:12px;"></div><div class="leaf" style="top:50px;left:20px;"></div></div>
+      </div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="category" style="background:#3C6E56">Diseño editorial</span>
+          <span class="ficha-num">FICHA 09</span>
+        </div>
+        <h3>Carteleras de Autores</h3>
+        <p>Tres piezas A3 de diseño editorial, cada una con sistema de paleta e identidad propia construido a partir del tono y la obra del autor que representa.</p>
+        <div class="tags">
+          <span class="tag">Diseño editorial</span>
+          <span class="tag">Print / A3</span>
+          <span class="tag">Identidad por autor</span>
         </div>
         <div class="open-hint">Ver expediente →</div>
       </div>
@@ -669,51 +685,49 @@ const DOSSIERS = {
     </ul>`
   },
   'mia-gif': {
-    cat: 'Herramienta interactiva', catColor:'#3B4B75',
-    title: 'Generador de GIFs por palabra clave', meta: 'Canvas API · JavaScript · gifshot · 100% en el navegador',
-    resumen: '<p>Herramienta pensada para estudiantes de primaria: escriben una palabra clave y la herramienta dibuja y anima una escena, generando un GIF de 16 cuadros — sin ningún costo recurrente de API.</p>',
+    cat: 'Motor de animación · Canvas/JS', catColor:'#3B4B75',
+    title: 'Generador de GIFs por palabra clave', meta: 'Canvas API · JavaScript · 100% en el navegador',
+    resumen: '<p>Motor de animación construido en Canvas/JavaScript: a partir de una palabra clave, genera una secuencia de 16 cuadros y construye el GIF completo en el navegador. Nació con contexto educativo, pero la pieza técnica es un motor de generación de animación por navegador — no una herramienta pedagógica en su núcleo.</p>',
     codigo: `<ul>
-      <li>La versión inicial dependía de una API de IA externa por cada generación. Se reemplazó por completo con un diccionario local de palabra clave → función de dibujo.</li>
-      <li>Cada función dibuja directamente sobre <code>&lt;canvas&gt;</code>, cuadro por cuadro, y <code>gifshot</code> ensambla los 16 cuadros en el GIF final, todo en el navegador del estudiante.</li>
-      <li>Resultado: cero dependencia de red, cero costo por uso, funciona igual de bien en un salón sin buena conexión.</li>
+      <li>Reemplaza una dependencia inicial de API externa por un diccionario local de palabra clave → función de dibujo, eliminando la llamada de red en cada generación.</li>
+      <li>Cada función dibuja sobre <code>&lt;canvas&gt;</code> para construir los 16 cuadros de la secuencia.</li>
+      <li>El GIF se ensambla completamente en el navegador, sin backend.</li>
     </ul>`,
     uiux: `<ul>
-      <li>Pensada para niños de primaria: una sola caja de texto y un botón, sin configuración adicional.</li>
-      <li>La respuesta es inmediata porque no hay una llamada a un servidor externo de por medio — importante para mantener la atención de un estudiante joven.</li>
-      <li>El vocabulario de palabras clave reconocidas se pensó en función de lo que un niño realmente escribiría, no de términos técnicos.</li>
+      <li>Interfaz mínima: una entrada de texto y un botón de generar.</li>
+      <li>Respuesta inmediata al no depender de una llamada externa.</li>
     </ul>`
   },
   'assetsync': {
     cat: 'Unreal Engine Plugin', catColor:'#2E4E8F',
     title: 'AssetSyncManager', meta: 'Unreal Engine · C++ · UI nativa del editor · Cliente Upwork',
-    resumen: '<p>Plugin para Unreal Engine que resuelve un problema recurrente en equipos que comparten librerías de assets: mantener sincronizados los recursos entre un repositorio central y múltiples proyectos locales. Desarrollado por hitos para un cliente de Upwork, con arquitectura orientada a herramientas de producción.</p>',
+    resumen: '<p>Plugin para Unreal Engine desarrollado por hitos para un cliente de Upwork, orientado a autenticación, escaneo y sincronización de assets, con arquitectura pensada para herramientas de producción.</p>',
     codigo: `<ul>
-      <li>Construido como plugin nativo en C++ dentro del editor de Unreal, con su propia interfaz integrada en lugar de depender de herramientas externas.</li>
-      <li>Módulo de autenticación para validar el acceso al repositorio de assets antes de cualquier operación de sincronización.</li>
-      <li>Escaneo del proyecto local y del repositorio remoto para detectar diferencias, y sincronización selectiva de los assets que cambiaron.</li>
-      <li>Entrega estructurada por hitos, cada uno con alcance y validación propia — el formato típico de un proyecto freelance de producción.</li>
+      <li>Plugin nativo en C++ para Unreal Engine, con interfaz gráfica propia integrada en el editor.</li>
+      <li>Módulo de autenticación como parte del flujo del plugin.</li>
+      <li>Escaneo de assets.</li>
+      <li>Sincronización de assets entre el repositorio y el proyecto.</li>
+      <li>Gestión de contenido/assets.</li>
+      <li>Entregado por hitos, formato habitual de un proyecto freelance de producción.</li>
     </ul>`,
     uiux: `<ul>
-      <li>La interfaz vive dentro del propio editor de Unreal, respetando su lenguaje visual, para que no se sienta como una herramienta ajena al motor.</li>
-      <li>Estado de sincronización visible de un vistazo (qué está al día, qué falta, qué está en conflicto) antes de ejecutar cualquier acción.</li>
-      <li>Prioriza que un equipo técnico pueda confiar en el estado de sus assets sin tener que revisarlo manualmente archivo por archivo.</li>
+      <li>Interfaz gráfica integrada directamente en el editor de Unreal, en vez de una herramienta externa aparte.</li>
     </ul>`
   },
   'stopmotion': {
     cat: 'Web App · Multimedia', catColor:'#2A4238',
-    title: 'Stop Motion Web App', meta: 'JavaScript · Captura de cámara · Canvas · GitHub Pages',
-    resumen: '<p>Herramienta de navegador para crear animaciones stop motion: el usuario captura una secuencia de fotografías directamente desde la cámara y la aplicación las convierte en una animación GIF ajustable.</p>',
+    title: 'Stop Motion Web App', meta: 'JavaScript · Captura desde navegador · GitHub Pages',
+    resumen: '<p>Aplicación de navegador para crear animaciones stop motion a partir de fotografías capturadas por el usuario, con control de velocidad y publicación pública en GitHub Pages.</p>',
     codigo: `<ul>
-      <li>Captura de fotografías desde el navegador usando la cámara del dispositivo, sin instalación ni app nativa.</li>
-      <li>Gestión de la secuencia de imágenes capturadas, con control de velocidad e intervalo entre cuadros antes de generar el resultado final.</li>
-      <li>Bug resuelto: el acto de capturar una foto modificaba accidentalmente el valor de velocidad configurado — se aisló el control de velocidad del flujo de captura para que dejaran de interferir entre sí.</li>
-      <li>Generación del GIF final en el propio navegador, sin backend ni procesamiento server-side.</li>
-      <li>Publicada en GitHub Pages como aplicación independiente, accesible directo desde una URL.</li>
+      <li>Captura de imágenes desde el navegador.</li>
+      <li>Creación de secuencias con las imágenes capturadas.</li>
+      <li>Control de velocidad de la animación.</li>
+      <li>Generación de GIF a partir de la secuencia.</li>
+      <li>Bug corregido: la acción de capturar una imagen modificaba accidentalmente el valor de velocidad configurado — se separó ese control del flujo de captura.</li>
+      <li>Publicada en GitHub Pages como aplicación independiente.</li>
     </ul>`,
     uiux: `<ul>
-      <li>Flujo pensado para que capturar, revisar y ajustar la secuencia sea inmediato — sin pasos intermedios de exportar/importar.</li>
-      <li>El control de intervalo entre cuadros se expone de forma directa, para que el resultado final (más fluido o más entrecortado) sea una decisión consciente del usuario.</li>
-      <li>Interfaz simple por diseño: la herramienta reduce fricción técnica para que la atención quede en el contenido de la animación, no en manejar el software.</li>
+      <li>Interfaz para capturar, ver la secuencia y ajustar la velocidad antes de generar el resultado final.</li>
     </ul>`
   }
 };
