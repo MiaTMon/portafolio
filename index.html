@@ -180,6 +180,11 @@ h1 em{ font-style: italic; font-weight:500; color: var(--forest-2); }
 .pv-unreal .dotstatus{ position:absolute; width:8px; height:8px; border-radius:50%; background:#4CC38A; }
 .pv-unreal .row{ position:absolute; height:5px; background:#3B3E45; border-radius:2px; }
 
+.pv-stop{ background: linear-gradient(160deg,#101915,#1A2621); }
+.pv-stop .frame-cell{ position:absolute; background:#233128; border:1.5px solid #3FA98B55; border-radius:4px; }
+.pv-stop .slider-track{ position:absolute; height:4px; background:#3B4A42; border-radius:2px; }
+.pv-stop .slider-knob{ position:absolute; width:14px; height:14px; border-radius:50%; background:#3FA98B; }
+
 /* ---------- Footer ---------- */
 footer{
   border-top: 1.5px solid var(--ink); padding: 30px 0 50px;
@@ -195,6 +200,12 @@ footer{
 .card:hover .open-hint{ text-decoration: underline; }
 
 .panel-slot{ position:relative; }
+.empty-state{
+  display:none; border: 1.5px dashed var(--ink-soft); border-radius:4px;
+  padding: 26px 24px; font-family:'IBM Plex Mono', monospace; font-size:12.5px;
+  color: var(--ink-soft); line-height:1.6; margin-bottom:20px;
+}
+.empty-state.show{ display:block; }
 
 /* ---------- Side panel (expediente) ---------- */
 .side-panel{
@@ -264,21 +275,26 @@ footer{
 
   <div class="hero">
     <div class="stamp">registro<br>técnico<br>· en desarrollo ·</div>
-    <div class="eyebrow">Developer · Interactive &amp; Real-Time Experiences</div>
+    <div class="eyebrow">Interactive 3D Development · Unreal Engine · Unity · WebGL</div>
     <h1>Construyo la lógica<br>detrás de lo <em>interactivo</em>,<br>no solo la superficie.</h1>
-    <p class="lede">Desarrollo sistemas interactivos con Unreal Engine, Unity, WebGL y JavaScript — desde plugins con su propia interfaz hasta experiencias en VR/AR/MR y herramientas web completas. También ilustro, modelo en 3D y diseño identidad de marca; la docencia es una de las líneas donde he aplicado todo esto, no el punto de partida.</p>
+    <p class="lede">Desarrollo experiencias interactivas y en tiempo real — plugins con UI propia en Unreal Engine, aplicaciones en Unity, herramientas web con JavaScript y WebGL/Three.js. He trabajado como freelance senior en proyectos de VR, AR y MR, incluyendo entregas por hitos para clientes en Upwork. El diseño gráfico, la ilustración y algunas aplicaciones educativas también forman parte de mi trabajo — como aplicaciones de estas mismas capacidades, no como el centro de mi perfil.</p>
     <div class="skillbar" id="skillbar"></div>
   </div>
 
   <div class="tabs" id="tabs">
     <div class="tab active" data-cat="todos">Todos</div>
-    <div class="tab" data-cat="xr">Motores &amp; XR</div>
+    <div class="tab" data-cat="3d">Unreal &amp; Unity</div>
+    <div class="tab" data-cat="xr">VR · AR · MR</div>
     <div class="tab" data-cat="web">Web &amp; Herramientas</div>
-    <div class="tab" data-cat="marca">Diseño &amp; Marca</div>
+    <div class="tab" data-cat="disenio">Diseño &amp; Ilustración</div>
     <div class="tab" data-cat="edu">Educación</div>
   </div>
 
   <div class="layout" id="layout">
+  <div class="grid-wrap">
+  <div class="empty-state" id="emptyState">
+    Todavía no hay fichas documentadas en esta categoría — cuéntame proyectos concretos de VR, AR o MR y los agrego con el mismo nivel de detalle que el resto.
+  </div>
   <div class="grid" id="grid">
 
     <div class="card" data-id="portal-docente" data-cat="web edu" onclick="openDossier('portal-docente')">
@@ -384,7 +400,7 @@ footer{
       </div>
     </div>
 
-    <div class="card" data-id="rel" data-cat="marca" onclick="openDossier('rel')">
+    <div class="card" data-id="rel" data-cat="disenio" onclick="openDossier('rel')">
       <div class="preview pv-rel">
         <div class="dot-row"><div class="dot" style="background:#D9A8B8"></div><div class="dot" style="background:#B98CA6"></div><div class="dot" style="background:#F3ECDC"></div></div>
         <div class="yoke" style="top:40px;left:86px;width:70px;height:36px;border-radius:30px 30px 0 0;"></div>
@@ -408,7 +424,7 @@ footer{
       </div>
     </div>
 
-    <div class="card" data-id="carteleras" data-cat="marca edu" onclick="openDossier('carteleras')">
+    <div class="card" data-id="carteleras" data-cat="disenio edu" onclick="openDossier('carteleras')">
       <div class="preview pv-cart">
         <div class="slab s1"><div class="moon"></div></div>
         <div class="slab s2"><div class="rule" style="top:24px;"></div><div class="rule" style="top:40px;"></div><div class="rule" style="top:56px;"></div></div>
@@ -455,7 +471,7 @@ footer{
       </div>
     </div>
 
-    <div class="card" data-id="assetsync" data-cat="xr" onclick="openDossier('assetsync')">
+    <div class="card" data-id="assetsync" data-cat="3d" onclick="openDossier('assetsync')">
       <div class="preview pv-unreal">
         <div class="dot-row"><div class="dot" style="background:#4C8DFF"></div><div class="dot" style="background:#4CC38A"></div><div class="dot" style="background:#F0B44E"></div></div>
         <div class="panel" style="top:44px;left:16px;width:90px;height:82px;"></div>
@@ -475,16 +491,43 @@ footer{
           <span class="ficha-num">FICHA 08</span>
         </div>
         <h3>AssetSyncManager</h3>
-        <p>Plugin nativo para Unreal Engine con interfaz propia dentro del editor: autenticación, escaneo y sincronización de assets entre un repositorio central y proyectos locales.</p>
+        <p>Plugin nativo para Unreal Engine con interfaz propia dentro del editor: autenticación, escaneo y sincronización de assets. Desarrollado por hitos para un cliente de Upwork.</p>
         <div class="tags">
           <span class="tag">Unreal Engine</span>
           <span class="tag">C++</span>
-          <span class="tag">Gestión de assets</span>
+          <span class="tag">Cliente Upwork</span>
         </div>
         <div class="open-hint">Ver expediente →</div>
       </div>
     </div>
 
+    <div class="card" data-id="stopmotion" data-cat="web" onclick="openDossier('stopmotion')">
+      <div class="preview pv-stop">
+        <div class="dot-row"><div class="dot" style="background:#E0876A"></div><div class="dot" style="background:#D8B242"></div><div class="dot" style="background:#3FA98B"></div></div>
+        <div class="frame-cell" style="top:44px;left:18px;width:52px;height:52px;"></div>
+        <div class="frame-cell" style="top:44px;left:78px;width:52px;height:52px;"></div>
+        <div class="frame-cell" style="top:44px;left:138px;width:52px;height:52px;"></div>
+        <div class="frame-cell" style="top:44px;left:198px;width:52px;height:52px;"></div>
+        <div class="slider-track" style="top:110px;left:18px;width:190px;"></div>
+        <div class="slider-knob" style="top:106px;left:120px;"></div>
+      </div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="category" style="background:#2A4238">Web App · Multimedia</span>
+          <span class="ficha-num">FICHA 09</span>
+        </div>
+        <h3>Stop Motion Web App</h3>
+        <p>Aplicación de navegador para crear animaciones stop motion: captura fotografías desde la cámara del dispositivo, arma secuencias y las convierte en GIF, con control de velocidad e intervalo entre cuadros.</p>
+        <div class="tags">
+          <span class="tag">JavaScript</span>
+          <span class="tag">Captura de cámara</span>
+          <span class="tag">GitHub Pages</span>
+        </div>
+        <div class="open-hint">Ver expediente →</div>
+      </div>
+    </div>
+
+  </div>
   </div>
 
   <div class="panel-slot">
@@ -496,7 +539,7 @@ footer{
   </div>
 
   <footer>
-    <div>8 fichas registradas · última actualización agosto 2026</div>
+    <div>9 fichas registradas · última actualización agosto 2026</div>
     <div>© Ángela Taborda — Todos los derechos reservados.</div>
   </footer>
 </div>
@@ -616,18 +659,35 @@ const DOSSIERS = {
   }
   'assetsync': {
     cat: 'Unreal Engine Plugin', catColor:'#2E4E8F',
-    title: 'AssetSyncManager', meta: 'Unreal Engine · C++ · UI nativa del editor',
-    resumen: '<p>Plugin para Unreal Engine que resuelve un problema recurrente en equipos que comparten librerías de assets: mantener sincronizados los recursos entre un repositorio central y múltiples proyectos locales, sin pasos manuales ni control de versiones ad-hoc.</p>',
+    title: 'AssetSyncManager', meta: 'Unreal Engine · C++ · UI nativa del editor · Cliente Upwork',
+    resumen: '<p>Plugin para Unreal Engine que resuelve un problema recurrente en equipos que comparten librerías de assets: mantener sincronizados los recursos entre un repositorio central y múltiples proyectos locales. Desarrollado por hitos para un cliente de Upwork, con arquitectura orientada a herramientas de producción.</p>',
     codigo: `<ul>
       <li>Construido como plugin nativo en C++ dentro del editor de Unreal, con su propia interfaz integrada en lugar de depender de herramientas externas.</li>
       <li>Módulo de autenticación para validar el acceso al repositorio de assets antes de cualquier operación de sincronización.</li>
       <li>Escaneo del proyecto local y del repositorio remoto para detectar diferencias, y sincronización selectiva de los assets que cambiaron.</li>
-      <li>Pensado para integrarse al flujo de trabajo normal del editor — no como una utilidad aparte que hay que salir a ejecutar.</li>
+      <li>Entrega estructurada por hitos, cada uno con alcance y validación propia — el formato típico de un proyecto freelance de producción.</li>
     </ul>`,
     uiux: `<ul>
       <li>La interfaz vive dentro del propio editor de Unreal, respetando su lenguaje visual, para que no se sienta como una herramienta ajena al motor.</li>
       <li>Estado de sincronización visible de un vistazo (qué está al día, qué falta, qué está en conflicto) antes de ejecutar cualquier acción.</li>
       <li>Prioriza que un equipo técnico pueda confiar en el estado de sus assets sin tener que revisarlo manualmente archivo por archivo.</li>
+    </ul>`
+  },
+  'stopmotion': {
+    cat: 'Web App · Multimedia', catColor:'#2A4238',
+    title: 'Stop Motion Web App', meta: 'JavaScript · Captura de cámara · Canvas · GitHub Pages',
+    resumen: '<p>Herramienta de navegador para crear animaciones stop motion: el usuario captura una secuencia de fotografías directamente desde la cámara y la aplicación las convierte en una animación GIF ajustable.</p>',
+    codigo: `<ul>
+      <li>Captura de fotografías desde el navegador usando la cámara del dispositivo, sin instalación ni app nativa.</li>
+      <li>Gestión de la secuencia de imágenes capturadas, con control de velocidad e intervalo entre cuadros antes de generar el resultado final.</li>
+      <li>Bug resuelto: el acto de capturar una foto modificaba accidentalmente el valor de velocidad configurado — se aisló el control de velocidad del flujo de captura para que dejaran de interferir entre sí.</li>
+      <li>Generación del GIF final en el propio navegador, sin backend ni procesamiento server-side.</li>
+      <li>Publicada en GitHub Pages como aplicación independiente, accesible directo desde una URL.</li>
+    </ul>`,
+    uiux: `<ul>
+      <li>Flujo pensado para que capturar, revisar y ajustar la secuencia sea inmediato — sin pasos intermedios de exportar/importar.</li>
+      <li>El control de intervalo entre cuadros se expone de forma directa, para que el resultado final (más fluido o más entrecortado) sea una decisión consciente del usuario.</li>
+      <li>Interfaz simple por diseño: la herramienta reduce fricción técnica para que la atención quede en el contenido de la animación, no en manejar el software.</li>
     </ul>`
   }
 };
@@ -690,7 +750,7 @@ document.addEventListener('keydown', (e)=>{
   if(e.key === 'Escape' && activeId) closeDossier();
 });
 
-const SKILLS = ['Unreal Engine','Unity','WebGL / Three.js','JavaScript','VR','AR','MR','Videojuegos','C++','3D & Assets','Ilustración'];
+const SKILLS = ['Unreal Engine','Unity','Blueprints','C++','VR','AR','MR','Game Dev','WebGL / Three.js','JavaScript','3D & Assets','Diseño / Ilustración'];
 document.getElementById('skillbar').innerHTML = SKILLS.map(s=>`<span class="skill">${s}</span>`).join('');
 
 document.querySelectorAll('.tab').forEach(tab=>{
@@ -698,14 +758,17 @@ document.querySelectorAll('.tab').forEach(tab=>{
     document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
     tab.classList.add('active');
     const cat = tab.dataset.cat;
+    let visibleCount = 0;
     document.querySelectorAll('.card').forEach(card=>{
       const cardCats = card.dataset.cat.split(' ');
       if(cat==='todos' || cardCats.includes(cat)){
         card.classList.remove('hidden');
+        visibleCount++;
       } else {
         card.classList.add('hidden');
       }
     });
+    document.getElementById('emptyState').classList.toggle('show', visibleCount === 0);
   });
 });
 </script>
