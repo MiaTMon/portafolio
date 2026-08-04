@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cuaderno de Proyectos — Portafolio</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+:root{
+  --paper: #EFEAE0;
+  --paper-line: #DAD2BE;
+  --ink: #23261F;
+  --ink-soft: #5C5A4D;
+  --forest: #1B2E27;
+  --forest-2: #2A4238;
+  --stamp: #B34632;
+  --gold: #B08A3E;
+  --card-bg: #FBF8F1;
+  --radius: 3px;
+}
+
+*{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+body{
+  margin:0;
+  background:
+    repeating-linear-gradient(var(--paper-line) 0 1px, transparent 1px 32px),
+    var(--paper);
+  color: var(--ink);
+  font-family:'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap{ max-width:1180px; margin:0 auto; padding: 0 28px; }
+
+/* ---------- Top bar ---------- */
+.topbar{
+  display:flex; justify-content:space-between; align-items:center;
+  padding: 22px 0; border-bottom: 1.5px solid var(--ink);
+}
+.brand{
+  font-family:'IBM Plex Mono', monospace; font-size: 12.5px;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--ink-soft);
+}
+.brand b{ color: var(--ink); }
+
+/* ---------- Hero ---------- */
+.hero{ position:relative; padding: 74px 0 56px; }
+.eyebrow{
+  font-family:'IBM Plex Mono', monospace; font-size: 12.5px; letter-spacing:.1em;
+  text-transform:uppercase; color: var(--stamp); margin-bottom:18px;
+}
+h1{
+  font-family:'Fraunces', serif; font-weight:600; font-optical-sizing:auto;
+  font-size: clamp(40px, 6vw, 74px); line-height:0.98; margin:0 0 22px; max-width: 15ch;
+  letter-spacing: -0.01em;
+}
+h1 em{ font-style: italic; font-weight:500; color: var(--forest-2); }
+.lede{
+  font-size: 17.5px; line-height:1.6; color: var(--ink-soft); max-width: 56ch; margin: 0 0 6px;
+}
+
+.stamp{
+  position:absolute; top: 56px; right: 8px;
+  width:150px; height:150px; border-radius:50%;
+  border: 2.5px solid var(--stamp); color: var(--stamp);
+  display:flex; align-items:center; justify-content:center; text-align:center;
+  transform: rotate(-11deg); opacity:.85; pointer-events:none;
+  font-family:'IBM Plex Mono', monospace; font-size:10.5px; letter-spacing:.08em; text-transform:uppercase;
+  line-height:1.5; padding:14px;
+}
+.stamp::before{
+  content:""; position:absolute; inset:9px; border:1px solid var(--stamp); border-radius:50%; opacity:.55;
+}
+
+/* ---------- Filter tabs (folder dividers) ---------- */
+.tabs{
+  display:flex; gap:6px; flex-wrap:wrap; margin: 8px 0 46px; border-bottom: 1.5px solid var(--ink);
+}
+.tab{
+  font-family:'IBM Plex Mono', monospace; font-size:12.5px; letter-spacing:.03em;
+  padding: 10px 18px 12px; background: var(--paper-line); color: var(--ink-soft);
+  border: 1.5px solid var(--ink); border-bottom:none;
+  border-radius: 6px 6px 0 0; cursor:pointer; transform: translateY(2px);
+  transition: transform .15s ease, background .15s ease, color .15s ease;
+}
+.tab:hover{ color: var(--ink); }
+.tab.active{
+  background: var(--card-bg); color: var(--ink); transform: translateY(0);
+  font-weight:600;
+}
+
+/* ---------- Grid ---------- */
+.grid{
+  display:grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 26px; padding-bottom: 90px;
+}
+.card{
+  background: var(--card-bg); border: 1.5px solid var(--ink);
+  border-radius: var(--radius); overflow:hidden;
+  display:flex; flex-direction:column;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.card:hover{ transform: translateY(-4px); box-shadow: 6px 6px 0 var(--ink); }
+.card.hidden{ display:none; }
+
+.preview{ height:172px; position:relative; overflow:hidden; border-bottom: 1.5px solid var(--ink); }
+.preview .dot-row{ position:absolute; top:12px; left:14px; display:flex; gap:5px; z-index:2; }
+.preview .dot{ width:7px; height:7px; border-radius:50%; }
+
+.card-body{ padding: 20px 22px 24px; display:flex; flex-direction:column; gap:12px; flex:1; }
+.card-top{ display:flex; justify-content:space-between; align-items:flex-start; gap:10px; }
+.ficha-num{ font-family:'IBM Plex Mono', monospace; font-size:11.5px; color: var(--ink-soft); }
+.card h3{
+  font-family:'Fraunces', serif; font-weight:600; font-size:22px; margin:0; line-height:1.15;
+}
+.card p{ font-size:14.5px; line-height:1.55; color: var(--ink-soft); margin:0; }
+
+.tags{ display:flex; flex-wrap:wrap; gap:6px; margin-top:auto; padding-top:6px; }
+.tag{
+  font-family:'IBM Plex Mono', monospace; font-size:10.5px; letter-spacing:.03em;
+  color: var(--ink); border: 1px solid var(--ink); border-radius: 20px; padding: 4px 10px;
+  background: transparent;
+}
+.category{
+  font-family:'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing:.08em; text-transform:uppercase;
+  color: #fff; padding: 4px 9px; border-radius: 2px; align-self:flex-start;
+}
+
+/* ---------- Preview illustrations (abstract, per project palette) ---------- */
+.pv-portal{ background: linear-gradient(160deg,#121a17,#1c2b26); }
+.pv-portal .bar{ position:absolute; background:#3FA98B; opacity:.85; border-radius:2px; }
+.pv-portal .card1{ position:absolute; background:#233933; border:1px solid #3FA98B44; border-radius:4px; }
+.pv-portal .line{ position:absolute; height:6px; background:#5C7C74; border-radius:3px; }
+
+.pv-inv{ background: linear-gradient(160deg,#171512,#2a231c); }
+.pv-inv .cell{ position:absolute; border:1px solid #D8B24244; background:#241F19; }
+.pv-inv .num{ position:absolute; color:#D8B242; font-family:'IBM Plex Mono',monospace; font-size:15px; font-weight:600; }
+
+.pv-copass{ background: linear-gradient(160deg,#2a1712,#3a2018); }
+.pv-copass .badge{ position:absolute; border-radius:50%; border:2px solid #E0876A; }
+.pv-copass .strip{ position:absolute; background:#E0876A; opacity:.9; border-radius:2px; }
+
+.pv-diario{ background: linear-gradient(160deg,#F3ECDC,#E8DDC6); }
+.pv-diario .txtline{ position:absolute; height:4px; background:#8A7F63; border-radius:2px; }
+.pv-diario .chip{ position:absolute; border:1.5px solid #B34632; border-radius:12px; color:#B34632; font-family:'IBM Plex Mono',monospace; font-size:10px; padding:3px 9px; }
+
+.pv-rel{ background: linear-gradient(160deg,#2E2630,#443443); }
+.pv-rel .jersey{ position:absolute; }
+.pv-rel .yoke{ position:absolute; background:#B98CA6; }
+.pv-rel .sleeve{ position:absolute; background:#D9A8B8; border-radius: 40px 4px 4px 40px; }
+
+.pv-cart{ display:flex; }
+.pv-cart .slab{ flex:1; position:relative; overflow:hidden; }
+.pv-cart .s1{ background: linear-gradient(160deg,#131b30,#1f2c4d); }
+.pv-cart .s2{ background: linear-gradient(160deg,#EFE3C8,#E3D2A9); }
+.pv-cart .s3{ background: linear-gradient(160deg,#12251d,#1c3b2d); }
+.pv-cart .moon{ position:absolute; width:26px;height:26px;border-radius:50%; background:#EFE3C8; top:16px; right:16px; }
+.pv-cart .rule{ position:absolute; left:14px; right:14px; height:1px; background:#8A6F3C55; }
+.pv-cart .leaf{ position:absolute; width:34px; height:10px; border-radius:50%; background:#5FA37E55; }
+
+.pv-mia{ background: linear-gradient(160deg,#171B26,#212A3D); }
+.pv-mia .frame{ position:absolute; border-radius:4px; }
+
+/* ---------- Footer ---------- */
+footer{
+  border-top: 1.5px solid var(--ink); padding: 30px 0 50px;
+  display:flex; justify-content:space-between; flex-wrap:wrap; gap:14px;
+  font-family:'IBM Plex Mono', monospace; font-size:12px; color: var(--ink-soft);
+}
+
+.card{ cursor:pointer; }
+.open-hint{
+  font-family:'IBM Plex Mono', monospace; font-size:11.5px; color: var(--forest-2);
+  display:flex; align-items:center; gap:6px; margin-top:2px;
+}
+.card:hover .open-hint{ text-decoration: underline; }
+
+/* ---------- Modal (expediente) ---------- */
+.overlay{
+  position:fixed; inset:0; background: rgba(20,18,14,.55);
+  display:none; align-items:flex-start; justify-content:center;
+  padding: 40px 20px; z-index:50; overflow-y:auto;
+}
+.overlay.open{ display:flex; }
+.dossier{
+  background: var(--card-bg); max-width: 800px; width:100%;
+  border: 1.5px solid var(--ink); border-radius: 4px;
+  box-shadow: 10px 10px 0 rgba(27,46,39,.25);
+  animation: rise .22s ease;
+}
+@keyframes rise{ from{ transform: translateY(14px); opacity:0; } to{ transform: translateY(0); opacity:1; } }
+
+.dossier-head{
+  display:flex; justify-content:space-between; align-items:flex-start; gap:16px;
+  padding: 26px 30px; border-bottom: 1.5px solid var(--ink);
+}
+.dossier-head .category{ margin-bottom:10px; display:inline-block; }
+.dossier-head h2{ font-family:'Fraunces', serif; font-weight:600; font-size:32px; margin:0 0 8px; }
+.dossier-head .meta{ font-family:'IBM Plex Mono', monospace; font-size:12px; color: var(--ink-soft); }
+.close-btn{
+  font-family:'IBM Plex Mono', monospace; font-size:20px; line-height:1;
+  background:none; border:1.5px solid var(--ink); border-radius:50%;
+  width:34px; height:34px; cursor:pointer; flex-shrink:0; color:var(--ink);
+}
+.close-btn:hover{ background: var(--ink); color: var(--paper); }
+
+.dossier-body{ padding: 26px 30px 34px; }
+.dossier-section{ margin-bottom: 26px; }
+.dossier-section:last-child{ margin-bottom:0; }
+.sec-label{
+  font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase;
+  color: var(--stamp); margin-bottom:10px; display:flex; align-items:center; gap:8px;
+}
+.sec-label::after{ content:""; flex:1; height:1px; background: var(--paper-line); }
+.dossier-section p{ font-size:15px; line-height:1.65; color: var(--ink); margin: 0 0 10px; }
+.dossier-section ul{ margin:0; padding-left: 20px; }
+.dossier-section li{ font-size:14.5px; line-height:1.6; color: var(--ink); margin-bottom:7px; }
+.dossier-section code{
+  font-family:'IBM Plex Mono', monospace; font-size:12.5px; background: var(--paper-line);
+  padding: 1.5px 6px; border-radius:3px;
+}
+.two-col{ display:grid; grid-template-columns: 1fr 1fr; gap:26px; }
+@media (max-width:640px){ .two-col{ grid-template-columns:1fr; } }
+
+@media (max-width: 560px){
+  .stamp{ display:none; }
+  .grid{ grid-template-columns: 1fr; }
+  .dossier-head, .dossier-body{ padding-left:20px; padding-right:20px; }
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="topbar">
+    <div class="brand"><b>Mi Profe</b> · Cuaderno de Proyectos</div>
+    <div class="brand">Medellín, CO — 2026</div>
+  </div>
+
+  <div class="hero">
+    <div class="stamp">catálogo<br>de proyectos<br>· original ·</div>
+    <div class="eyebrow">Docente &amp; desarrollador de herramientas escolares</div>
+    <h1>Interfaces que nacieron<br>en el <em>salón de clase</em>,<br>no en un brief.</h1>
+    <p class="lede">Cada ficha de este cuaderno es una interfaz real, construida para resolver algo concreto: enviar boletines, controlar inventario, coordinar una brigada, o darle identidad a un grupo. Nada aquí es un ejercicio — todo está en uso.</p>
+  </div>
+
+  <div class="tabs" id="tabs">
+    <div class="tab active" data-cat="todos">Todos</div>
+    <div class="tab" data-cat="app">Apps escolares</div>
+    <div class="tab" data-cat="marca">Identidad de marca</div>
+    <div class="tab" data-cat="material">Material didáctico</div>
+  </div>
+
+  <div class="grid" id="grid">
+
+    <div class="card" data-id="portal-docente" data-cat="app" onclick="openDossier(\'portal-docente\')">
+      <div class="preview pv-portal">
+        <div class="dot-row"><div class="dot" style="background:#E0876A"></div><div class="dot" style="background:#D8B242"></div><div class="dot" style="background:#3FA98B"></div></div>
+        <div class="card1" style="top:44px;left:16px;width:78px;height:44px;"></div>
+        <div class="card1" style="top:44px;left:104px;width:78px;height:44px;"></div>
+        <div class="card1" style="top:44px;left:192px;width:78px;height:44px;"></div>
+        <div class="bar" style="top:66px;left:24px;width:40px;height:5px;"></div>
+        <div class="bar" style="top:66px;left:112px;width:30px;height:5px;background:#D8B242"></div>
+        <div class="bar" style="top:66px;left:200px;width:50px;height:5px;background:#E0876A"></div>
+        <div class="line" style="top:106px;left:16px;width:200px;"></div>
+        <div class="line" style="top:120px;left:16px;width:150px;"></div>
+        <div class="line" style="top:134px;left:16px;width:170px;"></div>
+      </div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="category" style="background:var(--forest-2)">App institucional</span>
+          <span class="ficha-num">FICHA 01</span>
+        </div>
+        <h3>Portal Docente</h3>
+        <p>Web app para gestionar y enviar boletines a acudientes. Vista previa de PDF embebida, estados de entrega (NDR), tarjetas de estadística y modal imprimible.</p>
+        <div class="tags">
+          <span class="tag">Apps Script</span>
+          <span class="tag">Tema oscuro</span>
+          <span class="tag">UX de datos</span>
+        </div>
+        <div class="open-hint">Ver expediente →</div>
+      </div>
+    </div>
+
+    <div class="card" data-id="inventario" data-cat="app" onclick="openDossier(\'inventario\')">
+      <div class="preview pv-inv">
+        <div class="dot-row"><div class="dot" style="background:#E0876A"></div><div class="dot" style="background:#D8B242"></div><div class="dot" style="background:#3FA98B"></div></div>
+        <div class="cell" style="top:48px;left:16px;width:100px;height:60px;"></div>
+        <div class="num" style="top:64px;left:34px;">128</div>
+        <div class="cell" style="top:48px;left:126px;width:100px;height:60px;"></div>
+        <div class="num" style="top:64px;left:144px;">42</div>
+        <div class="cell" style="top:118px;left:16px;width:210px;height:34px;"></div>
+      </div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="category" style="background:#8A6320">Dashboard</span>
+          <span class="ficha-num">FICHA 02</span>
+        </div>
+        <h3>Panel de Inventario</h3>
+        <p>Sincroniza CARTERA e INVENTARIO desde Drive a Sheets y publica un dashboard institucional en GitHub Pages, con reconciliación automática de datos.</p>
+        <div class="tags">
+          <span class="tag">Apps Script</span>
+          <span class="tag">GitHub Pages</span>
+          <span class="tag">Sync de datos</span>
+        </div>
+        <div class="open-hint">Ver expediente →</div>
+      </div>
+    </div>
+
+    <div class="card" data-id="copass" data-cat="app" onclick="openDossier(\'copass\')">
+      <div class="preview pv-copass">
+        <div class="dot-row"><div class="dot" style="background:#F3ECDC"></div><div class="dot" style="background:#D8B242"></div><div class="dot" style="background:#3FA98B"></div></div>
+        <div class="badge" style="top:44px;left:20px;width:54px;height:54px;"></div>
+        <div class="badge" style="top:44px;left:90px;width:54px;height:54px;"></div>
+        <div class="badge" style="top:44px;left:160px;width:54px;height:54px;"></div>
+        <div class="strip" style="top:130px;left:16px;width:220px;height:8px;border-radius:6px;"></div>
+      </div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="category" style="background:var(--stamp)">App institucional</span>
+          <span class="ficha-num">FICHA 03</span>
+        </div>
+        <h3>COPASS 2026</h3>
+        <p>Registro de brigadas de emergencia para tres sedes. Panel docente con retos gamificados y panel admin con validación de evidencias y bitácora de actividad.</p>
+        <div class="tags">
+          <span class="tag">Apps Script</span>
+          <span class="tag">Panel admin</span>
+          <span class="tag">Gamificación</span>
+        </div>
+        <div class="open-hint">Ver expediente →</div>
+      </div>
+    </div>
+
+    <div class="card" data-id="diario-campo" data-cat="app" onclick="openDossier(\'diario-campo\')">
+      <div class="preview pv-diario">
+        <div class="dot-row"><div class="dot" style="background:#B34632"></div><div class="dot" style="background:#B08A3E"></div><div class="dot" style="background:#5C5A4D"></div></div>
+        <div class="chip" style="top:46px;left:16px;">✎ reescribir con IA</div>
+        <div class="txtline" style="top:88px;left:16px;width:210px;"></div>
+        <div class="txtline" style="top:100px;left:16px;width:180px;"></div>
+        <div class="txtline" style="top:112px;left:16px;width:200px;"></div>
+        <div class="txtline" style="top:124px;left:16px;width:140px;"></div>
+      </div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="category" style="background:var(--forest-2)">App personal</span>
+          <span class="ficha-num">FICHA 04</span>
+        </div>
+        <h3>Diario de Campo Docente</h3>
+        <p>Convierte reflexiones diarias en prosa pulida en primera persona, con cadena de modelos de respaldo vía OpenRouter y validación de salidas.</p>
+        <div class="tags">
+          <span class="tag">Apps Script</span>
+          <span class="tag">IA / OpenRouter</span>
+          <span class="tag">Redacción asistida</span>
+        </div>
+        <div class="open-hint">Ver expediente →</div>
+      </div>
+    </div>
+
+    <div class="card" data-id="rel" data-cat="marca" onclick="openDossier(\'rel\')">
+      <div class="preview pv-rel">
+        <div class="dot-row"><div class="dot" style="background:#D9A8B8"></div><div class="dot" style="background:#B98CA6"></div><div class="dot" style="background:#F3ECDC"></div></div>
+        <div class="yoke" style="top:40px;left:86px;width:70px;height:36px;border-radius:30px 30px 0 0;"></div>
+        <div class="sleeve" style="top:52px;left:36px;width:56px;height:24px;"></div>
+        <div class="sleeve" style="top:52px;right:36px;width:56px;height:24px;border-radius:4px 40px 40px 4px;"></div>
+        <div class="jersey" style="top:76px;left:86px;width:70px;height:70px;background:#3A2E3E;border-radius:0 0 8px 8px;"></div>
+      </div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="category" style="background:#7A5A78">Identidad de marca</span>
+          <span class="ficha-num">FICHA 05</span>
+        </div>
+        <h3>Royal Enfield Ladies</h3>
+        <p>Identidad de marca para un grupo de motociclistas: emblema ilustrado con casco y corona, y mockups de jersey en carbón, malva y rosa polvo.</p>
+        <div class="tags">
+          <span class="tag">Branding</span>
+          <span class="tag">Ilustración vectorial</span>
+          <span class="tag">Mockups</span>
+        </div>
+        <div class="open-hint">Ver expediente →</div>
+      </div>
+    </div>
+
+    <div class="card" data-id="carteleras" data-cat="material" onclick="openDossier(\'carteleras\')">
+      <div class="preview pv-cart">
+        <div class="slab s1"><div class="moon"></div></div>
+        <div class="slab s2"><div class="rule" style="top:24px;"></div><div class="rule" style="top:40px;"></div><div class="rule" style="top:56px;"></div></div>
+        <div class="slab s3"><div class="leaf" style="top:30px;left:12px;"></div><div class="leaf" style="top:50px;left:20px;"></div></div>
+      </div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="category" style="background:#3C6E56">Material didáctico</span>
+          <span class="ficha-num">FICHA 06</span>
+        </div>
+        <h3>Carteleras de Autores</h3>
+        <p>Tres carteleras A3 listas para imprimir — Silva, Bonnett y Quintana — cada una con paleta e identidad propia inspirada en su obra.</p>
+        <div class="tags">
+          <span class="tag">Diseño editorial</span>
+          <span class="tag">Print / A3</span>
+          <span class="tag">Identidad por autor</span>
+        </div>
+        <div class="open-hint">Ver expediente →</div>
+      </div>
+    </div>
+
+    <div class="card" data-id="mia-gif" data-cat="app" onclick="openDossier(\'mia-gif\')">
+      <div class="preview pv-mia">
+        <div class="dot-row"><div class="dot" style="background:#E0876A"></div><div class="dot" style="background:#D8B242"></div><div class="dot" style="background:#3FA98B"></div></div>
+        <div class="frame" style="top:44px;left:18px;width:40px;height:40px;background:#E0876A;"></div>
+        <div class="frame" style="top:44px;left:66px;width:40px;height:40px;background:#D8B242;"></div>
+        <div class="frame" style="top:44px;left:114px;width:40px;height:40px;background:#3FA98B;"></div>
+        <div class="frame" style="top:44px;left:162px;width:40px;height:40px;background:#7B8FE0;"></div>
+        <div class="frame" style="top:94px;left:18px;width:184px;height:6px;background:#2C3650;"></div>
+      </div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="category" style="background:#3B4B75">Herramienta educativa</span>
+          <span class="ficha-num">FICHA 07</span>
+        </div>
+        <h3>Mia — generador de GIFs</h3>
+        <p>Herramienta para estudiantes de primaria: dibuja animaciones de 16 cuadros en canvas a partir de palabras clave, sin depender de ninguna API externa.</p>
+        <div class="tags">
+          <span class="tag">Canvas / JS</span>
+          <span class="tag">Offline-first</span>
+          <span class="tag">Educación</span>
+        </div>
+        <div class="open-hint">Ver expediente →</div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <div>7 fichas registradas · última actualización agosto 2026</div>
+    <div>Fe y Alegría La Cima — Medellín</div>
+  </footer>
+</div>
+
+<div class="overlay" id="overlay">
+  <div class="dossier" id="dossier"></div>
+</div>
+
+<script>
+const DOSSIERS = {
+  'portal-docente': {
+    cat: 'App institucional', catColor:'#2A4238',
+    title: 'Portal Docente', meta: 'Google Apps Script · JavaScript vanilla · Google Sheets como base de datos',
+    resumen: '<p>Los boletines se enviaban a mano, un correo a la vez. El Portal Docente centraliza la lista de estudiantes, genera el PDF del boletín, lo previsualiza y lo envía por correo a los acudientes — con visibilidad clara de qué envíos fallaron.</p>',
+    codigo: `<ul>
+      <li>Backend en <code>google.script.run</code> sobre Apps Script, sin framework — funciones puras como <code>renderizarLista()</code>, <code>enviarNotas()</code>, <code>guardarPreInforme()</code> y <code>generarPDFReporte()</code>.</li>
+      <li>La vista previa del PDF pasó de un mecanismo "clic para cargar" a un <code>&lt;iframe&gt;</code> apuntando directo a la URL de preview de Drive (<code>drive.google.com/file/d/{id}/preview</code>), con <code>loading="lazy"</code> — menos código, carga más rápida.</li>
+      <li>Estados de entrega por correo (NDR / error de envío) se detectan y se reflejan en la UI en vez de asumir que "enviado" significa "recibido".</li>
+      <li>Sistema de datos vivo: la hoja de "Periodos" define fechas de corte sin tocar código — el docente edita una fila en Sheets y el portal se ajusta solo.</li>
+    </ul>`,
+    uiux: `<ul>
+      <li>Tema oscuro con variables CSS personalizadas, pensado para uso prolongado en jornadas de calificación.</li>
+      <li>Tarjetas de estadística arriba, para que el docente sepa de un vistazo cuántos boletines faltan sin desplazarse.</li>
+      <li>Banner de aviso naranja cuando un período cierra sin reflexión pedagógica registrada — desaparece solo al completarla, sin que el docente tenga que recordarlo.</li>
+      <li>Modal imprimible para el reporte, en vez de forzar la exportación como único camino.</li>
+    </ul>`
+  },
+  'inventario': {
+    cat: 'Dashboard', catColor:'#8A6320',
+    title: 'Panel de Inventario', meta: 'Google Apps Script · GitHub Pages · Google Sheets',
+    resumen: '<p>El inventario y la cartera de la institución vivían en archivos Excel sueltos. Este panel sincroniza esos archivos desde Drive hacia una hoja central y publica un dashboard público de solo lectura en GitHub Pages.</p>',
+    codigo: `<ul>
+      <li>Un script de Apps Script sincroniza <code>CARTERA.xlsx</code> e <code>INVENTARIO.xlsx</code> desde Drive hacia una hoja "Inventario General", que actúa como fuente de verdad.</li>
+      <li>El frontend en <code>iefac-edu.github.io/inventario/</code> lee esos datos vía la API pública del Sheet — hosting estático, sin servidor propio que mantener.</li>
+      <li>Bug resuelto: el dashboard mostraba todo en cero porque los encabezados de columna quedaban obsoletos entre sincronizaciones. La solución fue forzar la reescritura de encabezados en cada corrida, no solo de los datos.</li>
+      <li>Restricción de arquitectura documentada: Apps Script no puede correr funciones de servidor dentro de GitHub Pages (hosting estático), así que toda la lógica vive en el script de sincronización, no en el frontend.</li>
+    </ul>`,
+    uiux: `<ul>
+      <li>Dashboard de solo lectura — prioriza que cualquier persona de la institución entienda el estado del inventario sin necesitar training.</li>
+      <li>Tarjetas numéricas grandes para las cifras clave, tabla detallada debajo para quien necesite profundizar.</li>
+      <li>Diseño pensado para que un cambio en la fuente de datos (el Excel) se refleje sin que nadie tenga que tocar el sitio publicado.</li>
+    </ul>`
+  },
+  'copass': {
+    cat: 'App institucional', catColor:'#B34632',
+    title: 'COPASS 2026', meta: 'Google Apps Script · Panel docente + panel admin',
+    resumen: '<p>Sistema de registro para las brigadas de emergencia de la institución, con tres sedes, cuatro tipos de brigada y turnos AM/PM. Incluye una capa de "retos" para motivar la participación docente.</p>',
+    codigo: `<ul>
+      <li>Vista docente: registro a brigadas y una interfaz de "retos" con evidencias que se validan desde el panel admin.</li>
+      <li>Panel admin: dashboard integrado, gestión de retos, validación de evidencias y bitácora de actividad — todo en una sola vista de control.</li>
+      <li>Bug crítico corregido: el borrado de registros usaba números de fila, que se volvían inválidos en cuanto alguien más editaba la hoja. Se cambió a búsqueda por correo electrónico como identificador estable.</li>
+      <li>Se agregaron secciones de estadísticas y configuración para que el sistema no dependiera de cambios de código entre ciclos.</li>
+    </ul>`,
+    uiux: `<ul>
+      <li>Separación clara entre lo que ve un docente (simple: elegir sede, tipo de brigada, turno) y lo que ve un administrador (denso: validación, bitácora, config).</li>
+      <li>Los retos usan un lenguaje de "logro" antes que de "tarea pendiente", para sostener la participación voluntaria.</li>
+      <li>La bitácora de actividad existe para que cualquier decisión del admin quede trazable — pensado para un contexto institucional donde varias personas comparten el panel.</li>
+    </ul>`
+  },
+  'diario-campo': {
+    cat: 'App personal', catColor:'#2A4238',
+    title: 'Diario de Campo Docente', meta: 'Google Apps Script · OpenRouter (multi-modelo) · Google Sheets',
+    resumen: '<p>Convierte anotaciones breves del día a día en el aula en prosa reflexiva y coherente, en primera persona, lista para el diario pedagógico oficial — sin que el docente tenga que redactar desde cero cada semana.</p>',
+    codigo: `<ul>
+      <li>Cadena de respaldo entre varios modelos gratuitos de OpenRouter: si un modelo falla (401/403, 404, 429, error de red), pasa automáticamente al siguiente con un mensaje de error específico por tipo de falla, no genérico.</li>
+      <li>Panel de gestión de API keys (⚙️) con sincronizar/eliminar, guardado en <code>PropertiesService</code>.</li>
+      <li>Validación de salidas: se descartan respuestas basura (por ejemplo un modelo devolviendo literalmente <code>"User Safety: safe"</code> en vez de una reflexión real) en vez de guardarlas como si fueran válidas.</li>
+      <li>Reconstrucción automática de la hoja "Diario" en cada carga: elimina filas inválidas, agrega las faltantes en bloque con <code>setValues</code> (no <code>appendRow</code>, por rendimiento) y reordena todo cronológicamente.</li>
+      <li>Excluye automáticamente los festivos oficiales de Colombia 2026 y los recesos institucionales al calcular días faltantes de registro.</li>
+    </ul>`,
+    uiux: `<ul>
+      <li>Botones tipo píldora con ✅/❌ por período académico, para ver de un vistazo qué reflexiones de cierre de período faltan.</li>
+      <li>Selector desplegable de días faltantes que usa la fecha real de cada día, no la fecha de hoy — evita que una reflexión quede mal fechada por completarse tarde.</li>
+      <li>El resumen por grupo se pega como texto libre en vez de pasar por una interfaz de tabla compleja — y no pasa por la IA, se guarda exactamente como se escribió, sin riesgo de que se invente un número.</li>
+    </ul>`
+  },
+  'rel': {
+    cat: 'Identidad de marca', catColor:'#7A5A78',
+    title: 'Royal Enfield Ladies', meta: 'Identidad de marca · Ilustración vectorial · Mockups de indumentaria',
+    resumen: '<p>Identidad de marca para un grupo de motociclistas, construida a partir de un concepto propio ya iniciado — un jinete con casco y corona — que necesitaba pulirse sin perder su carácter original.</p>',
+    codigo: `<ul>
+      <li>Emblema circular en SVG: figura motociclista ilustrada con casco, gafas, corona y ramas de laurel, estilo vector-flat.</li>
+      <li>Mockups de jersey frente y espalda con corte raglán: panel de yugo en malva, mangas en rosa polvo, cuerpo en carbón.</li>
+      <li>Se preparó un brief de diseño reutilizable en texto plano — paleta con códigos hex, composición del logo, especificaciones de jersey y restricciones de estilo — para poder regenerar variantes de forma consistente.</li>
+    </ul>`,
+    uiux: `<ul>
+      <li>Se mantuvo el concepto original del cliente (figura ilustrada, no un ícono geométrico genérico) porque ahí vivía la identidad real del grupo.</li>
+      <li>Paleta acotada — carbón, malva, rosa polvo, azul grisáceo — para que el mismo sistema funcione en logo, uniforme y merchandising sin inventar colores nuevos cada vez.</li>
+      <li>Restricciones de estilo explícitas (sin texto en inglés, sin fotorrealismo, sin rostro ilustrado) documentadas para que cualquier iteración futura respete la dirección de marca.</li>
+    </ul>`
+  },
+  'carteleras': {
+    cat: 'Material didáctico', catColor:'#3C6E56',
+    title: 'Carteleras de Autores', meta: 'HTML → PDF · Diseño editorial · Formato A3 para impresión',
+    resumen: '<p>Tres carteleras de aula para un salón de Lengua Castellana, una por autor colombiano (José Asunción Silva, Piedad Bonnett, Pilar Quintana), cada una con identidad visual propia inspirada en la obra del autor.</p>',
+    codigo: `<ul>
+      <li>Cada cartelera se construyó como una página HTML independiente en formato A3 con fondo a sangre completa, luego exportada a PDF lista para imprimir.</li>
+      <li>Estructura común y reutilizable: verso o cita destacada, dos columnas (tips de lectura / razones para leer), bloque "¿Sabías qué?" y chips de obras recomendadas.</li>
+      <li>Iteración real de diseño: en la cartelera de Silva, la luna decorativa se superponía al texto — se detectó en revisión visual y se redujo y reposicionó.</li>
+    </ul>`,
+    uiux: `<ul>
+      <li>Paleta distinta por autor, no decorativa sino temática: nocturna con luna y estrellas para Silva (por "Nocturno III"), tono papel cálido con líneas de renglón para Bonnett, verde selva profundo para Quintana (por el Pacífico de "La perra").</li>
+      <li>Se identificó espacio vertical sin usar en las tres piezas y se resolvió agregando la sección de obras recomendadas — mejora visual y funcional al mismo tiempo, no solo relleno.</li>
+      <li>Pensadas para lectura a distancia en un salón: jerarquía tipográfica fuerte, poco texto corrido.</li>
+    </ul>`
+  },
+  'mia-gif': {
+    cat: 'Herramienta educativa', catColor:'#3B4B75',
+    title: 'Mia — generador de GIFs', meta: 'Canvas API · JavaScript · gifshot · 100% en el navegador',
+    resumen: '<p>Herramienta pensada para estudiantes de primaria: escriben una palabra clave y la herramienta dibuja y anima una escena, generando un GIF de 16 cuadros — sin ningún costo recurrente de API.</p>',
+    codigo: `<ul>
+      <li>La versión inicial dependía de una API de IA externa por cada generación. Se reemplazó por completo con un diccionario local de palabra clave → función de dibujo.</li>
+      <li>Cada función dibuja directamente sobre <code>&lt;canvas&gt;</code>, cuadro por cuadro, y <code>gifshot</code> ensambla los 16 cuadros en el GIF final, todo en el navegador del estudiante.</li>
+      <li>Resultado: cero dependencia de red, cero costo por uso, funciona igual de bien en un salón sin buena conexión.</li>
+    </ul>`,
+    uiux: `<ul>
+      <li>Pensada para niños de primaria: una sola caja de texto y un botón, sin configuración adicional.</li>
+      <li>La respuesta es inmediata porque no hay una llamada a un servidor externo de por medio — importante para mantener la atención de un estudiante joven.</li>
+      <li>El vocabulario de palabras clave reconocidas se pensó en función de lo que un niño realmente escribiría, no de términos técnicos.</li>
+    </ul>`
+  }
+};
+
+function openDossier(id){
+  const d = DOSSIERS[id];
+  if(!d) return;
+  document.getElementById('dossier').innerHTML = `
+    <div class="dossier-head">
+      <div>
+        <span class="category" style="background:${d.catColor}">${d.cat}</span>
+        <h2>${d.title}</h2>
+        <div class="meta">${d.meta}</div>
+      </div>
+      <button class="close-btn" onclick="closeDossier()">×</button>
+    </div>
+    <div class="dossier-body">
+      <div class="dossier-section">
+        <div class="sec-label">El problema</div>
+        ${d.resumen}
+      </div>
+      <div class="two-col">
+        <div class="dossier-section">
+          <div class="sec-label">Estructura de código</div>
+          ${d.codigo}
+        </div>
+        <div class="dossier-section">
+          <div class="sec-label">UI / UX</div>
+          ${d.uiux}
+        </div>
+      </div>
+    </div>
+  `;
+  document.getElementById('overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeDossier(){
+  document.getElementById('overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.getElementById('overlay').addEventListener('click', (e)=>{
+  if(e.target.id === 'overlay') closeDossier();
+});
+document.addEventListener('keydown', (e)=>{
+  if(e.key === 'Escape') closeDossier();
+});
+
+document.querySelectorAll('.tab').forEach(tab=>{
+  tab.addEventListener('click', ()=>{
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    tab.classList.add('active');
+    const cat = tab.dataset.cat;
+    document.querySelectorAll('.card').forEach(card=>{
+      if(cat==='todos' || card.dataset.cat===cat){
+        card.classList.remove('hidden');
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+  });
+});
+</script>
+
+</body>
+</html>
