@@ -69,6 +69,26 @@ h1 em{ font-style: italic; font-weight:500; color: var(--forest-2); }
   background: var(--card-bg);
 }
 
+.areas-section{ padding: 8px 0 40px; }
+.areas-grid{ display:flex; flex-wrap:wrap; gap:9px; }
+.area-chip{
+  font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:.02em;
+  border-radius: 20px; padding: 7px 14px 7px 10px; cursor:pointer;
+  display:inline-flex; align-items:center; gap:7px;
+  transition: transform .12s ease;
+}
+.area-chip:hover{ transform: translateY(-1px); }
+.area-chip .dot{ width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+.area-chip.done{ background: var(--forest-2); color: var(--paper); border: 1px solid var(--forest-2); }
+.area-chip.done .dot{ background: #6FD3A8; }
+.area-chip.pending{ background: transparent; color: var(--ink-soft); border: 1px dashed var(--ink-soft); }
+.area-chip.pending .dot{ background: transparent; border: 1px solid var(--ink-soft); }
+.area-chip.active-chip{ outline: 2px solid var(--stamp); outline-offset: 2px; }
+.areas-note{
+  font-family:'IBM Plex Mono', monospace; font-size:11.5px; color: var(--ink-soft);
+  margin-top: 14px; min-height: 16px;
+}
+
 .stamp{
   position:absolute; top: 56px; right: 8px;
   width:150px; height:150px; border-radius:50%;
@@ -281,6 +301,12 @@ footer{
     <div class="skillbar" id="skillbar"></div>
   </div>
 
+  <div class="areas-section">
+    <div class="sec-label" style="margin-bottom:14px;">Áreas de práctica</div>
+    <div class="areas-grid" id="areasGrid"></div>
+    <div class="areas-note" id="areasNote">Selecciona un área para ver sus fichas — las marcadas como pendientes aún no tienen proyecto documentado.</div>
+  </div>
+
   <div class="tabs" id="tabs">
     <div class="tab active" data-cat="todos">Todos</div>
     <div class="tab" data-cat="3d">Unreal &amp; Unity</div>
@@ -471,7 +497,7 @@ footer{
       </div>
     </div>
 
-    <div class="card" data-id="assetsync" data-cat="3d" onclick="openDossier('assetsync')">
+    <div class="card" data-id="assetsync" data-cat="3d interactive" onclick="openDossier('assetsync')">
       <div class="preview pv-unreal">
         <div class="dot-row"><div class="dot" style="background:#4C8DFF"></div><div class="dot" style="background:#4CC38A"></div><div class="dot" style="background:#F0B44E"></div></div>
         <div class="panel" style="top:44px;left:16px;width:90px;height:82px;"></div>
@@ -501,7 +527,7 @@ footer{
       </div>
     </div>
 
-    <div class="card" data-id="stopmotion" data-cat="web" onclick="openDossier('stopmotion')">
+    <div class="card" data-id="stopmotion" data-cat="web interactive" onclick="openDossier('stopmotion')">
       <div class="preview pv-stop">
         <div class="dot-row"><div class="dot" style="background:#E0876A"></div><div class="dot" style="background:#D8B242"></div><div class="dot" style="background:#3FA98B"></div></div>
         <div class="frame-cell" style="top:44px;left:18px;width:52px;height:52px;"></div>
@@ -656,7 +682,7 @@ const DOSSIERS = {
       <li>La respuesta es inmediata porque no hay una llamada a un servidor externo de por medio — importante para mantener la atención de un estudiante joven.</li>
       <li>El vocabulario de palabras clave reconocidas se pensó en función de lo que un niño realmente escribiría, no de términos técnicos.</li>
     </ul>`
-  }
+  },
   'assetsync': {
     cat: 'Unreal Engine Plugin', catColor:'#2E4E8F',
     title: 'AssetSyncManager', meta: 'Unreal Engine · C++ · UI nativa del editor · Cliente Upwork',
@@ -753,22 +779,65 @@ document.addEventListener('keydown', (e)=>{
 const SKILLS = ['Unreal Engine','Unity','Blueprints','C++','VR','AR','MR','Game Dev','WebGL / Three.js','JavaScript','3D & Assets','Diseño / Ilustración'];
 document.getElementById('skillbar').innerHTML = SKILLS.map(s=>`<span class="skill">${s}</span>`).join('');
 
+function filterByCat(cat, emptyMsg){
+  let visibleCount = 0;
+  document.querySelectorAll('.card').forEach(card=>{
+    const cardCats = card.dataset.cat.split(' ');
+    if(cat==='todos' || cardCats.includes(cat)){
+      card.classList.remove('hidden');
+      visibleCount++;
+    } else {
+      card.classList.add('hidden');
+    }
+  });
+  const empty = document.getElementById('emptyState');
+  empty.classList.toggle('show', visibleCount === 0);
+  if(visibleCount === 0 && emptyMsg){
+    empty.textContent = emptyMsg;
+  } else if(visibleCount === 0){
+    empty.textContent = 'Todavía no hay fichas documentadas en esta categoría — cuéntame proyectos concretos y los agrego con el mismo nivel de detalle que el resto.';
+  }
+  document.getElementById('layout').scrollIntoView({behavior:'smooth', block:'start'});
+}
+
 document.querySelectorAll('.tab').forEach(tab=>{
   tab.addEventListener('click', ()=>{
     document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
     tab.classList.add('active');
-    const cat = tab.dataset.cat;
-    let visibleCount = 0;
-    document.querySelectorAll('.card').forEach(card=>{
-      const cardCats = card.dataset.cat.split(' ');
-      if(cat==='todos' || cardCats.includes(cat)){
-        card.classList.remove('hidden');
-        visibleCount++;
-      } else {
-        card.classList.add('hidden');
-      }
-    });
-    document.getElementById('emptyState').classList.toggle('show', visibleCount === 0);
+    document.querySelectorAll('.area-chip').forEach(c=>c.classList.remove('active-chip'));
+    filterByCat(tab.dataset.cat);
+  });
+});
+
+const AREAS = [
+  { label:'Unreal Engine', cat:'3d', status:'done' },
+  { label:'JavaScript / Web', cat:'web', status:'done' },
+  { label:'Interactive Experiences', cat:'interactive', status:'done' },
+  { label:'Unity', cat:'unity', status:'pending' },
+  { label:'Game Development', cat:'gamedev', status:'pending' },
+  { label:'Virtual Reality (VR)', cat:'vr', status:'pending' },
+  { label:'Augmented Reality (AR)', cat:'ar', status:'pending' },
+  { label:'Mixed Reality (MR)', cat:'mr', status:'pending' },
+  { label:'WebGL', cat:'webgl', status:'pending' },
+  { label:'Three.js', cat:'threejs', status:'pending' },
+  { label:'3D Development', cat:'3ddev', status:'pending' },
+  { label:'Creative Technology', cat:'creativetech', status:'pending' },
+];
+
+document.getElementById('areasGrid').innerHTML = AREAS.map(a =>
+  `<div class="area-chip ${a.status}" data-cat="${a.cat}" data-label="${a.label}"><span class="dot"></span>${a.label}</div>`
+).join('');
+
+document.querySelectorAll('.area-chip').forEach(chip=>{
+  chip.addEventListener('click', ()=>{
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.area-chip').forEach(c=>c.classList.remove('active-chip'));
+    chip.classList.add('active-chip');
+    const label = chip.dataset.label;
+    const msg = chip.classList.contains('pending')
+      ? `Todavía no hay una ficha real de ${label} — cuéntame un proyecto concreto y lo documento aquí con el mismo detalle que el resto.`
+      : null;
+    filterByCat(chip.dataset.cat, msg);
   });
 });
 </script>
