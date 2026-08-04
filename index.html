@@ -216,6 +216,16 @@ h1 em{ font-style: italic; font-weight:500; color: var(--forest-2); }
 .pv-stop .slider-track{ position:absolute; height:4px; background:#3B4A42; border-radius:2px; }
 .pv-stop .slider-knob{ position:absolute; width:14px; height:14px; border-radius:50%; background:#3FA98B; }
 
+.pv-vr{ background: linear-gradient(160deg,#161022,#211a35); }
+.pv-vr .card-float{ position:absolute; background:#2B2245; border:1px solid #7B5FE055; border-radius:6px; }
+.pv-vr .lens{ position:absolute; border-radius:50%; border:2px solid #7B5FE0; }
+.pv-vr .waveline{ position:absolute; height:3px; background:#7B5FE0; border-radius:2px; }
+
+.pv-perf{ background: linear-gradient(160deg,#1a1512,#241d18); }
+.pv-perf .gauge{ position:absolute; border-radius:50%; border:6px solid #33261c; }
+.pv-perf .gaugefill{ position:absolute; border-radius:50%; border:6px solid #E0876A; border-right-color:transparent; border-bottom-color:transparent; }
+.pv-perf .barh{ position:absolute; background:#E0876A; border-radius:2px; opacity:.85; }
+
 /* ---------- Footer ---------- */
 footer{
   border-top: 1.5px solid var(--ink); padding: 30px 0 50px;
@@ -364,6 +374,57 @@ footer{
       </div>
     </div>
 
+<div class="card" data-id="vr-speech" data-cat="xr vr interactive" onclick="openDossier('vr-speech')">
+      <div class="preview pv-vr">
+        <div class="dot-row"><div class="dot" style="background:#7B5FE0"></div><div class="dot" style="background:#4CC38A"></div><div class="dot" style="background:#F0B44E"></div></div>
+        <div class="card-float" style="top:44px;left:20px;width:56px;height:38px;"></div>
+        <div class="card-float" style="top:60px;left:90px;width:56px;height:38px;"></div>
+        <div class="card-float" style="top:44px;left:160px;width:56px;height:38px;"></div>
+        <div class="lens" style="top:112px;left:100px;width:40px;height:40px;"></div>
+        <div class="waveline" style="top:128px;left:150px;width:14px;"></div>
+        <div class="waveline" style="top:122px;left:168px;width:14px;"></div>
+        <div class="waveline" style="top:134px;left:186px;width:14px;"></div>
+      </div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="category" style="background:#4C3A9E">VR · Unreal Engine</span>
+          <span class="ficha-num">FICHA 02</span>
+        </div>
+        <h3>100Q — Experiencia VR con reconocimiento de voz</h3>
+        <p>Experiencia VR para Meta Quest 2/3: 100 preguntas como tarjetas flotantes que el usuario explora y pregunta en voz alta; el sistema reconoce la palabra clave y reproduce el video de respuesta correspondiente.</p>
+        <div class="tags">
+          <span class="tag">Unreal Engine</span>
+          <span class="tag">Blueprint</span>
+          <span class="tag">Cliente Upwork</span>
+        </div>
+        <div class="open-hint">Ver expediente →</div>
+      </div>
+    </div>
+
+<div class="card" data-id="vr-perf" data-cat="xr vr gamedev interactive" onclick="openDossier('vr-perf')">
+      <div class="preview pv-perf">
+        <div class="dot-row"><div class="dot" style="background:#E0876A"></div><div class="dot" style="background:#D8B242"></div><div class="dot" style="background:#3FA98B"></div></div>
+        <div class="gauge" style="top:44px;left:24px;width:70px;height:70px;"></div>
+        <div class="gaugefill" style="top:44px;left:24px;width:70px;height:70px;transform:rotate(45deg);"></div>
+        <div class="barh" style="top:130px;left:110px;width:100px;height:8px;"></div>
+        <div class="barh" style="top:145px;left:110px;width:60px;height:8px;background:#3FA98B;"></div>
+      </div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="category" style="background:#8A5A2E">VR · Optimización</span>
+          <span class="ficha-num">FICHA 03</span>
+        </div>
+        <h3>Optimización de rendimiento VR — Vehículos</h3>
+        <p>Refactorización de blueprints de Unreal para un juego VR de Quest 2/3, donde los blueprints de vehículos de un asset de terceros consumían el 88% del tiempo de fotograma objetivo.</p>
+        <div class="tags">
+          <span class="tag">Unreal Engine</span>
+          <span class="tag">Blueprint</span>
+          <span class="tag">Git</span>
+        </div>
+        <div class="open-hint">Ver expediente →</div>
+      </div>
+    </div>
+
 <div class="card" data-id="stopmotion" data-cat="web interactive" onclick="openDossier('stopmotion')">
       <div class="preview pv-stop">
         <div class="dot-row"><div class="dot" style="background:#E0876A"></div><div class="dot" style="background:#D8B242"></div><div class="dot" style="background:#3FA98B"></div></div>
@@ -377,7 +438,7 @@ footer{
       <div class="card-body">
         <div class="card-top">
           <span class="category" style="background:#2A4238">Web App · Multimedia</span>
-          <span class="ficha-num">FICHA 02</span>
+          <span class="ficha-num">FICHA 04</span>
         </div>
         <h3>Stop Motion Web App</h3>
         <p>Aplicación de navegador para crear animaciones stop motion: captura fotografías desde la cámara del dispositivo, arma secuencias y las convierte en GIF, con control de velocidad e intervalo entre cuadros.</p>
@@ -402,7 +463,7 @@ footer{
       <div class="card-body">
         <div class="card-top">
           <span class="category" style="background:#3B4B75">Motor de animación · Canvas/JS</span>
-          <span class="ficha-num">FICHA 03</span>
+          <span class="ficha-num">FICHA 05</span>
         </div>
         <h3>Generador de GIFs por palabra clave</h3>
         <p>Pequeño motor de animación en Canvas/JavaScript: genera una secuencia de 16 cuadros a partir de una palabra clave y construye el GIF completo en el navegador, sin backend ni API externa.</p>
@@ -426,7 +487,7 @@ footer{
       <div class="card-body">
         <div class="card-top">
           <span class="category" style="background:#7A5A78">Identidad de marca</span>
-          <span class="ficha-num">FICHA 04</span>
+          <span class="ficha-num">FICHA 06</span>
         </div>
         <h3>Royal Enfield Ladies</h3>
         <p>Identidad de marca para un grupo de motociclistas: emblema ilustrado con casco y corona, y mockups de jersey en carbón, malva y rosa polvo.</p>
@@ -460,7 +521,7 @@ footer{
       <div class="card-body">
         <div class="card-top">
           <span class="category" style="background:var(--forest-2)">Web App</span>
-          <span class="ficha-num">FICHA 05</span>
+          <span class="ficha-num">FICHA 07</span>
         </div>
         <h3>Portal Docente</h3>
         <p>Aplicación web completa (backend + frontend) para gestión y envío masivo de documentos, con seguimiento de estado de entrega, previsualización embebida y generación de PDF.</p>
@@ -485,7 +546,7 @@ footer{
       <div class="card-body">
         <div class="card-top">
           <span class="category" style="background:#8A6320">Dashboard</span>
-          <span class="ficha-num">FICHA 06</span>
+          <span class="ficha-num">FICHA 08</span>
         </div>
         <h3>Panel de Inventario</h3>
         <p>Sistema de sincronización de datos: automatiza el paso de archivos fuente a una base central y publica un dashboard en vivo, con reconciliación automática cuando la estructura de datos cambia.</p>
@@ -509,7 +570,7 @@ footer{
       <div class="card-body">
         <div class="card-top">
           <span class="category" style="background:var(--stamp)">Web App</span>
-          <span class="ficha-num">FICHA 07</span>
+          <span class="ficha-num">FICHA 09</span>
         </div>
         <h3>COPASS 2026</h3>
         <p>Plataforma de coordinación multi-sede con dos capas: interfaz de usuario para registro y participación gamificada, y panel administrativo con validación de evidencias y auditoría de actividad.</p>
@@ -534,7 +595,7 @@ footer{
       <div class="card-body">
         <div class="card-top">
           <span class="category" style="background:var(--forest-2)">Web App + IA</span>
-          <span class="ficha-num">FICHA 08</span>
+          <span class="ficha-num">FICHA 10</span>
         </div>
         <h3>Diario de Campo</h3>
         <p>Herramienta de generación de texto asistida por IA: cadena de respaldo entre múltiples modelos vía OpenRouter, con validación de salidas y reconstrucción automática de datos.</p>
@@ -556,7 +617,7 @@ footer{
       <div class="card-body">
         <div class="card-top">
           <span class="category" style="background:#3C6E56">Diseño editorial</span>
-          <span class="ficha-num">FICHA 09</span>
+          <span class="ficha-num">FICHA 11</span>
         </div>
         <h3>Carteleras de Autores</h3>
         <p>Tres piezas A3 de diseño editorial, cada una con sistema de paleta e identidad propia construido a partir del tono y la obra del autor que representa.</p>
@@ -581,7 +642,7 @@ footer{
   </div>
 
   <footer>
-    <div>9 fichas registradas · última actualización agosto 2026</div>
+    <div>11 fichas registradas · última actualización agosto 2026</div>
     <div>© Ángela Taborda — Todos los derechos reservados.</div>
   </footer>
 </div>
@@ -714,6 +775,35 @@ const DOSSIERS = {
       <li>Interfaz gráfica integrada directamente en el editor de Unreal, en vez de una herramienta externa aparte.</li>
     </ul>`
   },
+  'vr-speech': {
+    cat: 'VR · Unreal Engine', catColor:'#4C3A9E',
+    title: '100Q — Experiencia VR con reconocimiento de voz', meta: 'Unreal Engine · Blueprint · Meta Quest 2/3 · Cliente Upwork',
+    resumen: '<p>Experiencia de VR para Meta Quest 2/3: 100 preguntas presentadas como tarjetas flotantes en el espacio 3D. El usuario explora y pregunta en voz alta; el sistema debía reconocer la pregunta y reproducir el video con la respuesta asociada. Proyecto para cliente de Upwork, entregado en tres hitos.</p>',
+    codigo: `<ul>
+      <li>Diseño del blueprint de reconocimiento de voz dentro de Unreal Engine, evaluando SDKs de speech-to-text (entre ellos Google Voice y Wit.ai) para integrarlos a la experiencia ya existente.</li>
+      <li>Sistema de indexación por palabras clave para asociar lo que el usuario decía con el video de respuesta correcto.</li>
+      <li>Trabajo dividido en 3 hitos definidos por mí: (1) integración del SDK de reconocimiento de voz, (2) sistema de indexación por palabra clave y asociación de video, (3) mejoras de transición y pruebas finales.</li>
+      <li>Investigación técnica directa sobre la API de Google Cloud Speech-to-Text para resolver problemas de reconocimiento durante el desarrollo.</li>
+    </ul>`,
+    uiux: `<ul>
+      <li>Las 100 preguntas se presentaban como tarjetas flotantes en el espacio VR, para que el usuario pudiera explorar visualmente antes de elegir qué preguntar.</li>
+      <li>Se propusieron transiciones animadas (fade in/out, micro-animaciones) entre pregunta y respuesta, para sostener la sensación de inmersión en vez de cortes abruptos.</li>
+    </ul>`
+  },
+  'vr-perf': {
+    cat: 'VR · Optimización', catColor:'#8A5A2E',
+    title: 'Optimización de rendimiento VR — Vehículos', meta: 'Unreal Engine · Blueprint · Meta Quest 2/3 · Cliente Upwork',
+    resumen: '<p>Optimización de rendimiento para un juego de VR en Quest 2/3 con seguimiento de manos y soporte de controladores. El punto de partida documentado por el cliente: los blueprints de vehículos, un asset de terceros (Unreal Marketplace), consumían el 88.38% del tiempo de fotograma objetivo.</p>',
+    codigo: `<ul>
+      <li>Optimización y refactorización de blueprints de Unreal existentes, con foco en los vehículos y en el comportamiento de los enemigos.</li>
+      <li>Uso de herramientas de profiling/debugging de Unreal (Session Frontend) para identificar cuellos de botella de rendimiento.</li>
+      <li>Ajustes sobre funcionalidad que ya operaba con seguimiento de manos pero no con controladores, para que funcionara en ambos modos.</li>
+      <li>Control de versiones con Git para el trabajo de refactorización.</li>
+    </ul>`,
+    uiux: `<ul>
+      <li>Trabajo centrado en rendimiento, no en interfaz visible: el objetivo era que el juego se sintiera fluido en Quest 2/3 sin cambiar la experiencia ni los controles del jugador.</li>
+    </ul>`
+  },
   'stopmotion': {
     cat: 'Web App · Multimedia', catColor:'#2A4238',
     title: 'Stop Motion Web App', meta: 'JavaScript · Captura desde navegador · GitHub Pages',
@@ -828,8 +918,8 @@ const AREAS = [
   { label:'JavaScript / Web', cat:'web', status:'done' },
   { label:'Interactive Experiences', cat:'interactive', status:'done' },
   { label:'Unity', cat:'unity', status:'pending' },
-  { label:'Game Development', cat:'gamedev', status:'pending' },
-  { label:'Virtual Reality (VR)', cat:'vr', status:'pending' },
+  { label:'Game Development', cat:'gamedev', status:'done' },
+  { label:'Virtual Reality (VR)', cat:'vr', status:'done' },
   { label:'Augmented Reality (AR)', cat:'ar', status:'pending' },
   { label:'Mixed Reality (MR)', cat:'mr', status:'pending' },
   { label:'WebGL', cat:'webgl', status:'pending' },
