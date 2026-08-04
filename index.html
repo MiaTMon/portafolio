@@ -84,6 +84,10 @@ h1 em{ font-style: italic; font-weight:500; color: var(--forest-2); }
 .area-chip.pending{ background: transparent; color: var(--ink-soft); border: 1px dashed var(--ink-soft); }
 .area-chip.pending .dot{ background: transparent; border: 1px solid var(--ink-soft); }
 .area-chip.active-chip{ outline: 2px solid var(--stamp); outline-offset: 2px; }
+.areas-subhead{
+  font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+  color: var(--ink-soft); margin-bottom:9px;
+}
 .areas-note{
   font-family:'IBM Plex Mono', monospace; font-size:11.5px; color: var(--ink-soft);
   margin-top: 14px; min-height: 16px;
@@ -324,7 +328,10 @@ footer{
 
   <div class="areas-section">
     <div class="sec-label" style="margin-bottom:14px;">Áreas de práctica</div>
-    <div class="areas-grid" id="areasGrid"></div>
+    <div class="areas-subhead">Con proyectos documentados</div>
+    <div class="areas-grid" id="areasGridDone"></div>
+    <div class="areas-subhead" style="margin-top:20px;">Experiencia real, proyectos por documentar</div>
+    <div class="areas-grid" id="areasGridPending"></div>
     <div class="areas-note" id="areasNote">Selecciona un área para ver sus fichas — las marcadas como pendientes aún no tienen proyecto documentado.</div>
   </div>
 
@@ -344,7 +351,7 @@ footer{
   </div>
   <div class="grid" id="grid">
 
-<div class="card" data-id="assetsync" data-cat="3d interactive" onclick="openDossier('assetsync')">
+<div class="card" data-id="assetsync" data-cat="3d cpp interactive" onclick="openDossier('assetsync')">
       <div class="preview pv-unreal">
         <div class="dot-row"><div class="dot" style="background:#4C8DFF"></div><div class="dot" style="background:#4CC38A"></div><div class="dot" style="background:#F0B44E"></div></div>
         <div class="panel" style="top:44px;left:16px;width:90px;height:82px;"></div>
@@ -374,7 +381,7 @@ footer{
       </div>
     </div>
 
-<div class="card" data-id="vr-speech" data-cat="xr vr interactive" onclick="openDossier('vr-speech')">
+<div class="card" data-id="vr-speech" data-cat="xr vr 3d blueprints interactive" onclick="openDossier('vr-speech')">
       <div class="preview pv-vr">
         <div class="dot-row"><div class="dot" style="background:#7B5FE0"></div><div class="dot" style="background:#4CC38A"></div><div class="dot" style="background:#F0B44E"></div></div>
         <div class="card-float" style="top:44px;left:20px;width:56px;height:38px;"></div>
@@ -401,7 +408,7 @@ footer{
       </div>
     </div>
 
-<div class="card" data-id="vr-perf" data-cat="xr vr gamedev interactive" onclick="openDossier('vr-perf')">
+<div class="card" data-id="vr-perf" data-cat="xr vr 3d blueprints interactive" onclick="openDossier('vr-perf')">
       <div class="preview pv-perf">
         <div class="dot-row"><div class="dot" style="background:#E0876A"></div><div class="dot" style="background:#D8B242"></div><div class="dot" style="background:#3FA98B"></div></div>
         <div class="gauge" style="top:44px;left:24px;width:70px;height:70px;"></div>
@@ -425,7 +432,7 @@ footer{
       </div>
     </div>
 
-<div class="card" data-id="stopmotion" data-cat="web interactive" onclick="openDossier('stopmotion')">
+<div class="card" data-id="stopmotion" data-cat="web canvas interactive" onclick="openDossier('stopmotion')">
       <div class="preview pv-stop">
         <div class="dot-row"><div class="dot" style="background:#E0876A"></div><div class="dot" style="background:#D8B242"></div><div class="dot" style="background:#3FA98B"></div></div>
         <div class="frame-cell" style="top:44px;left:18px;width:52px;height:52px;"></div>
@@ -451,7 +458,7 @@ footer{
       </div>
     </div>
 
-<div class="card" data-id="mia-gif" data-cat="web edu" onclick="openDossier('mia-gif')">
+<div class="card" data-id="mia-gif" data-cat="web edu canvas" onclick="openDossier('mia-gif')">
       <div class="preview pv-mia">
         <div class="dot-row"><div class="dot" style="background:#E0876A"></div><div class="dot" style="background:#D8B242"></div><div class="dot" style="background:#3FA98B"></div></div>
         <div class="frame" style="top:44px;left:18px;width:40px;height:40px;background:#E0876A;"></div>
@@ -915,21 +922,27 @@ document.querySelectorAll('.tab').forEach(tab=>{
 
 const AREAS = [
   { label:'Unreal Engine', cat:'3d', status:'done' },
-  { label:'JavaScript / Web', cat:'web', status:'done' },
-  { label:'Interactive Experiences', cat:'interactive', status:'done' },
+  { label:'C++', cat:'cpp', status:'done' },
+  { label:'Blueprints', cat:'blueprints', status:'done' },
+  { label:'VR', cat:'vr', status:'done' },
+  { label:'Interactive Systems', cat:'interactive', status:'done' },
+  { label:'JavaScript', cat:'web', status:'done' },
+  { label:'Canvas', cat:'canvas', status:'done' },
+  { label:'Web Applications', cat:'web', status:'done' },
+  { label:'3D / Interactive Development', cat:'3d', status:'done' },
   { label:'Unity', cat:'unity', status:'pending' },
-  { label:'Game Development', cat:'gamedev', status:'done' },
-  { label:'Virtual Reality (VR)', cat:'vr', status:'done' },
-  { label:'Augmented Reality (AR)', cat:'ar', status:'pending' },
-  { label:'Mixed Reality (MR)', cat:'mr', status:'pending' },
+  { label:'AR', cat:'ar', status:'pending' },
+  { label:'MR', cat:'mr', status:'pending' },
   { label:'WebGL', cat:'webgl', status:'pending' },
   { label:'Three.js', cat:'threejs', status:'pending' },
-  { label:'3D Development', cat:'3ddev', status:'pending' },
-  { label:'Creative Technology', cat:'creativetech', status:'pending' },
+  { label:'Game Development', cat:'gamedev', status:'pending' },
 ];
 
-document.getElementById('areasGrid').innerHTML = AREAS.map(a =>
-  `<div class="area-chip ${a.status}" data-cat="${a.cat}" data-label="${a.label}"><span class="dot"></span>${a.label}</div>`
+document.getElementById('areasGridDone').innerHTML = AREAS.filter(a=>a.status==='done').map(a =>
+  `<div class="area-chip done" data-cat="${a.cat}" data-label="${a.label}"><span class="dot"></span>${a.label}</div>`
+).join('');
+document.getElementById('areasGridPending').innerHTML = AREAS.filter(a=>a.status==='pending').map(a =>
+  `<div class="area-chip pending" data-cat="${a.cat}" data-label="${a.label}"><span class="dot"></span>${a.label}</div>`
 ).join('');
 
 document.querySelectorAll('.area-chip').forEach(chip=>{
