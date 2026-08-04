@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cuaderno de Proyectos — Portafolio</title>
+<title>Mia Taborda — Developer Portfolio</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
 
@@ -59,6 +59,14 @@ h1{
 h1 em{ font-style: italic; font-weight:500; color: var(--forest-2); }
 .lede{
   font-size: 17.5px; line-height:1.6; color: var(--ink-soft); max-width: 56ch; margin: 0 0 6px;
+}
+.skillbar{
+  display:flex; flex-wrap:wrap; gap:8px; margin-top: 26px; max-width: 62ch;
+}
+.skillbar .skill{
+  font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:.02em;
+  border: 1px solid var(--ink); border-radius:3px; padding: 5px 11px; color: var(--ink);
+  background: var(--card-bg);
 }
 
 .stamp{
@@ -166,6 +174,12 @@ h1 em{ font-style: italic; font-weight:500; color: var(--forest-2); }
 .pv-mia{ background: linear-gradient(160deg,#171B26,#212A3D); }
 .pv-mia .frame{ position:absolute; border-radius:4px; }
 
+.pv-unreal{ background: linear-gradient(160deg,#111214,#1B1D22); }
+.pv-unreal .panel{ position:absolute; background:#232529; border:1px solid #33363c; border-radius:3px; }
+.pv-unreal .barfill{ position:absolute; background:#4C8DFF; border-radius:3px; }
+.pv-unreal .dotstatus{ position:absolute; width:8px; height:8px; border-radius:50%; background:#4CC38A; }
+.pv-unreal .row{ position:absolute; height:5px; background:#3B3E45; border-radius:2px; }
+
 /* ---------- Footer ---------- */
 footer{
   border-top: 1.5px solid var(--ink); padding: 30px 0 50px;
@@ -244,28 +258,30 @@ footer{
 
 <div class="wrap">
   <div class="topbar">
-    <div class="brand"><b>Mi Profe</b> · Cuaderno de Proyectos</div>
-    <div class="brand">Medellín, CO — 2026</div>
+    <div class="brand"><b>Mia Taborda</b> · Developer Log</div>
+    <div class="brand">Interactive Systems — Medellín, CO</div>
   </div>
 
   <div class="hero">
-    <div class="stamp">catálogo<br>de proyectos<br>· original ·</div>
-    <div class="eyebrow">Docente &amp; desarrollador de herramientas escolares</div>
-    <h1>Interfaces que nacieron<br>en el <em>salón de clase</em>,<br>no en un brief.</h1>
-    <p class="lede">Cada ficha de este cuaderno es una interfaz real, construida para resolver algo concreto: enviar boletines, controlar inventario, coordinar una brigada, o darle identidad a un grupo. Nada aquí es un ejercicio — todo está en uso.</p>
+    <div class="stamp">registro<br>técnico<br>· en desarrollo ·</div>
+    <div class="eyebrow">Developer · Interactive &amp; Real-Time Experiences</div>
+    <h1>Construyo la lógica<br>detrás de lo <em>interactivo</em>,<br>no solo la superficie.</h1>
+    <p class="lede">Desarrollo sistemas interactivos con Unreal Engine, Unity, WebGL y JavaScript — desde plugins con su propia interfaz hasta experiencias en VR/AR/MR y herramientas web completas. También ilustro, modelo en 3D y diseño identidad de marca; la docencia es una de las líneas donde he aplicado todo esto, no el punto de partida.</p>
+    <div class="skillbar" id="skillbar"></div>
   </div>
 
   <div class="tabs" id="tabs">
     <div class="tab active" data-cat="todos">Todos</div>
-    <div class="tab" data-cat="app">Apps escolares</div>
-    <div class="tab" data-cat="marca">Identidad de marca</div>
-    <div class="tab" data-cat="material">Material didáctico</div>
+    <div class="tab" data-cat="xr">Motores &amp; XR</div>
+    <div class="tab" data-cat="web">Web &amp; Herramientas</div>
+    <div class="tab" data-cat="marca">Diseño &amp; Marca</div>
+    <div class="tab" data-cat="edu">Educación</div>
   </div>
 
   <div class="layout" id="layout">
   <div class="grid" id="grid">
 
-    <div class="card" data-id="portal-docente" data-cat="app" onclick="openDossier('portal-docente')">
+    <div class="card" data-id="portal-docente" data-cat="web edu" onclick="openDossier('portal-docente')">
       <div class="preview pv-portal">
         <div class="dot-row"><div class="dot" style="background:#E0876A"></div><div class="dot" style="background:#D8B242"></div><div class="dot" style="background:#3FA98B"></div></div>
         <div class="card1" style="top:44px;left:16px;width:78px;height:44px;"></div>
@@ -280,11 +296,11 @@ footer{
       </div>
       <div class="card-body">
         <div class="card-top">
-          <span class="category" style="background:var(--forest-2)">App institucional</span>
+          <span class="category" style="background:var(--forest-2)">Web App</span>
           <span class="ficha-num">FICHA 01</span>
         </div>
         <h3>Portal Docente</h3>
-        <p>Web app para gestionar y enviar boletines a acudientes. Vista previa de PDF embebida, estados de entrega (NDR), tarjetas de estadística y modal imprimible.</p>
+        <p>Aplicación web completa (backend + frontend) para gestión y envío masivo de documentos, con seguimiento de estado de entrega, previsualización embebida y generación de PDF.</p>
         <div class="tags">
           <span class="tag">Apps Script</span>
           <span class="tag">Tema oscuro</span>
@@ -294,7 +310,7 @@ footer{
       </div>
     </div>
 
-    <div class="card" data-id="inventario" data-cat="app" onclick="openDossier('inventario')">
+    <div class="card" data-id="inventario" data-cat="web edu" onclick="openDossier('inventario')">
       <div class="preview pv-inv">
         <div class="dot-row"><div class="dot" style="background:#E0876A"></div><div class="dot" style="background:#D8B242"></div><div class="dot" style="background:#3FA98B"></div></div>
         <div class="cell" style="top:48px;left:16px;width:100px;height:60px;"></div>
@@ -309,7 +325,7 @@ footer{
           <span class="ficha-num">FICHA 02</span>
         </div>
         <h3>Panel de Inventario</h3>
-        <p>Sincroniza CARTERA e INVENTARIO desde Drive a Sheets y publica un dashboard institucional en GitHub Pages, con reconciliación automática de datos.</p>
+        <p>Sistema de sincronización de datos: automatiza el paso de archivos fuente a una base central y publica un dashboard en vivo, con reconciliación automática cuando la estructura de datos cambia.</p>
         <div class="tags">
           <span class="tag">Apps Script</span>
           <span class="tag">GitHub Pages</span>
@@ -319,7 +335,7 @@ footer{
       </div>
     </div>
 
-    <div class="card" data-id="copass" data-cat="app" onclick="openDossier('copass')">
+    <div class="card" data-id="copass" data-cat="web edu" onclick="openDossier('copass')">
       <div class="preview pv-copass">
         <div class="dot-row"><div class="dot" style="background:#F3ECDC"></div><div class="dot" style="background:#D8B242"></div><div class="dot" style="background:#3FA98B"></div></div>
         <div class="badge" style="top:44px;left:20px;width:54px;height:54px;"></div>
@@ -329,11 +345,11 @@ footer{
       </div>
       <div class="card-body">
         <div class="card-top">
-          <span class="category" style="background:var(--stamp)">App institucional</span>
+          <span class="category" style="background:var(--stamp)">Web App</span>
           <span class="ficha-num">FICHA 03</span>
         </div>
         <h3>COPASS 2026</h3>
-        <p>Registro de brigadas de emergencia para tres sedes. Panel docente con retos gamificados y panel admin con validación de evidencias y bitácora de actividad.</p>
+        <p>Plataforma de coordinación multi-sede con dos capas: interfaz de usuario para registro y participación gamificada, y panel administrativo con validación de evidencias y auditoría de actividad.</p>
         <div class="tags">
           <span class="tag">Apps Script</span>
           <span class="tag">Panel admin</span>
@@ -343,7 +359,7 @@ footer{
       </div>
     </div>
 
-    <div class="card" data-id="diario-campo" data-cat="app" onclick="openDossier('diario-campo')">
+    <div class="card" data-id="diario-campo" data-cat="web edu" onclick="openDossier('diario-campo')">
       <div class="preview pv-diario">
         <div class="dot-row"><div class="dot" style="background:#B34632"></div><div class="dot" style="background:#B08A3E"></div><div class="dot" style="background:#5C5A4D"></div></div>
         <div class="chip" style="top:46px;left:16px;">✎ reescribir con IA</div>
@@ -354,11 +370,11 @@ footer{
       </div>
       <div class="card-body">
         <div class="card-top">
-          <span class="category" style="background:var(--forest-2)">App personal</span>
+          <span class="category" style="background:var(--forest-2)">Web App + IA</span>
           <span class="ficha-num">FICHA 04</span>
         </div>
-        <h3>Diario de Campo Docente</h3>
-        <p>Convierte reflexiones diarias en prosa pulida en primera persona, con cadena de modelos de respaldo vía OpenRouter y validación de salidas.</p>
+        <h3>Diario de Campo</h3>
+        <p>Herramienta de generación de texto asistida por IA: cadena de respaldo entre múltiples modelos vía OpenRouter, con validación de salidas y reconstrucción automática de datos.</p>
         <div class="tags">
           <span class="tag">Apps Script</span>
           <span class="tag">IA / OpenRouter</span>
@@ -392,7 +408,7 @@ footer{
       </div>
     </div>
 
-    <div class="card" data-id="carteleras" data-cat="material" onclick="openDossier('carteleras')">
+    <div class="card" data-id="carteleras" data-cat="marca edu" onclick="openDossier('carteleras')">
       <div class="preview pv-cart">
         <div class="slab s1"><div class="moon"></div></div>
         <div class="slab s2"><div class="rule" style="top:24px;"></div><div class="rule" style="top:40px;"></div><div class="rule" style="top:56px;"></div></div>
@@ -400,11 +416,11 @@ footer{
       </div>
       <div class="card-body">
         <div class="card-top">
-          <span class="category" style="background:#3C6E56">Material didáctico</span>
+          <span class="category" style="background:#3C6E56">Diseño editorial</span>
           <span class="ficha-num">FICHA 06</span>
         </div>
         <h3>Carteleras de Autores</h3>
-        <p>Tres carteleras A3 listas para imprimir — Silva, Bonnett y Quintana — cada una con paleta e identidad propia inspirada en su obra.</p>
+        <p>Tres piezas A3 de diseño editorial, cada una con sistema de paleta e identidad propia construido a partir del tono y la obra del autor que representa.</p>
         <div class="tags">
           <span class="tag">Diseño editorial</span>
           <span class="tag">Print / A3</span>
@@ -414,7 +430,7 @@ footer{
       </div>
     </div>
 
-    <div class="card" data-id="mia-gif" data-cat="app" onclick="openDossier('mia-gif')">
+    <div class="card" data-id="mia-gif" data-cat="web edu" onclick="openDossier('mia-gif')">
       <div class="preview pv-mia">
         <div class="dot-row"><div class="dot" style="background:#E0876A"></div><div class="dot" style="background:#D8B242"></div><div class="dot" style="background:#3FA98B"></div></div>
         <div class="frame" style="top:44px;left:18px;width:40px;height:40px;background:#E0876A;"></div>
@@ -425,15 +441,45 @@ footer{
       </div>
       <div class="card-body">
         <div class="card-top">
-          <span class="category" style="background:#3B4B75">Herramienta educativa</span>
+          <span class="category" style="background:#3B4B75">Herramienta interactiva</span>
           <span class="ficha-num">FICHA 07</span>
         </div>
-        <h3>Mia — generador de GIFs</h3>
-        <p>Herramienta para estudiantes de primaria: dibuja animaciones de 16 cuadros en canvas a partir de palabras clave, sin depender de ninguna API externa.</p>
+        <h3>Generador de GIFs por palabra clave</h3>
+        <p>Motor de animación en el navegador: convierte una palabra clave en una animación de 16 cuadros dibujada en canvas, con un diccionario local de dibujo en lugar de una API externa.</p>
         <div class="tags">
           <span class="tag">Canvas / JS</span>
           <span class="tag">Offline-first</span>
-          <span class="tag">Educación</span>
+          <span class="tag">Motor de animación</span>
+        </div>
+        <div class="open-hint">Ver expediente →</div>
+      </div>
+    </div>
+
+    <div class="card" data-id="assetsync" data-cat="xr" onclick="openDossier('assetsync')">
+      <div class="preview pv-unreal">
+        <div class="dot-row"><div class="dot" style="background:#4C8DFF"></div><div class="dot" style="background:#4CC38A"></div><div class="dot" style="background:#F0B44E"></div></div>
+        <div class="panel" style="top:44px;left:16px;width:90px;height:82px;"></div>
+        <div class="row" style="top:56px;left:24px;width:60px;"></div>
+        <div class="row" style="top:68px;left:24px;width:44px;"></div>
+        <div class="row" style="top:80px;left:24px;width:66px;"></div>
+        <div class="row" style="top:92px;left:24px;width:36px;"></div>
+        <div class="panel" style="top:44px;left:116px;width:120px;height:82px;"></div>
+        <div class="dotstatus" style="top:54px;left:126px;"></div>
+        <div class="row" style="top:52px;left:140px;width:80px;"></div>
+        <div class="barfill" style="top:100px;left:126px;width:70px;height:6px;border-radius:3px;"></div>
+        <div class="barfill" style="top:100px;left:126px;width:40px;height:6px;background:#233; opacity:.3;"></div>
+      </div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="category" style="background:#2E4E8F">Unreal Engine Plugin</span>
+          <span class="ficha-num">FICHA 08</span>
+        </div>
+        <h3>AssetSyncManager</h3>
+        <p>Plugin nativo para Unreal Engine con interfaz propia dentro del editor: autenticación, escaneo y sincronización de assets entre un repositorio central y proyectos locales.</p>
+        <div class="tags">
+          <span class="tag">Unreal Engine</span>
+          <span class="tag">C++</span>
+          <span class="tag">Gestión de assets</span>
         </div>
         <div class="open-hint">Ver expediente →</div>
       </div>
@@ -450,27 +496,27 @@ footer{
   </div>
 
   <footer>
-    <div>7 fichas registradas · última actualización agosto 2026</div>
-    <div>Fe y Alegría La Cima — Medellín</div>
+    <div>8 fichas registradas · última actualización agosto 2026</div>
+    <div>© Ángela Taborda — Todos los derechos reservados.</div>
   </footer>
 </div>
 
 <script>
 const DOSSIERS = {
   'portal-docente': {
-    cat: 'App institucional', catColor:'#2A4238',
+    cat: 'Web App', catColor:'#2A4238',
     title: 'Portal Docente', meta: 'Google Apps Script · JavaScript vanilla · Google Sheets como base de datos',
     resumen: '<p>Los boletines se enviaban a mano, un correo a la vez. El Portal Docente centraliza la lista de estudiantes, genera el PDF del boletín, lo previsualiza y lo envía por correo a los acudientes — con visibilidad clara de qué envíos fallaron.</p>',
     codigo: `<ul>
       <li>Backend en <code>google.script.run</code> sobre Apps Script, sin framework — funciones puras como <code>renderizarLista()</code>, <code>enviarNotas()</code>, <code>guardarPreInforme()</code> y <code>generarPDFReporte()</code>.</li>
       <li>La vista previa del PDF pasó de un mecanismo "clic para cargar" a un <code>&lt;iframe&gt;</code> apuntando directo a la URL de preview de Drive (<code>drive.google.com/file/d/{id}/preview</code>), con <code>loading="lazy"</code> — menos código, carga más rápida.</li>
       <li>Estados de entrega por correo (NDR / error de envío) se detectan y se reflejan en la UI en vez de asumir que "enviado" significa "recibido".</li>
-      <li>Sistema de datos vivo: la hoja de "Periodos" define fechas de corte sin tocar código — el docente edita una fila en Sheets y el portal se ajusta solo.</li>
+      <li>Sistema de datos vivo: la hoja de "Periodos" define fechas de corte sin tocar código — se edita una fila en Sheets y el sistema se ajusta solo, sin tocar código.</li>
     </ul>`,
     uiux: `<ul>
       <li>Tema oscuro con variables CSS personalizadas, pensado para uso prolongado en jornadas de calificación.</li>
-      <li>Tarjetas de estadística arriba, para que el docente sepa de un vistazo cuántos boletines faltan sin desplazarse.</li>
-      <li>Banner de aviso naranja cuando un período cierra sin reflexión pedagógica registrada — desaparece solo al completarla, sin que el docente tenga que recordarlo.</li>
+      <li>Tarjetas de estadística arriba, para saber de un vistazo el estado general sin desplazarse.</li>
+      <li>Banner de aviso naranja cuando un período cierra sin reflexión pedagógica registrada — desaparece solo al completarla, sin depender de que alguien lo recuerde manualmente.</li>
       <li>Modal imprimible para el reporte, en vez de forzar la exportación como único camino.</li>
     </ul>`
   },
@@ -491,9 +537,9 @@ const DOSSIERS = {
     </ul>`
   },
   'copass': {
-    cat: 'App institucional', catColor:'#B34632',
+    cat: 'Web App', catColor:'#B34632',
     title: 'COPASS 2026', meta: 'Google Apps Script · Panel docente + panel admin',
-    resumen: '<p>Sistema de registro para las brigadas de emergencia de la institución, con tres sedes, cuatro tipos de brigada y turnos AM/PM. Incluye una capa de "retos" para motivar la participación docente.</p>',
+    resumen: '<p>Sistema de registro para las brigadas de emergencia de la institución, con tres sedes, cuatro tipos de brigada y turnos AM/PM. Incluye una capa de gamificación ("retos") para sostener la participación del equipo.</p>',
     codigo: `<ul>
       <li>Vista docente: registro a brigadas y una interfaz de "retos" con evidencias que se validan desde el panel admin.</li>
       <li>Panel admin: dashboard integrado, gestión de retos, validación de evidencias y bitácora de actividad — todo en una sola vista de control.</li>
@@ -507,8 +553,8 @@ const DOSSIERS = {
     </ul>`
   },
   'diario-campo': {
-    cat: 'App personal', catColor:'#2A4238',
-    title: 'Diario de Campo Docente', meta: 'Google Apps Script · OpenRouter (multi-modelo) · Google Sheets',
+    cat: 'Web App + IA', catColor:'#2A4238',
+    title: 'Diario de Campo', meta: 'Google Apps Script · OpenRouter (multi-modelo) · Google Sheets',
     resumen: '<p>Convierte anotaciones breves del día a día en el aula en prosa reflexiva y coherente, en primera persona, lista para el diario pedagógico oficial — sin que el docente tenga que redactar desde cero cada semana.</p>',
     codigo: `<ul>
       <li>Cadena de respaldo entre varios modelos gratuitos de OpenRouter: si un modelo falla (401/403, 404, 429, error de red), pasa automáticamente al siguiente con un mensaje de error específico por tipo de falla, no genérico.</li>
@@ -539,7 +585,7 @@ const DOSSIERS = {
     </ul>`
   },
   'carteleras': {
-    cat: 'Material didáctico', catColor:'#3C6E56',
+    cat: 'Diseño editorial', catColor:'#3C6E56',
     title: 'Carteleras de Autores', meta: 'HTML → PDF · Diseño editorial · Formato A3 para impresión',
     resumen: '<p>Tres carteleras de aula para un salón de Lengua Castellana, una por autor colombiano (José Asunción Silva, Piedad Bonnett, Pilar Quintana), cada una con identidad visual propia inspirada en la obra del autor.</p>',
     codigo: `<ul>
@@ -554,8 +600,8 @@ const DOSSIERS = {
     </ul>`
   },
   'mia-gif': {
-    cat: 'Herramienta educativa', catColor:'#3B4B75',
-    title: 'Mia — generador de GIFs', meta: 'Canvas API · JavaScript · gifshot · 100% en el navegador',
+    cat: 'Herramienta interactiva', catColor:'#3B4B75',
+    title: 'Generador de GIFs por palabra clave', meta: 'Canvas API · JavaScript · gifshot · 100% en el navegador',
     resumen: '<p>Herramienta pensada para estudiantes de primaria: escriben una palabra clave y la herramienta dibuja y anima una escena, generando un GIF de 16 cuadros — sin ningún costo recurrente de API.</p>',
     codigo: `<ul>
       <li>La versión inicial dependía de una API de IA externa por cada generación. Se reemplazó por completo con un diccionario local de palabra clave → función de dibujo.</li>
@@ -566,6 +612,22 @@ const DOSSIERS = {
       <li>Pensada para niños de primaria: una sola caja de texto y un botón, sin configuración adicional.</li>
       <li>La respuesta es inmediata porque no hay una llamada a un servidor externo de por medio — importante para mantener la atención de un estudiante joven.</li>
       <li>El vocabulario de palabras clave reconocidas se pensó en función de lo que un niño realmente escribiría, no de términos técnicos.</li>
+    </ul>`
+  }
+  'assetsync': {
+    cat: 'Unreal Engine Plugin', catColor:'#2E4E8F',
+    title: 'AssetSyncManager', meta: 'Unreal Engine · C++ · UI nativa del editor',
+    resumen: '<p>Plugin para Unreal Engine que resuelve un problema recurrente en equipos que comparten librerías de assets: mantener sincronizados los recursos entre un repositorio central y múltiples proyectos locales, sin pasos manuales ni control de versiones ad-hoc.</p>',
+    codigo: `<ul>
+      <li>Construido como plugin nativo en C++ dentro del editor de Unreal, con su propia interfaz integrada en lugar de depender de herramientas externas.</li>
+      <li>Módulo de autenticación para validar el acceso al repositorio de assets antes de cualquier operación de sincronización.</li>
+      <li>Escaneo del proyecto local y del repositorio remoto para detectar diferencias, y sincronización selectiva de los assets que cambiaron.</li>
+      <li>Pensado para integrarse al flujo de trabajo normal del editor — no como una utilidad aparte que hay que salir a ejecutar.</li>
+    </ul>`,
+    uiux: `<ul>
+      <li>La interfaz vive dentro del propio editor de Unreal, respetando su lenguaje visual, para que no se sienta como una herramienta ajena al motor.</li>
+      <li>Estado de sincronización visible de un vistazo (qué está al día, qué falta, qué está en conflicto) antes de ejecutar cualquier acción.</li>
+      <li>Prioriza que un equipo técnico pueda confiar en el estado de sus assets sin tener que revisarlo manualmente archivo por archivo.</li>
     </ul>`
   }
 };
@@ -628,13 +690,17 @@ document.addEventListener('keydown', (e)=>{
   if(e.key === 'Escape' && activeId) closeDossier();
 });
 
+const SKILLS = ['Unreal Engine','Unity','WebGL / Three.js','JavaScript','VR','AR','MR','Videojuegos','C++','3D & Assets','Ilustración'];
+document.getElementById('skillbar').innerHTML = SKILLS.map(s=>`<span class="skill">${s}</span>`).join('');
+
 document.querySelectorAll('.tab').forEach(tab=>{
   tab.addEventListener('click', ()=>{
     document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
     tab.classList.add('active');
     const cat = tab.dataset.cat;
     document.querySelectorAll('.card').forEach(card=>{
-      if(cat==='todos' || card.dataset.cat===cat){
+      const cardCats = card.dataset.cat.split(' ');
+      if(cat==='todos' || cardCats.includes(cat)){
         card.classList.remove('hidden');
       } else {
         card.classList.add('hidden');
