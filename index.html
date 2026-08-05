@@ -5,251 +5,155 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mia Taborda — Developer Portfolio</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
 
 :root{
   --bg: #0A0C0A;
-  --bg-panel: #131513;
-  --bg-panel-2: #191c19;
+  --bg-panel: #12140F;
+  --bg-card: #14160F;
   --ink: #F1EDE2;
   --ink-dim: #948F80;
   --ink-faint: #5C5A50;
   --accent: #5C8471;
   --accent-dim: #33473C;
   --gold: #C9A66B;
-  --line: #26281F;
-  --line-soft: #1C1E19;
+  --line: #262920;
+  --line-soft: #1C1E17;
 }
-
 *{ box-sizing:border-box; margin:0; padding:0; }
 html{ scroll-behavior:smooth; background:var(--bg); }
-body{
-  background: var(--bg);
-  color: var(--ink);
-  font-family:'Inter', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  overflow-x:hidden;
-}
-@media (prefers-reduced-motion: reduce){
-  *{ animation-duration:0.01ms !important; transition-duration:0.01ms !important; scroll-behavior:auto !important; }
-}
-
+body{ background:var(--bg); color:var(--ink); font-family:'Inter',sans-serif; -webkit-font-smoothing:antialiased; }
+@media (prefers-reduced-motion: reduce){ *{ animation-duration:0.01ms !important; transition-duration:0.01ms !important; } }
+a{ color:inherit; text-decoration:none; }
 ::selection{ background:var(--accent-dim); color:var(--ink); }
 
-.wrap{ max-width:1360px; margin:0 auto; padding:0 48px; }
-@media (max-width:760px){ .wrap{ padding:0 22px; } }
+.wrap{ max-width:1500px; margin:0 auto; padding:0 40px; }
+@media (max-width:760px){ .wrap{ padding:0 20px; } }
 
-a{ color:inherit; text-decoration:none; }
-
-/* ============ HEADER ============ */
-header{
-  position:fixed; top:0; left:0; right:0; z-index:100;
-  padding: 22px 0;
-  transition: background .4s ease, border-color .4s ease, backdrop-filter .4s ease;
-  border-bottom: 1px solid transparent;
-}
-header.scrolled{
-  background: rgba(10,12,10,0.82);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--line);
-}
+/* ===== HEADER ===== */
+header{ padding:22px 0; border-bottom:1px solid var(--line); }
 .header-row{ display:flex; justify-content:space-between; align-items:center; }
 .logo-group{ display:flex; align-items:center; gap:12px; }
 .logo-mark{
   width:34px; height:34px; border:1px solid var(--ink-dim); border-radius:50%;
   display:flex; align-items:center; justify-content:center;
-  font-family:'Fraunces', serif; font-size:13px; font-weight:600; letter-spacing:-0.02em;
-  flex-shrink:0;
+  font-family:'Fraunces', serif; font-size:13px; font-weight:600; letter-spacing:-0.03em; flex-shrink:0;
 }
-.logo-text-name{ font-family:'Inter',sans-serif; font-size:14px; font-weight:600; letter-spacing:.08em; }
-.logo-text-sub{ font-family:'IBM Plex Mono', monospace; font-size:9.5px; letter-spacing:.1em; color:var(--ink-dim); margin-top:1px; }
-nav.main-nav{ display:flex; gap:34px; }
-nav.main-nav a{
-  font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.1em; color:var(--ink-dim);
-  transition:color .25s ease; position:relative; padding-bottom:3px;
-}
-nav.main-nav a:hover, nav.main-nav a.active{ color:var(--ink); }
-nav.main-nav a.active::after{
-  content:""; position:absolute; bottom:0; left:0; right:0; height:1px; background:var(--accent);
-}
+.logo-text-name{ font-size:14px; font-weight:700; letter-spacing:.06em; }
+.logo-text-sub{ font-family:'IBM Plex Mono', monospace; font-size:9px; letter-spacing:.12em; color:var(--accent); margin-top:1px; }
+nav.main-nav{ display:flex; align-items:center; gap:32px; }
+nav.main-nav a{ font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.08em; color:var(--ink-dim); transition:color .2s ease; padding-bottom:3px; }
+nav.main-nav a:hover, nav.main-nav a.active{ color:var(--ink); border-bottom:1px solid var(--accent); }
 @media (max-width:900px){ nav.main-nav{ display:none; } }
 
-/* ============ HERO ============ */
-.hero{
-  min-height:100vh; display:flex; align-items:center; padding: 130px 0 60px;
-}
-.hero-grid{ display:grid; grid-template-columns: 1.05fr 0.95fr; gap:64px; align-items:center; width:100%; }
-@media (max-width:980px){ .hero-grid{ grid-template-columns:1fr; gap:44px; } .hero{ padding-top:110px; } }
-
-.hero-eyebrow{
-  font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:.14em; color:var(--gold);
-  margin-bottom:22px; display:flex; align-items:center; gap:10px;
-}
-.hero-eyebrow::before{ content:""; width:22px; height:1px; background:var(--gold); }
+/* ===== HERO ===== */
+.hero{ padding:64px 0 48px; }
+.hero-grid{ display:grid; grid-template-columns: 0.95fr 1fr 0.62fr; gap:40px; align-items:center; }
+@media (max-width:1100px){ .hero-grid{ grid-template-columns:1fr; } }
 
 h1.hero-title{
-  font-family:'Fraunces', serif; font-weight:500; font-optical-sizing:auto;
-  font-size: clamp(42px, 5.4vw, 78px); line-height:1.02; letter-spacing:-0.015em;
-  margin-bottom:28px;
+  font-family:'Fraunces', serif; font-weight:500; font-size: clamp(32px,3.6vw,44px); line-height:1.12; letter-spacing:-0.01em; margin-bottom:18px;
 }
 h1.hero-title em{ font-style:normal; color:var(--accent); font-weight:600; }
 h1.hero-title .gold{ color:var(--gold); font-weight:600; font-style:italic; }
-
-.hero-name-line{ display:flex; align-items:baseline; gap:14px; margin-bottom:16px; flex-wrap:wrap; }
-.hero-name{ font-family:'Fraunces', serif; font-size:19px; font-weight:600; }
-.hero-role{ font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--ink-dim); letter-spacing:.03em; }
-
-.hero-desc{ font-size:15.5px; line-height:1.7; color:var(--ink-dim); max-width:46ch; margin-bottom:36px; }
-
-.hero-cta{ display:flex; gap:16px; align-items:center; flex-wrap:wrap; }
+.hero-desc{ font-size:14.5px; line-height:1.65; color:var(--ink-dim); max-width:46ch; margin-bottom:30px; }
+.hero-cta{ display:flex; gap:14px; flex-wrap:wrap; }
 .btn-primary{
-  display:inline-flex; align-items:center; gap:10px;
-  background:var(--accent); color:#0A0C0A; font-family:'IBM Plex Mono', monospace;
-  font-size:11.5px; letter-spacing:.08em; font-weight:500; padding:14px 22px; border-radius:2px;
-  transition: transform .25s ease, background .25s ease; cursor:pointer; border:none;
+  display:inline-flex; align-items:center; gap:9px; background:var(--accent); color:#0A0C0A;
+  font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.06em; font-weight:500;
+  padding:13px 20px; border-radius:3px; transition:transform .2s ease, background .2s ease;
 }
 .btn-primary:hover{ transform:translateY(-2px); background:#6C977F; }
 .btn-ghost{
-  font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:.08em; color:var(--ink-dim);
-  padding:14px 4px; border-bottom:1px solid var(--line); transition:color .25s ease, border-color .25s ease;
+  display:inline-flex; align-items:center; gap:9px; font-family:'IBM Plex Mono', monospace; font-size:11px;
+  letter-spacing:.06em; color:var(--ink-dim); padding:13px 18px; border:1px solid var(--line); border-radius:3px;
+  transition: color .2s ease, border-color .2s ease;
 }
 .btn-ghost:hover{ color:var(--ink); border-color:var(--ink-dim); }
 
-/* hero visual */
-.hero-visual{ position:relative; aspect-ratio: 4/3.1; border:1px solid var(--line); overflow:hidden; }
-.hero-visual-inner{
-  position:absolute; inset:0;
-  background:
-    radial-gradient(ellipse at 30% 20%, rgba(92,132,113,0.18), transparent 55%),
-    radial-gradient(ellipse at 75% 80%, rgba(201,166,107,0.10), transparent 50%),
-    linear-gradient(160deg, #14171E 0%, #0B0C10 60%, #0A0C0A 100%);
-  transition: transform .1s linear;
-}
-img.hero-visual-inner{ width:100%; height:100%; object-fit:cover; background:none; }
-.hero-visual svg{ position:absolute; inset:0; width:100%; height:100%; }
-.hero-visual-caption{
-  position:absolute; bottom:0; left:0; right:0; padding:14px 16px;
-  background: linear-gradient(0deg, rgba(9,11,9,0.75) 0%, transparent 100%);
-  font-family:'IBM Plex Mono', monospace; font-size:9.5px; letter-spacing:.06em; color: rgba(241,237,226,0.7);
-  display:flex; justify-content:space-between;
+.hero-visual{ position:relative; aspect-ratio:4/3; border:1px solid var(--line); overflow:hidden; border-radius:2px; }
+.hero-visual img{ width:100%; height:100%; object-fit:cover; }
+.hero-visual-fallback{
+  position:absolute; inset:0; display:none;
+  background: radial-gradient(ellipse at 30% 20%, rgba(92,132,113,0.18), transparent 55%), linear-gradient(160deg,#14171E,#0A0C0A);
 }
 
-.hero-areas{ margin-top:44px; display:flex; flex-direction:column; gap:10px; }
-.hero-area-item{
-  display:flex; align-items:center; gap:12px; font-family:'IBM Plex Mono', monospace; font-size:11px;
-  letter-spacing:.05em; color:var(--ink-dim);
+.hero-icon-list{ display:flex; flex-direction:column; gap:16px; }
+.hero-icon-item{ display:flex; align-items:center; gap:12px; }
+.hero-icon-mark{
+  width:26px; height:26px; border:1px solid var(--accent); border-radius:6px; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center; color:var(--accent); font-size:12px;
 }
-.hero-area-item .mark{ width:14px; height:14px; border:1px solid var(--accent); border-radius:3px; flex-shrink:0; }
+.hero-icon-label{ font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.05em; color:var(--ink-dim); }
+@media (max-width:1100px){ .hero-icon-list{ flex-direction:row; flex-wrap:wrap; margin-top:10px; } }
 
-/* ============ EXPLORE BAR ============ */
-.explore{ padding: 40px 0 30px; border-top:1px solid var(--line); }
+/* ===== EXPLORE BAR ===== */
+.explore{ padding:34px 0 30px; border-top:1px solid var(--line); }
 .explore-top{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; margin-bottom:18px; }
-.explore-label{ font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.12em; color:var(--ink-dim); }
-.legend{ display:flex; gap:18px; font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:var(--ink-faint); }
+.explore-label{ font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.1em; color:var(--ink-dim); }
+.tabs-row{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; }
+.tabs{ display:flex; flex-wrap:wrap; gap:9px; }
+.tab{
+  font-family:'IBM Plex Mono', monospace; font-size:10.5px; letter-spacing:.04em; color:var(--ink-dim);
+  padding:9px 15px; border:1px solid var(--line); border-radius:20px; cursor:pointer; transition:all .2s ease;
+}
+.tab:hover{ color:var(--ink); border-color:var(--ink-dim); }
+.tab.active{ background:var(--accent); color:#08100c; border-color:var(--accent); }
+.legend{ display:flex; gap:16px; font-family:'IBM Plex Mono', monospace; font-size:10px; letter-spacing:.04em; color:var(--ink-faint); }
 .legend span{ display:flex; align-items:center; gap:6px; }
 .legend .dot{ width:6px; height:6px; border-radius:50%; }
 .legend .dot.done{ background:var(--accent); }
-.legend .dot.pending{ background:transparent; border:1px solid var(--ink-faint); }
-
-.tabs{ display:flex; flex-wrap:wrap; gap:10px; margin-bottom:16px; }
-.tab{
-  font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.05em; color:var(--ink-dim);
-  padding:9px 16px; border:1px solid var(--line); border-radius:20px; cursor:pointer;
-  transition: all .25s ease;
-}
-.tab:hover{ color:var(--ink); border-color:var(--ink-dim); }
-.tab.active{ color:var(--bg); background:var(--ink); border-color:var(--ink); }
-
-.pending-line{
-  font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:var(--ink-faint); letter-spacing:.02em;
-}
-.pending-line b{ color:var(--ink-dim); font-weight:500; }
+.legend .dot.pending{ background:var(--gold); }
 
 .empty-note{
   display:none; font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--ink-dim);
-  border:1px dashed var(--line); padding:22px; margin-top:10px; line-height:1.6;
+  border:1px dashed var(--line); padding:22px; margin-top:18px; line-height:1.6;
 }
 .empty-note.show{ display:block; }
 
-/* ============ GALLERY (featured, asymmetric) ============ */
-.gallery{ padding-top: 20px; }
-.proj{
-  padding: 90px 0; border-top:1px solid var(--line);
-  opacity:0; transform:translateY(28px); transition: opacity .8s ease, transform .8s ease;
-}
-.proj.in-view{ opacity:1; transform:translateY(0); }
-.proj.hidden{ display:none; }
+/* ===== GRID ===== */
+.grid{ display:grid; grid-template-columns:repeat(4, 1fr); gap:20px; padding:8px 0 70px; }
+@media (max-width:1200px){ .grid{ grid-template-columns:repeat(3, 1fr); } }
+@media (max-width:860px){ .grid{ grid-template-columns:repeat(2, 1fr); } }
+@media (max-width:560px){ .grid{ grid-template-columns:1fr; } }
 
-.proj-row{ display:grid; grid-template-columns: 1fr 1fr; gap:56px; align-items:center; }
-.proj-row.reverse .proj-text{ order:2; }
-.proj-row.reverse .proj-visual-box{ order:1; }
-@media (max-width:900px){
-  .proj-row{ grid-template-columns:1fr; gap:30px; }
-  .proj-row.reverse .proj-text{ order:1; }
-  .proj-row.reverse .proj-visual-box{ order:2; }
-  .proj{ padding:56px 0; }
+.card{
+  background:var(--bg-card); border:1px solid var(--line); border-radius:4px; overflow:hidden;
+  display:flex; flex-direction:column; cursor:pointer; transition: transform .2s ease, border-color .2s ease;
+  opacity:0; transform:translateY(14px); animation: cardIn .5s ease forwards;
 }
+@keyframes cardIn{ to{ opacity:1; transform:translateY(0); } }
+.card:hover{ transform:translateY(-3px); border-color:var(--ink-faint); }
+.card.hidden{ display:none; }
 
-.proj-num{ font-family:'IBM Plex Mono', monospace; font-size:13px; color:var(--gold); letter-spacing:.05em; margin-bottom:14px; }
-.proj-eyebrow{ font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.1em; color:var(--ink-dim); margin-bottom:16px; text-transform:uppercase; }
-.proj-title{ font-family:'Fraunces', serif; font-weight:500; font-size: clamp(28px, 3vw, 42px); line-height:1.05; margin-bottom:18px; }
-.proj-desc{ font-size:14.5px; line-height:1.65; color:var(--ink-dim); max-width:44ch; margin-bottom:22px; }
-.proj-tags{ font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--ink-faint); margin-bottom:24px; letter-spacing:.02em; }
-.proj-explore{
-  display:inline-flex; align-items:center; gap:9px; font-family:'IBM Plex Mono', monospace; font-size:11.5px;
-  letter-spacing:.06em; color:var(--ink); cursor:pointer; border-bottom:1px solid var(--line); padding-bottom:5px;
-  transition: gap .25s ease, border-color .25s ease;
-}
-.proj-explore:hover{ gap:14px; border-color:var(--accent); }
-.proj-explore .arrow{ color:var(--accent); }
+.card-media{ position:relative; aspect-ratio:16/10; overflow:hidden; border-bottom:1px solid var(--line); }
+.card-media img{ width:100%; height:100%; object-fit:cover; }
+.card-media-fallback{ position:absolute; inset:0; }
+.card-media-fallback svg{ position:absolute; inset:0; width:100%; height:100%; }
+.card-badges{ position:absolute; top:10px; left:10px; right:10px; display:flex; justify-content:space-between; align-items:flex-start; z-index:2; }
+.card-num{ font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--gold); background:rgba(9,11,9,0.65); padding:3px 8px; border-radius:3px; }
+.card-cat{ font-family:'IBM Plex Mono', monospace; font-size:9px; letter-spacing:.05em; text-transform:uppercase; color:var(--ink-dim); background:rgba(9,11,9,0.65); padding:4px 9px; border-radius:3px; text-align:right; max-width:60%; }
 
-.proj-visual-box{
-  position:relative; aspect-ratio: 4/3; border:1px solid var(--line); overflow:hidden; cursor:pointer;
+.card-body{ padding:18px 18px 20px; display:flex; flex-direction:column; gap:9px; flex:1; }
+.card-title{ font-family:'Fraunces', serif; font-weight:600; font-size:18px; line-height:1.15; }
+.card-desc{ font-size:12.5px; line-height:1.5; color:var(--ink-dim); display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+.card-tags{ display:flex; flex-wrap:wrap; gap:6px; margin-top:auto; padding-top:8px; }
+.card-tag{
+  font-family:'IBM Plex Mono', monospace; font-size:9.5px; color:var(--ink-dim); border:1px solid var(--line);
+  border-radius:12px; padding:3px 9px;
 }
-.proj-visual-box:hover .visual-inner{ transform:scale(1.035); }
-.visual-inner{ position:absolute; inset:0; transition: transform .7s cubic-bezier(.2,.7,.2,1); }
-img.visual-inner{ width:100%; height:100%; object-fit:cover; }
-.proj-visual-box.img-missing{ background: var(--bg-panel); }
-.proj-visual-box.img-missing img{ display:none; }
-.proj-visual-box.img-missing::after{
-  content:"Imagen no encontrada — revisa el nombre del archivo en /images"; position:absolute; inset:0;
-  display:flex; align-items:center; justify-content:center; text-align:center; padding:20px;
-  font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:var(--ink-faint);
+.card-foot{ display:flex; justify-content:flex-end; margin-top:6px; }
+.card-arrow{
+  width:32px; height:32px; border-radius:50%; border:1px solid var(--line); display:flex; align-items:center; justify-content:center;
+  color:var(--ink-dim); font-size:14px; transition: all .2s ease;
 }
-.visual-caption{
-  position:absolute; bottom:14px; left:14px; font-family:'IBM Plex Mono', monospace; font-size:9px;
-  letter-spacing:.05em; color: rgba(241,237,226,0.5); text-transform:uppercase;
-}
-.visual-corner{
-  position:absolute; top:14px; right:14px; width:22px; height:22px;
-  border-top:1px solid rgba(201,166,107,0); border-right:1px solid rgba(201,166,107,0);
-  transition: border-color .3s ease;
-}
-.proj-visual-box:hover .visual-corner{ border-color: var(--gold); }
+.card:hover .card-arrow{ background:var(--accent); border-color:var(--accent); color:#08100c; }
 
-/* panoramic variant */
-.proj-panoramic .proj-visual-box{ aspect-ratio: 21/9; }
-.proj-panoramic .proj-row{ grid-template-columns:1fr; }
-.proj-panoramic .overlay-text{
-  position:absolute; bottom:24px; left:24px; right:24px; max-width:640px;
-  padding: 28px 30px; background: rgba(9,11,9,0.88); border:1px solid rgba(255,255,255,0.08);
-  backdrop-filter: blur(6px);
-}
-@media (max-width:700px){ .proj-panoramic .overlay-text{ position:static; margin-top:20px; max-width:none; background:none; border:none; padding:0; backdrop-filter:none; } }
-.proj-panoramic .proj-title{ margin-bottom:8px; }
-.proj-panoramic .proj-desc{ margin-bottom:14px; max-width:60ch; }
+/* ===== FOOTER ===== */
+footer{ border-top:1px solid var(--line); padding:34px 0; }
+.footer-row{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; }
+.footer-rights{ font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--ink-faint); }
 
-/* duo variant */
-.duo-wrap{ display:grid; grid-template-columns:1fr 1fr; gap:32px; }
-@media (max-width:760px){ .duo-wrap{ grid-template-columns:1fr; } }
-.duo-item{ display:flex; flex-direction:column; }
-.duo-item:nth-child(2){ margin-top:48px; }
-@media (max-width:760px){ .duo-item:nth-child(2){ margin-top:0; } }
-.duo-item .proj-visual-box{ aspect-ratio:5/4; margin-bottom:22px; }
-.duo-item .proj-title{ font-size: clamp(20px,2.4vw,26px); }
-.duo-item .proj-desc{ font-size:13.5px; }
-
-/* ============ VISUAL TYPES (abstract placeholders) ============ */
 .v-unreal{ background: radial-gradient(ellipse at 25% 20%, rgba(76,141,255,0.16), transparent 55%), linear-gradient(155deg,#11141C,#0A0B10); }
 .v-vr{ background: radial-gradient(ellipse at 70% 30%, rgba(123,95,224,0.18), transparent 55%), linear-gradient(155deg,#161022,#0B0A11); }
 .v-perf{ background: radial-gradient(ellipse at 30% 70%, rgba(224,135,106,0.16), transparent 55%), linear-gradient(155deg,#1A1512,#0C0B0A); }
@@ -257,43 +161,6 @@ img.visual-inner{ width:100%; height:100%; object-fit:cover; }
 .v-canvas{ background: radial-gradient(ellipse at 30% 75%, rgba(63,169,139,0.16), transparent 50%), linear-gradient(155deg,#0F1613,#0A0C0A); }
 .v-design{ background: radial-gradient(ellipse at 60% 30%, rgba(185,140,166,0.20), transparent 55%), linear-gradient(155deg,#241B27,#100C13); }
 .v-inst{ background: linear-gradient(155deg,#131513,#0A0C0A); }
-
-/* ============ DESIGN FEATURE (Royal Enfield) ============ */
-.design-feature{ padding: 100px 0; border-top:1px solid var(--line); background: var(--bg-panel); }
-.design-feature-grid{ display:grid; grid-template-columns: 0.9fr 1.1fr; gap:60px; align-items:center; }
-@media (max-width:900px){ .design-feature-grid{ grid-template-columns:1fr; gap:36px; } }
-.design-visual-pair{ display:grid; grid-template-columns:1fr 1fr; gap:18px; }
-.design-visual-pair .proj-visual-box{ aspect-ratio:3/4; }
-.design-visual-pair .proj-visual-box:first-child{ margin-top:36px; }
-
-/* ============ INSTITUTIONAL INDEX ============ */
-.inst-section{ padding: 90px 0; border-top:1px solid var(--line); }
-.inst-head{ margin-bottom:12px; }
-.inst-eyebrow{ font-family:'Fraunces', serif; font-size:22px; font-weight:500; margin-bottom:10px; }
-.inst-note{ font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--ink-faint); max-width:60ch; line-height:1.6; margin-bottom:42px; }
-
-.inst-row{
-  display:grid; grid-template-columns: 70px 1fr auto; gap:26px; align-items:center;
-  padding: 26px 0; border-top:1px solid var(--line-soft); cursor:pointer;
-  transition: background .25s ease;
-}
-.inst-row:hover{ background: rgba(255,255,255,0.015); }
-.inst-row:last-child{ border-bottom:1px solid var(--line-soft); }
-.inst-thumb{ width:52px; height:52px; border:1px solid var(--line); flex-shrink:0; }
-.inst-num{ font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--gold); }
-.inst-body h3{ font-family:'Fraunces', serif; font-weight:500; font-size:19px; margin-bottom:5px; }
-.inst-body p{ font-size:13px; color:var(--ink-dim); line-height:1.5; max-width:56ch; }
-.inst-tags{ font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:var(--ink-faint); margin-top:6px; }
-.inst-arrow{ font-family:'IBM Plex Mono', monospace; color:var(--ink-dim); font-size:16px; }
-@media (max-width:700px){
-  .inst-row{ grid-template-columns: 44px 1fr; }
-  .inst-arrow{ display:none; }
-}
-
-/* Carteleras minor feature */
-.design-minor{ padding: 90px 0; border-top:1px solid var(--line); }
-.design-minor .proj-row{ grid-template-columns: 1fr 1.2fr; }
-.design-minor .proj-visual-box{ aspect-ratio:16/10; }
 
 /* ============ DETAIL OVERLAY ============ */
 .detail-overlay{
@@ -344,80 +211,54 @@ img.visual-inner{ width:100%; height:100%; object-fit:cover; }
   padding:2px 7px; border-radius:2px;
 }
 
-/* ============ FOOTER ============ */
-footer{ border-top:1px solid var(--line); padding: 56px 0 46px; }
-.footer-row{ display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:20px; }
-.footer-name{ font-family:'Fraunces', serif; font-size:20px; font-weight:500; margin-bottom:6px; }
-.footer-role{ font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--ink-dim); letter-spacing:.04em; }
-.footer-rights{ font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:var(--ink-faint); }
+
+
 </style>
 </head>
 <body>
 
-<header id="siteHeader">
+<header>
   <div class="wrap header-row">
     <div class="logo-group">
       <div class="logo-mark">MT</div>
       <div>
         <div class="logo-text-name">MIA TABORDA</div>
-        <div class="logo-text-sub">DEVELOPER · CREATIVE TECHNOLOGY</div>
+        <div class="logo-text-sub">DEVELOPER PORTFOLIO</div>
       </div>
     </div>
     <nav class="main-nav">
       <a href="#proyectos" class="active">PROYECTOS</a>
+      <a href="#hero">SOBRE MÍ</a>
       <a href="#explore">HABILIDADES</a>
-      <a href="#educacion">EXPERIENCIA</a>
-      <a href="#footer-contact">CONTACTO</a>
+      <a href="#explore">EXPERIENCIA</a>
+      <a href="#footer">CONTACTO</a>
     </nav>
   </div>
 </header>
 
-<section class="hero">
+<section class="hero" id="hero">
   <div class="wrap hero-grid">
     <div>
-      <div class="hero-eyebrow">DEVELOPER · CREATIVE TECHNOLOGIST</div>
-      <h1 class="hero-title">Desarrollo experiencias que conectan <em>tecnología</em>, <span class="gold">creatividad</span> e interacción.</h1>
-      <div class="hero-name-line">
-        <span class="hero-name">Mia Taborda</span>
-        <span class="hero-role">Developer · 3D · VR · Web · Interactive Experiences</span>
-      </div>
-      <p class="hero-desc">Construyo experiencias interactivas en Unreal Engine, VR y web — desde plugins con interfaz nativa hasta sistemas de reconocimiento de voz en tiempo real. El diseño visual y la ilustración son parte del mismo criterio, no un área aparte.</p>
+      <h1 class="hero-title">Desarrollo <em>experiencias</em> que conectan <span class="gold">tecnología</span>, creatividad e interacción.</h1>
+      <p class="hero-desc">Developer de experiencias interactivas en 3D, VR y Web. Construyo sistemas robustos con enfoque en rendimiento, usabilidad y diseño visual — desde plugins de Unreal Engine hasta identidad de marca.</p>
       <div class="hero-cta">
         <a href="#proyectos" class="btn-primary">VER PROYECTOS →</a>
-        <a href="#educacion" class="btn-ghost">EXPERIENCIA COMPLETA</a>
-      </div>
-
-      <div class="hero-areas">
-        <div class="hero-area-item"><span class="mark"></span> UNREAL ENGINE · C++ · BLUEPRINTS</div>
-        <div class="hero-area-item"><span class="mark"></span> VIRTUAL REALITY — META QUEST 2/3</div>
-        <div class="hero-area-item"><span class="mark"></span> WEB · CANVAS · JAVASCRIPT</div>
-        <div class="hero-area-item"><span class="mark"></span> DISEÑO E ILUSTRACIÓN DE MARCA</div>
+        <a href="#footer" class="btn-ghost">CONTACTO</a>
       </div>
     </div>
 
-    <div class="hero-visual" id="heroVisual">
-      <img class="hero-visual-inner" id="heroVisualInner" src="images/hero.png" alt="Composición 3D de personaje — Mia Taborda" onerror="document.getElementById('heroVisualInner').style.display='none'; document.getElementById('heroFallback').style.display='block';">
-      <div class="hero-visual-inner v-vr" id="heroFallback" style="display:none;">
-        <svg viewBox="0 0 500 625" preserveAspectRatio="xMidYMid slice">
-          <defs>
-            <linearGradient id="archGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#C9A66B" stop-opacity="0.55"/>
-              <stop offset="100%" stop-color="#5C8471" stop-opacity="0.25"/>
-            </linearGradient>
-          </defs>
-          <path d="M 150 560 L 150 300 Q 150 190 250 190 Q 350 190 350 300 L 350 560" fill="none" stroke="url(#archGrad)" stroke-width="1.2"/>
-          <path d="M 180 560 L 180 310 Q 180 225 250 225 Q 320 225 320 310 L 320 560" fill="none" stroke="url(#archGrad)" stroke-width="0.7" opacity="0.6"/>
-          <circle cx="250" cy="300" r="90" fill="none" stroke="#C9A66B" stroke-width="0.5" opacity="0.35"/>
-          <circle cx="250" cy="300" r="140" fill="none" stroke="#5C8471" stroke-width="0.5" opacity="0.25"/>
-          <line x1="60" y1="470" x2="440" y2="470" stroke="#5C8471" stroke-width="0.4" opacity="0.3"/>
-          <line x1="60" y1="470" x2="150" y2="560" stroke="#5C8471" stroke-width="0.4" opacity="0.3"/>
-          <line x1="440" y1="470" x2="350" y2="560" stroke="#5C8471" stroke-width="0.4" opacity="0.3"/>
-        </svg>
-      </div>
-      <div class="hero-visual-caption">
-        <span>3D CHARACTER COMPOSITION</span>
-        <span>MIA TABORDA — ORIGINAL</span>
-      </div>
+    <div class="hero-visual">
+      <img src="images/hero.png" alt="Composición 3D — Mia Taborda" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+      <div class="hero-visual-fallback"></div>
+    </div>
+
+    <div class="hero-icon-list">
+      <div class="hero-icon-item"><div class="hero-icon-mark">◆</div><div class="hero-icon-label">UNREAL ENGINE</div></div>
+      <div class="hero-icon-item"><div class="hero-icon-mark">◇</div><div class="hero-icon-label">VR · AR · MR</div></div>
+      <div class="hero-icon-item"><div class="hero-icon-mark">▢</div><div class="hero-icon-label">WEB DEVELOPMENT</div></div>
+      <div class="hero-icon-item"><div class="hero-icon-mark">△</div><div class="hero-icon-label">3D &amp; ASSETS</div></div>
+      <div class="hero-icon-item"><div class="hero-icon-mark">○</div><div class="hero-icon-label">INTERACTIVE SYSTEMS</div></div>
+      <div class="hero-icon-item"><div class="hero-icon-mark">✦</div><div class="hero-icon-label">CREATIVE TECHNOLOGY</div></div>
     </div>
   </div>
 </section>
@@ -436,21 +277,13 @@ footer{ border-top:1px solid var(--line); padding: 56px 0 46px; }
       <div class="tab" data-cat="disenio">DISEÑO &amp; ILUSTRACIÓN</div>
       <div class="tab" data-cat="edu">EDUCACIÓN</div>
     </div>
-    <div class="pending-line">Por documentar: <b>Unity · AR · MR · WebGL · Three.js · Game Development</b></div>
     <div class="empty-note" id="emptyNote"></div>
   </section>
 </div>
 
 <main id="proyectos">
   <div class="wrap">
-    <div class="gallery" id="gallery"></div>
-  </div>
-
-  <div class="design-feature-wrap" id="designFeatureWrap"></div>
-
-  <div class="wrap">
-    <div id="instWrap"></div>
-    <div id="designMinorWrap"></div>
+    <div class="grid" id="grid"></div>
   </div>
 </main>
 
@@ -459,18 +292,14 @@ footer{ border-top:1px solid var(--line); padding: 56px 0 46px; }
   <div class="detail-inner" id="detailInner"></div>
 </div>
 
-<footer id="footer-contact">
+<footer id="footer">
   <div class="wrap footer-row">
-    <div>
-      <div class="footer-name">MIA TABORDA</div>
-      <div class="footer-role">Developer · Creative Technology · Interactive Experiences</div>
-    </div>
-    <div class="footer-rights">© Ángela Taborda — Todos los derechos reservados.</div>
+    <div class="footer-rights">© Ángela Taborda (Mia Taborda) — Todos los derechos reservados.</div>
+    <div class="footer-rights">Developer · Creative Technology · Interactive Experiences</div>
   </div>
 </footer>
 
 <script>
-/* ======================= DATA ======================= */
 const PROJECTS = [
   {
     id:'assetsync', num:'01', group:'featured', layout:'large-right', visual:'v-unreal', cat:['3d','interactive'],
@@ -693,7 +522,6 @@ const PROJECTS = [
   }
 ];
 
-/* ======================= VISUAL SVG MOTIFS ======================= */
 function svgFor(visual){
   const svgs = {
     'v-unreal': `<svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice"><polygon points="200,60 320,130 320,220 200,290 80,220 80,130" fill="none" stroke="#4C8DFF" stroke-width="0.8" opacity="0.5"/><polygon points="200,110 270,150 270,210 200,250 130,210 130,150" fill="none" stroke="#C9A66B" stroke-width="0.6" opacity="0.5"/><line x1="200" y1="60" x2="200" y2="290" stroke="#4C8DFF" stroke-width="0.4" opacity="0.3"/></svg>`,
@@ -707,109 +535,30 @@ function svgFor(visual){
   return svgs[visual] || svgs['v-inst'];
 }
 
-/* ======================= RENDER ======================= */
-function visualBox(p, imgOverride){
-  const img = imgOverride || p.image;
-  if(img){
-    return `<div class="proj-visual-box" data-open="${p.id}">
-      <img class="visual-inner" src="${img}" alt="${p.title}" loading="lazy" onerror="this.closest('.proj-visual-box').classList.add('img-missing')">
-      <div class="visual-corner"></div>
-    </div>`;
-  }
-  return `<div class="proj-visual-box" data-open="${p.id}">
-    <div class="visual-inner ${p.visual}">${svgFor(p.visual)}</div>
-    <div class="visual-corner"></div>
-    <div class="visual-caption">Vista conceptual — pendiente imagen real</div>
-  </div>`;
-}
-
-function renderTextBlock(p){
-  return `
-    <div class="proj-num">${p.num}</div>
-    <div class="proj-eyebrow">${p.eyebrow}</div>
-    <h3 class="proj-title">${p.title}</h3>
-    <p class="proj-desc">${p.desc}</p>
-    <div class="proj-tags">${p.tags}</div>
-    <div class="proj-explore" data-open="${p.id}">EXPLORAR <span class="arrow">→</span></div>
-  `;
-}
-
-function renderGallery(){
-  const featured = PROJECTS.filter(p=>p.group==='featured');
-  const gallery = document.getElementById('gallery');
-  let html = '';
-  let i = 0;
-  while(i < featured.length){
-    const p = featured[i];
-    if(p.layout === 'large-right'){
-      html += `<div class="proj" data-id="${p.id}" data-cat="${p.cat.join(' ')}"><div class="proj-row"><div class="proj-text">${renderTextBlock(p)}</div><div class="proj-visual-box-wrap">${visualBox(p)}</div></div></div>`;
-      i++;
-    } else if(p.layout === 'large-left'){
-      html += `<div class="proj" data-id="${p.id}" data-cat="${p.cat.join(' ')}"><div class="proj-row reverse"><div class="proj-text">${renderTextBlock(p)}</div><div class="proj-visual-box-wrap">${visualBox(p)}</div></div></div>`;
-      i++;
-    } else if(p.layout === 'panoramic'){
-      html += `<div class="proj proj-panoramic" data-id="${p.id}" data-cat="${p.cat.join(' ')}"><div class="proj-row"><div class="proj-visual-box-wrap" style="position:relative;">${visualBox(p)}<div class="overlay-text"><div class="proj-num">${p.num}</div><div class="proj-eyebrow">${p.eyebrow}</div><h3 class="proj-title">${p.title}</h3><p class="proj-desc">${p.desc}</p><div class="proj-tags">${p.tags}</div><div class="proj-explore" data-open="${p.id}">EXPLORAR <span class="arrow">→</span></div></div></div></div></div>`;
-      i++;
-    } else if(p.layout === 'duo'){
-      const p2 = featured[i+1];
-      html += `<div class="proj" data-id="${p.id}${p2 ? ' '+p2.id : ''}" data-cat="${p.cat.join(' ')}${p2 ? ' '+p2.cat.join(' ') : ''}"><div class="duo-wrap">
-        <div class="duo-item" data-id="${p.id}" data-cat="${p.cat.join(' ')}">${visualBox(p)}${renderTextBlock(p)}</div>
-        ${p2 ? `<div class="duo-item" data-id="${p2.id}" data-cat="${p2.cat.join(' ')}">${visualBox(p2)}${renderTextBlock(p2)}</div>` : ''}
-      </div></div>`;
-      i += 2;
-    } else { i++; }
-  }
-  gallery.innerHTML = html;
-
-  // design feature (REL)
-  const rel = PROJECTS.find(p=>p.id==='rel');
-  document.getElementById('designFeatureWrap').innerHTML = `
-    <div class="design-feature proj" data-id="rel" data-cat="${rel.cat.join(' ')}">
-      <div class="wrap design-feature-grid">
-        <div>${renderTextBlock(rel)}</div>
-        <div class="design-visual-pair">${visualBox(rel)}${visualBox(rel, rel.image2)}</div>
+/* ===== RENDER GRID ===== */
+function renderGrid(){
+  const grid = document.getElementById('grid');
+  grid.innerHTML = PROJECTS.map((p, i) => `
+    <div class="card" data-id="${p.id}" data-cat="${p.cat.join(' ')}" data-open="${p.id}" style="animation-delay:${i*0.03}s">
+      <div class="card-media">
+        ${p.image ? `<img src="${p.image}" alt="${p.title}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"><div class="card-media-fallback" style="display:none;"></div>` : `<div class="card-media-fallback ${p.visual}">${svgFor(p.visual)}</div>`}
+        <div class="card-badges"><span class="card-num">${p.num}</span><span class="card-cat">${p.eyebrow}</span></div>
       </div>
-    </div>`;
-
-  // institutional index
-  const inst = PROJECTS.filter(p=>p.group==='institutional');
-  document.getElementById('instWrap').innerHTML = `
-    <div class="inst-section proj" id="educacion" data-id="${inst.map(p=>p.id).join(' ')}" data-cat="${[...new Set(inst.flatMap(p=>p.cat))].join(' ')}">
-      <div class="inst-head">
-        <div class="inst-eyebrow">Interactive Web Applications · Educational Technology</div>
-        <div class="inst-note">Mismo nivel de ingeniería que el resto del portafolio, aplicado a un contexto institucional. La educación es donde apliqué estas capacidades — no mi identidad profesional.</div>
+      <div class="card-body">
+        <div class="card-title">${p.title}</div>
+        <div class="card-desc">${p.desc}</div>
+        <div class="card-tags">${p.tags.split(' · ').map(t=>`<span class="card-tag">${t}</span>`).join('')}</div>
+        <div class="card-foot"><div class="card-arrow">→</div></div>
       </div>
-      ${inst.map(p => `
-        <div class="inst-row" data-open="${p.id}" data-id="${p.id}" data-cat="${p.cat.join(' ')}">
-          <div><span class="inst-num">${p.num}</span><div class="inst-thumb ${p.image ? '' : (p.visual || 'v-inst')}" style="margin-top:8px;${p.image ? `background-image:url('${p.image}');background-size:cover;background-position:center;` : ''}"></div></div>
-          <div class="inst-body"><h3>${p.title}</h3><p>${p.desc}</p><div class="inst-tags">${p.tags}</div></div>
-          <div class="inst-arrow">→</div>
-        </div>`).join('')}
-    </div>`;
+    </div>
+  `).join('');
 
-  // carteleras (design-minor)
-  const cart = PROJECTS.find(p=>p.id==='carteleras');
-  document.getElementById('designMinorWrap').innerHTML = `
-    <div class="design-minor proj" data-id="carteleras" data-cat="${cart.cat.join(' ')}">
-      <div class="proj-row">
-        <div class="proj-text">${renderTextBlock(cart)}</div>
-        <div class="proj-visual-box-wrap">${visualBox(cart)}</div>
-      </div>
-    </div>`;
-
-  // bind click-to-open
   document.querySelectorAll('[data-open]').forEach(el=>{
     el.addEventListener('click', ()=> openDetail(el.dataset.open));
   });
-
-  // scroll reveal
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in-view'); });
-  }, { threshold:0.12 });
-  document.querySelectorAll('.proj').forEach(el=> io.observe(el));
 }
 
-/* ======================= DETAIL OVERLAY ======================= */
+/* ===== DETAIL OVERLAY ===== */
 function openDetail(id){
   const p = PROJECTS.find(x=>x.id===id);
   if(!p) return;
@@ -817,7 +566,9 @@ function openDetail(id){
     <div class="detail-num">${p.num} / ${p.eyebrow}</div>
     <h2 class="detail-title">${p.title}</h2>
     <div class="detail-meta">${p.meta}</div>
-    <div class="detail-visual ${p.image ? '' : ''}" id="detailVisualBox">${p.image ? `<img class="visual-inner" src="${p.image}" alt="${p.title}" style="position:absolute;inset:0;" onerror="document.getElementById('detailVisualBox').classList.add('img-missing')">` : `<div class="visual-inner ${p.visual || 'v-inst'}" style="position:absolute;inset:0;">${svgFor(p.visual)}</div><div class="visual-caption">Vista conceptual — pendiente imagen real del proyecto</div>`}</div>
+    <div class="detail-visual" id="detailVisualBox">
+      ${p.image ? `<img class="visual-inner" src="${p.image}" alt="${p.title}" style="position:absolute;inset:0;" onerror="document.getElementById('detailVisualBox').classList.add('img-missing')">` : `<div class="visual-inner ${p.visual || 'v-inst'}" style="position:absolute;inset:0;">${svgFor(p.visual)}</div><div class="visual-caption">Vista conceptual — pendiente imagen real del proyecto</div>`}
+    </div>
     <div class="detail-section"><div class="detail-sec-label">El problema</div><p>${p.problem}</p></div>
     <div class="detail-section"><div class="detail-sec-label">Enfoque técnico</div><ul>${p.approach.map(a=>`<li>${a}</li>`).join('')}</ul></div>
     <div class="detail-section"><div class="detail-sec-label">UI / UX</div><ul>${p.uiux.map(a=>`<li>${a}</li>`).join('')}</ul></div>
@@ -832,24 +583,15 @@ function closeDetail(){
 document.getElementById('detailClose').addEventListener('click', closeDetail);
 document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeDetail(); });
 
-/* ======================= FILTERING ======================= */
+/* ===== FILTERING ===== */
 function filterByCat(catStr){
   const cats = catStr.split(',');
   let visible = 0;
-  document.querySelectorAll('.proj, .inst-row, .duo-item').forEach(el=>{
-    if(!el.dataset.cat) return;
-    const elCats = el.dataset.cat.split(' ');
+  document.querySelectorAll('.card').forEach(card=>{
+    const elCats = card.dataset.cat.split(' ');
     const match = catStr === 'todos' || cats.some(c => elCats.includes(c));
-    el.classList.toggle('hidden', !match);
+    card.classList.toggle('hidden', !match);
     if(match) visible++;
-  });
-  // hide parent .proj if all its duo-items are hidden
-  document.querySelectorAll('.proj').forEach(proj=>{
-    const duoItems = proj.querySelectorAll('.duo-item');
-    if(duoItems.length){
-      const anyVisible = Array.from(duoItems).some(d=>!d.classList.contains('hidden'));
-      proj.classList.toggle('hidden', !anyVisible);
-    }
   });
   const empty = document.getElementById('emptyNote');
   if(visible === 0){
@@ -867,20 +609,7 @@ document.querySelectorAll('.tab').forEach(tab=>{
   });
 });
 
-/* ======================= HEADER / SCROLL FX ======================= */
-const header = document.getElementById('siteHeader');
-const heroVisualInner = document.getElementById('heroVisualInner');
-const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-window.addEventListener('scroll', ()=>{
-  header.classList.toggle('scrolled', window.scrollY > 40);
-  if(!reduceMotion && heroVisualInner){
-    const y = Math.min(window.scrollY * 0.06, 40);
-    heroVisualInner.style.transform = `translateY(${y}px)`;
-  }
-}, { passive:true });
-
-/* ======================= INIT ======================= */
-renderGallery();
+renderGrid();
 </script>
 
 </body>
