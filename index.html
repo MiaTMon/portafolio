@@ -164,6 +164,36 @@ h1.hero-title .gold{ color:var(--gold); font-weight:600; font-style:italic; }
 .card:hover .card-arrow{ background:var(--accent); border-color:var(--accent); color:#08100c; }
 
 /* ===== FOOTER ===== */
+/* ===== PAGE SECTIONS (Sobre mí / Habilidades / Experiencia / Contacto) ===== */
+.page-section{ padding:80px 0; border-top:1px solid var(--line); scroll-margin-top:80px; }
+.section-eyebrow{ font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.12em; color:var(--gold); margin-bottom:14px; }
+.section-title{ font-family:'Fraunces', serif; font-weight:500; font-size: clamp(24px,2.6vw,34px); line-height:1.15; max-width:22ch; }
+
+.section-grid{ display:grid; grid-template-columns:0.8fr 1.2fr; gap:60px; }
+@media (max-width:900px){ .section-grid{ grid-template-columns:1fr; gap:24px; } }
+.section-text{ font-size:14.5px; line-height:1.7; color:var(--ink-dim); margin-bottom:16px; max-width:60ch; }
+.fact-row{ display:flex; flex-wrap:wrap; gap:10px; margin-top:22px; }
+.fact{
+  font-family:'IBM Plex Mono', monospace; font-size:10.5px; letter-spacing:.03em; color:var(--ink-dim);
+  border:1px solid var(--line); border-radius:16px; padding:6px 13px;
+}
+
+.skills-grid{ display:grid; grid-template-columns:repeat(2, 1fr); gap:36px 50px; margin-top:36px; }
+@media (max-width:760px){ .skills-grid{ grid-template-columns:1fr; } }
+.skill-group-title{ font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.06em; color:var(--ink); margin-bottom:12px; text-transform:uppercase; }
+.skill-pills{ display:flex; flex-wrap:wrap; gap:8px; }
+.pill{ font-family:'IBM Plex Mono', monospace; font-size:11px; padding:6px 13px; border-radius:16px; }
+.pill.done{ background:var(--accent-dim); color:var(--ink); border:1px solid var(--accent); }
+.pill.pending{ color:var(--ink-faint); border:1px dashed var(--line); }
+
+.exp-list{ margin-top:36px; display:flex; flex-direction:column; }
+.exp-row{ padding:26px 0; border-top:1px solid var(--line-soft); display:grid; grid-template-columns:1fr 1fr 1.4fr; gap:20px; align-items:baseline; }
+.exp-row:last-child{ border-bottom:1px solid var(--line-soft); }
+@media (max-width:900px){ .exp-row{ grid-template-columns:1fr; gap:8px; } }
+.exp-role{ font-family:'Fraunces', serif; font-weight:600; font-size:17px; }
+.exp-org{ font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--gold); letter-spacing:.03em; }
+.exp-desc{ font-size:13px; line-height:1.6; color:var(--ink-dim); }
+
 footer{ border-top:1px solid var(--line); padding:34px 0; }
 .footer-row{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; }
 .footer-rights{ font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--ink-faint); }
@@ -257,10 +287,10 @@ footer{ border-top:1px solid var(--line); padding:34px 0; }
     </div>
     <nav class="main-nav">
       <a href="#proyectos" class="active">PROYECTOS</a>
-      <a href="#hero">SOBRE MÍ</a>
-      <a href="#explore">HABILIDADES</a>
-      <a href="#explore">EXPERIENCIA</a>
-      <a href="#footer">CONTACTO</a>
+      <a href="#sobre-mi">SOBRE MÍ</a>
+      <a href="#habilidades">HABILIDADES</a>
+      <a href="#experiencia">EXPERIENCIA</a>
+      <a href="#contacto">CONTACTO</a>
     </nav>
   </div>
 </header>
@@ -317,6 +347,90 @@ footer{ border-top:1px solid var(--line); padding:34px 0; }
     <div class="grid" id="grid"></div>
   </div>
 </main>
+
+<section class="page-section" id="sobre-mi">
+  <div class="wrap">
+    <div class="section-grid">
+      <div>
+        <div class="section-eyebrow">SOBRE MÍ</div>
+        <h2 class="section-title">Developer con criterio visual, no solo técnico.</h2>
+      </div>
+      <div>
+        <p class="section-text">Mia Taborda es developer de experiencias interactivas radicada en Medellín, Colombia. Trabaja principalmente con Unreal Engine (C++ y Blueprints) y VR para Meta Quest, construyendo desde plugins con interfaz propia hasta sistemas de reconocimiento de voz en tiempo real — la mayoría como freelance para clientes de Upwork.</p>
+        <p class="section-text">En paralelo desarrolla aplicaciones web completas y mantiene una práctica activa de ilustración, diseño de personajes y modelado 3D, llevando piezas de boceto a render final. No separa el desarrollo del diseño — los trata como una misma disciplina aplicada a distintos contextos, incluida la educación.</p>
+        <div class="fact-row">
+          <span class="fact">Medellín, Colombia</span>
+          <span class="fact">Unreal Engine · C++</span>
+          <span class="fact">VR — Meta Quest 2/3</span>
+          <span class="fact">Freelance — Upwork</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="page-section" id="habilidades">
+  <div class="wrap">
+    <div class="section-eyebrow">HABILIDADES</div>
+    <h2 class="section-title">Con proyecto real detrás, no solo listadas.</h2>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <div class="skill-group-title">Motores &amp; lenguajes</div>
+        <div class="skill-pills"><span class="pill done">Unreal Engine</span><span class="pill done">C++</span><span class="pill done">Blueprints</span><span class="pill pending">Unity</span></div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Realidad extendida</div>
+        <div class="skill-pills"><span class="pill done">VR — Meta Quest 2/3</span><span class="pill pending">AR</span><span class="pill pending">MR</span></div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Web &amp; herramientas</div>
+        <div class="skill-pills"><span class="pill done">JavaScript</span><span class="pill done">Canvas API</span><span class="pill done">Google Apps Script</span><span class="pill pending">WebGL</span><span class="pill pending">Three.js</span></div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Diseño &amp; 3D</div>
+        <div class="skill-pills"><span class="pill done">Ilustración</span><span class="pill done">Concept Art</span><span class="pill done">3D Modeling</span><span class="pill done">Branding</span><span class="pill pending">Game Development</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="page-section" id="experiencia">
+  <div class="wrap">
+    <div class="section-eyebrow">EXPERIENCIA</div>
+    <h2 class="section-title">Dónde ha aplicado esto.</h2>
+    <div class="exp-list">
+      <div class="exp-row">
+        <div class="exp-role">Freelance Developer — Unreal Engine &amp; VR</div>
+        <div class="exp-org">Clientes vía Upwork</div>
+        <p class="exp-desc">AssetSyncManager, 100Q (experiencia VR con reconocimiento de voz) y optimización de rendimiento VR para Meta Quest 2/3. Trabajo técnico en C++/Blueprint entregado por hitos, en colaboración con un socio que gestiona la relación con el cliente.</p>
+      </div>
+      <div class="exp-row">
+        <div class="exp-role">Web &amp; Systems Developer</div>
+        <div class="exp-org">Proyectos propios e institucionales</div>
+        <p class="exp-desc">Diseño y desarrollo de aplicaciones web completas — backend y frontend — incluyendo sistemas de gestión, sincronización de datos y herramientas con IA integrada.</p>
+      </div>
+      <div class="exp-row">
+        <div class="exp-role">Diseño &amp; Ilustración</div>
+        <div class="exp-org">Marca e identidad visual</div>
+        <p class="exp-desc">Identidad de marca completa (Royal Enfield Ladies) y piezas de concept art llevadas de boceto a modelo 3D con render final.</p>
+      </div>
+      <div class="exp-row">
+        <div class="exp-role">Educación</div>
+        <div class="exp-org">Contexto de aplicación</div>
+        <p class="exp-desc">Aplicó estas mismas capacidades de desarrollo dentro de una institución educativa, construyendo herramientas internas de gestión — una línea de experiencia, no el centro de su perfil.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="page-section" id="contacto">
+  <div class="wrap">
+    <div class="section-eyebrow">CONTACTO</div>
+    <h2 class="section-title">Hablemos de un proyecto.</h2>
+    <p class="section-text" style="max-width:56ch;">Falta conectar aquí tu correo y perfiles reales (LinkedIn, GitHub, Upwork) — dime cuáles son y quedan enlazados directamente.</p>
+    <a href="mailto:" class="btn-primary" style="margin-top:20px; display:inline-flex;">ESCRIBIR →</a>
+  </div>
+</section>
 
 <div class="detail-overlay" id="detailOverlay">
   <div class="detail-close" id="detailClose">← VOLVER</div>
@@ -684,6 +798,19 @@ document.querySelectorAll('.tab').forEach(tab=>{
 });
 
 renderGrid();
+
+/* ===== NAV SCROLL-SPY ===== */
+const navSections = ['proyectos','sobre-mi','habilidades','experiencia','contacto'].map(id => document.getElementById(id)).filter(Boolean);
+const navLinks = Array.from(document.querySelectorAll('.main-nav a'));
+const navObserver = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      const id = entry.target.id;
+      navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#'+id));
+    }
+  });
+}, { rootMargin: '-45% 0px -50% 0px' });
+navSections.forEach(sec => navObserver.observe(sec));
 </script>
 
 </body>
