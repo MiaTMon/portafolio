@@ -71,23 +71,24 @@ h1.hero-title .gold{ color:var(--gold); font-weight:600; font-style:italic; }
 }
 .btn-ghost:hover{ color:var(--ink); border-color:var(--ink-dim); }
 
-.hero-visual{
-  position:relative; aspect-ratio:4/3; overflow:visible; border:none;
-}
-.hero-visual::before{
+.hero-visual-wrap{ position:relative; }
+.hero-visual-wrap::before{
   content:""; position:absolute; inset:-14%; z-index:0;
   background: radial-gradient(ellipse at center, rgba(92,132,113,0.20) 0%, rgba(20,23,30,0.10) 45%, transparent 72%);
   filter: blur(28px); pointer-events:none;
 }
+.hero-visual{
+  position:relative; z-index:1; aspect-ratio:4/3; overflow:hidden; border:none;
+}
 .hero-visual img{
-  position:relative; z-index:1; width:100%; height:100%; object-fit:cover;
-  -webkit-mask-image: radial-gradient(ellipse 62% 62% at center, black 30%, rgba(0,0,0,0.65) 55%, transparent 96%);
-  mask-image: radial-gradient(ellipse 62% 62% at center, black 30%, rgba(0,0,0,0.65) 55%, transparent 96%);
+  position:relative; z-index:1; width:100%; height:100%; object-fit:cover; display:block;
+}
+.hero-visual::after{
+  content:""; position:absolute; inset:0; z-index:2; pointer-events:none;
+  background: radial-gradient(ellipse 68% 68% at center, transparent 48%, var(--bg) 100%);
 }
 .hero-visual-fallback{
   position:absolute; inset:0; z-index:1; display:none;
-  -webkit-mask-image: radial-gradient(ellipse 62% 62% at center, black 30%, rgba(0,0,0,0.65) 55%, transparent 96%);
-  mask-image: radial-gradient(ellipse 62% 62% at center, black 30%, rgba(0,0,0,0.65) 55%, transparent 96%);
   background: radial-gradient(ellipse at 30% 20%, rgba(92,132,113,0.18), transparent 55%), linear-gradient(160deg,#14171E,#0A0C0A);
 }
 
@@ -275,9 +276,11 @@ footer{ border-top:1px solid var(--line); padding:34px 0; }
       </div>
     </div>
 
-    <div class="hero-visual">
-      <img src="images/hero.png" alt="Composición 3D — Mia Taborda" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-      <div class="hero-visual-fallback"></div>
+    <div class="hero-visual-wrap">
+      <div class="hero-visual">
+        <img src="images/hero.png" alt="Composición 3D — Mia Taborda" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        <div class="hero-visual-fallback"></div>
+      </div>
     </div>
 
     <div class="hero-icon-list">
