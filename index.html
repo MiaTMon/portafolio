@@ -391,15 +391,16 @@ const PROJECTS = [
   {
     id:'conceptart', num:'06', group:'featured', layout:'panoramic', visual:'v-design', cat:['disenio','conceptart','interactive'],
     image:'images/conceptart.png',
+    images:['images/conceptart.png','images/conceptart-02.png','images/conceptart-03.png'],
     eyebrow:'CONCEPT ART · 3D DEVELOPMENT', title:'Character Design Pipeline',
-    desc:'Proceso completo de diseño de personaje: boceto, ilustración a color y modelo 3D con render final — de la idea al activo tridimensional.',
+    desc:'Proceso completo de diseño: boceto, ilustración a color y modelo 3D con render final — aplicado a distintos personajes y escenarios, de la idea al activo tridimensional.',
     tags:'Sketch · Illustration · 3D Modeling',
     meta:'Concept Art · 3D Modeling · Sketch to 3D',
-    problem:'Pipeline de diseño de personaje llevado de principio a fin: boceto inicial, ilustración a color que resuelve forma y paleta, y modelo 3D con render final. Demuestra el mismo criterio visual aplicado en todas las etapas, desde el concepto hasta el activo 3D terminado.',
+    problem:'Pipeline de diseño llevado de principio a fin y aplicado a varias piezas: boceto inicial, ilustración a color que resuelve forma y paleta, y modelo 3D con render final. Demuestra el mismo criterio visual aplicado en todas las etapas, desde el concepto hasta el activo 3D terminado, tanto en personajes como en escenarios.',
     approach:[
-      'Boceto inicial explorando la anatomía y estructura del personaje, incluyendo vistas de detalle de cabeza y expresión.',
-      'Ilustración a color que define la paleta final (verde para la parte orgánica, azul para el componente mecánico) y resuelve el diseño antes de pasar a 3D.',
-      'Modelado 3D del personaje completo con render final iluminado sobre pedestal, fiel al diseño de la ilustración.'
+      'Boceto inicial explorando la anatomía y estructura de cada pieza, incluyendo vistas de detalle y estudios de pose.',
+      'Ilustración a color que define la paleta final y resuelve el diseño antes de pasar a 3D.',
+      'Modelado 3D completo con render final iluminado, fiel al diseño de la ilustración — aplicado tanto a personajes como a escenarios/props.'
     ],
     uiux:['Pendiente detallar software específico de cada etapa — se actualizará cuando se confirme.']
   },
@@ -560,21 +561,31 @@ function renderGrid(){
 }
 
 /* ===== DETAIL OVERLAY ===== */
+function visualBlock(p, idx){
+  const id = `detailVisualBox${idx}`;
+  return `<div class="detail-visual" id="${id}">
+    ${p.image || (p.images && p.images[idx]) ? `<img class="visual-inner" src="${(p.images ? p.images[idx] : p.image)}" alt="${p.title}" style="position:absolute;inset:0;" onerror="document.getElementById('${id}').classList.add('img-missing')">` : `<div class="visual-inner ${p.visual || 'v-inst'}" style="position:absolute;inset:0;">${svgFor(p.visual)}</div><div class="visual-caption">Vista conceptual — pendiente imagen real del proyecto</div>`}
+  </div>`;
+}
+
 function openDetail(id){
   const p = PROJECTS.find(x=>x.id===id);
   if(!p) return;
+  const visuals = p.images && p.images.length
+    ? p.images.map((img, i) => visualBlock(p, i)).join('<div style="height:14px;"></div>')
+    : visualBlock(p, 0);
   document.getElementById('detailInner').innerHTML = `
     <div class="detail-num">${p.num} / ${p.eyebrow}</div>
     <h2 class="detail-title">${p.title}</h2>
     <div class="detail-meta">${p.meta}</div>
-    <div class="detail-visual" id="detailVisualBox">
-      ${p.image ? `<img class="visual-inner" src="${p.image}" alt="${p.title}" style="position:absolute;inset:0;" onerror="document.getElementById('detailVisualBox').classList.add('img-missing')">` : `<div class="visual-inner ${p.visual || 'v-inst'}" style="position:absolute;inset:0;">${svgFor(p.visual)}</div><div class="visual-caption">Vista conceptual — pendiente imagen real del proyecto</div>`}
-    </div>
+    ${visuals}
     <div class="detail-section"><div class="detail-sec-label">El problema</div><p>${p.problem}</p></div>
     <div class="detail-section"><div class="detail-sec-label">Enfoque técnico</div><ul>${p.approach.map(a=>`<li>${a}</li>`).join('')}</ul></div>
     <div class="detail-section"><div class="detail-sec-label">UI / UX</div><ul>${p.uiux.map(a=>`<li>${a}</li>`).join('')}</ul></div>
   `;
   document.getElementById('detailOverlay').classList.add('open');
+  document.getElementById('detailInner').scrollTop = 0;
+  document.getElementById('detailOverlay').scrollTop = 0;
   document.body.style.overflow = 'hidden';
 }
 function closeDetail(){
