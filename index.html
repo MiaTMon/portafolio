@@ -229,9 +229,11 @@ img.visual-inner{ width:100%; height:100%; object-fit:cover; }
 .proj-panoramic .proj-visual-box{ aspect-ratio: 21/9; }
 .proj-panoramic .proj-row{ grid-template-columns:1fr; }
 .proj-panoramic .overlay-text{
-  position:absolute; bottom:0; left:0; right:0; padding: 40px 36px 30px;
-  background: linear-gradient(0deg, rgba(10,12,10,0.92) 0%, rgba(10,12,10,0.5) 55%, transparent 100%);
+  position:absolute; bottom:24px; left:24px; right:24px; max-width:640px;
+  padding: 28px 30px; background: rgba(9,11,9,0.88); border:1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(6px);
 }
+@media (max-width:700px){ .proj-panoramic .overlay-text{ position:static; margin-top:20px; max-width:none; background:none; border:none; padding:0; backdrop-filter:none; } }
 .proj-panoramic .proj-title{ margin-bottom:8px; }
 .proj-panoramic .proj-desc{ margin-bottom:14px; max-width:60ch; }
 
@@ -554,7 +556,22 @@ const PROJECTS = [
     uiux:['Interfaz mínima: una entrada de texto y un botón de generar.','Respuesta inmediata al no depender de una llamada externa.']
   },
   {
-    id:'rel', num:'06', group:'design-feature', layout:'feature', visual:'v-design', cat:['disenio','interactive'],
+    id:'conceptart', num:'06', group:'featured', layout:'panoramic', visual:'v-design', cat:['disenio','conceptart','interactive'],
+    image:'images/conceptart.png',
+    eyebrow:'CONCEPT ART · 3D DEVELOPMENT', title:'Character Design Pipeline',
+    desc:'Proceso completo de diseño de personaje: boceto, ilustración a color y modelo 3D con render final — de la idea al activo tridimensional.',
+    tags:'Sketch · Illustration · 3D Modeling',
+    meta:'Concept Art · 3D Modeling · Sketch to 3D',
+    problem:'Pipeline de diseño de personaje llevado de principio a fin: boceto inicial, ilustración a color que resuelve forma y paleta, y modelo 3D con render final. Demuestra el mismo criterio visual aplicado en todas las etapas, desde el concepto hasta el activo 3D terminado.',
+    approach:[
+      'Boceto inicial explorando la anatomía y estructura del personaje, incluyendo vistas de detalle de cabeza y expresión.',
+      'Ilustración a color que define la paleta final (verde para la parte orgánica, azul para el componente mecánico) y resuelve el diseño antes de pasar a 3D.',
+      'Modelado 3D del personaje completo con render final iluminado sobre pedestal, fiel al diseño de la ilustración.'
+    ],
+    uiux:['Pendiente detallar software específico de cada etapa — se actualizará cuando se confirme.']
+  },
+  {
+    id:'rel', num:'07', group:'design-feature', layout:'feature', visual:'v-design', cat:['disenio','interactive'],
     image:'images/rel-1.jpg', image2:'images/rel-2.jpg',
     eyebrow:'IDENTIDAD DE MARCA · ILUSTRACIÓN', title:'Royal Enfield Ladies',
     desc:'Identidad de marca para un grupo de motociclistas: emblema ilustrado con casco y corona, mockups de jersey en carbón, malva y rosa polvo.',
@@ -573,7 +590,7 @@ const PROJECTS = [
     ]
   },
   {
-    id:'portal-docente', num:'07', group:'institutional', cat:['web','edu'],
+    id:'portal-docente', num:'08', group:'institutional', cat:['web','edu'],
     image:'images/portal-docente.jpg',
     eyebrow:'WEB APP', title:'Portal Docente',
     desc:'Aplicación web completa (backend + frontend) para gestión y envío masivo de documentos, con seguimiento de estado de entrega, previsualización embebida y generación de PDF.',
@@ -594,7 +611,7 @@ const PROJECTS = [
     ]
   },
   {
-    id:'inventario', num:'08', group:'institutional', cat:['web','edu'],
+    id:'inventario', num:'09', group:'institutional', cat:['web','edu'],
     image:'images/inventario.jpg',
     eyebrow:'DASHBOARD', title:'Panel de Inventario',
     desc:'Sistema de sincronización de datos: automatiza el paso de archivos fuente a una base central y publica un dashboard en vivo, con reconciliación automática.',
@@ -613,7 +630,7 @@ const PROJECTS = [
     ]
   },
   {
-    id:'copass', num:'09', group:'institutional', cat:['web','edu'],
+    id:'copass', num:'10', group:'institutional', cat:['web','edu'],
     image:'images/copass.jpg',
     eyebrow:'WEB APP', title:'COPASS 2026',
     desc:'Plataforma de coordinación multi-sede: interfaz de registro y participación gamificada, y panel administrativo con validación de evidencias y auditoría de actividad.',
@@ -633,7 +650,7 @@ const PROJECTS = [
     ]
   },
   {
-    id:'diario-campo', num:'10', group:'institutional', cat:['web','edu'],
+    id:'diario-campo', num:'11', group:'institutional', cat:['web','edu'],
     image:'images/diario-campo.jpg',
     eyebrow:'WEB APP + IA', title:'Diario de Campo',
     desc:'Herramienta de generación de texto asistida por IA: cadena de respaldo entre múltiples modelos, con validación de salidas y reconstrucción automática de datos.',
@@ -654,7 +671,7 @@ const PROJECTS = [
     ]
   },
   {
-    id:'carteleras', num:'11', group:'design-minor', layout:'feature-small', visual:'v-design', cat:['disenio','edu'],
+    id:'carteleras', num:'12', group:'design-minor', layout:'feature-small', visual:'v-design', cat:['disenio','edu'],
     image:'images/carteleras.jpg',
     eyebrow:'DISEÑO EDITORIAL', title:'Carteleras de Autores',
     desc:'Tres piezas A3 de diseño editorial, cada una con sistema de paleta e identidad propia construido a partir del tono y la obra del autor que representa.',
