@@ -5,958 +5,829 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mia Taborda — Developer Portfolio</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
 
 :root{
-  --paper: #EFEAE0;
-  --paper-line: #DAD2BE;
-  --ink: #23261F;
-  --ink-soft: #5C5A4D;
-  --forest: #1B2E27;
-  --forest-2: #2A4238;
-  --stamp: #B34632;
-  --gold: #B08A3E;
-  --card-bg: #FBF8F1;
-  --radius: 3px;
+  --bg: #0A0C0A;
+  --bg-panel: #131513;
+  --bg-panel-2: #191c19;
+  --ink: #F1EDE2;
+  --ink-dim: #948F80;
+  --ink-faint: #5C5A50;
+  --accent: #5C8471;
+  --accent-dim: #33473C;
+  --gold: #C9A66B;
+  --line: #26281F;
+  --line-soft: #1C1E19;
 }
 
-*{ box-sizing:border-box; }
-html{ scroll-behavior:smooth; }
+*{ box-sizing:border-box; margin:0; padding:0; }
+html{ scroll-behavior:smooth; background:var(--bg); }
 body{
-  margin:0;
-  background:
-    repeating-linear-gradient(var(--paper-line) 0 1px, transparent 1px 32px),
-    var(--paper);
+  background: var(--bg);
   color: var(--ink);
   font-family:'Inter', sans-serif;
   -webkit-font-smoothing: antialiased;
+  overflow-x:hidden;
+}
+@media (prefers-reduced-motion: reduce){
+  *{ animation-duration:0.01ms !important; transition-duration:0.01ms !important; scroll-behavior:auto !important; }
 }
 
-.wrap{ max-width:1180px; margin:0 auto; padding: 0 28px; }
+::selection{ background:var(--accent-dim); color:var(--ink); }
 
-/* ---------- Top bar ---------- */
-.topbar{
-  display:flex; justify-content:space-between; align-items:center;
-  padding: 22px 0; border-bottom: 1.5px solid var(--ink);
-}
-.brand{
-  font-family:'IBM Plex Mono', monospace; font-size: 12.5px;
-  letter-spacing: .12em; text-transform: uppercase; color: var(--ink-soft);
-}
-.brand b{ color: var(--ink); }
+.wrap{ max-width:1360px; margin:0 auto; padding:0 48px; }
+@media (max-width:760px){ .wrap{ padding:0 22px; } }
 
-/* ---------- Hero ---------- */
-.hero{ position:relative; padding: 74px 0 56px; }
-.eyebrow{
-  font-family:'IBM Plex Mono', monospace; font-size: 12.5px; letter-spacing:.1em;
-  text-transform:uppercase; color: var(--stamp); margin-bottom:18px;
+a{ color:inherit; text-decoration:none; }
+
+/* ============ HEADER ============ */
+header{
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  padding: 22px 0;
+  transition: background .4s ease, border-color .4s ease, backdrop-filter .4s ease;
+  border-bottom: 1px solid transparent;
 }
-h1{
-  font-family:'Fraunces', serif; font-weight:600; font-optical-sizing:auto;
-  font-size: clamp(40px, 6vw, 74px); line-height:0.98; margin:0 0 22px; max-width: 15ch;
-  letter-spacing: -0.01em;
+header.scrolled{
+  background: rgba(10,12,10,0.82);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
 }
-h1 em{ font-style: italic; font-weight:500; color: var(--forest-2); }
-.lede{
-  font-size: 17.5px; line-height:1.6; color: var(--ink-soft); max-width: 56ch; margin: 0 0 6px;
+.header-row{ display:flex; justify-content:space-between; align-items:center; }
+.logo-group{ display:flex; align-items:center; gap:12px; }
+.logo-mark{
+  width:34px; height:34px; border:1px solid var(--ink-dim); border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Fraunces', serif; font-size:13px; font-weight:600; letter-spacing:-0.02em;
+  flex-shrink:0;
 }
-.skillbar{
-  display:flex; flex-wrap:wrap; gap:8px; margin-top: 26px; max-width: 62ch;
+.logo-text-name{ font-family:'Inter',sans-serif; font-size:14px; font-weight:600; letter-spacing:.08em; }
+.logo-text-sub{ font-family:'IBM Plex Mono', monospace; font-size:9.5px; letter-spacing:.1em; color:var(--ink-dim); margin-top:1px; }
+nav.main-nav{ display:flex; gap:34px; }
+nav.main-nav a{
+  font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.1em; color:var(--ink-dim);
+  transition:color .25s ease; position:relative; padding-bottom:3px;
 }
-.skillbar .skill{
-  font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:.02em;
-  border: 1px solid var(--ink); border-radius:3px; padding: 5px 11px; color: var(--ink);
-  background: var(--card-bg);
+nav.main-nav a:hover, nav.main-nav a.active{ color:var(--ink); }
+nav.main-nav a.active::after{
+  content:""; position:absolute; bottom:0; left:0; right:0; height:1px; background:var(--accent);
+}
+@media (max-width:900px){ nav.main-nav{ display:none; } }
+
+/* ============ HERO ============ */
+.hero{
+  min-height:100vh; display:flex; align-items:center; padding: 130px 0 60px;
+}
+.hero-grid{ display:grid; grid-template-columns: 1.05fr 0.95fr; gap:64px; align-items:center; width:100%; }
+@media (max-width:980px){ .hero-grid{ grid-template-columns:1fr; gap:44px; } .hero{ padding-top:110px; } }
+
+.hero-eyebrow{
+  font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:.14em; color:var(--gold);
+  margin-bottom:22px; display:flex; align-items:center; gap:10px;
+}
+.hero-eyebrow::before{ content:""; width:22px; height:1px; background:var(--gold); }
+
+h1.hero-title{
+  font-family:'Fraunces', serif; font-weight:500; font-optical-sizing:auto;
+  font-size: clamp(42px, 5.4vw, 78px); line-height:1.02; letter-spacing:-0.015em;
+  margin-bottom:28px;
+}
+h1.hero-title em{ font-style:normal; color:var(--accent); font-weight:600; }
+h1.hero-title .gold{ color:var(--gold); font-weight:600; font-style:italic; }
+
+.hero-name-line{ display:flex; align-items:baseline; gap:14px; margin-bottom:16px; flex-wrap:wrap; }
+.hero-name{ font-family:'Fraunces', serif; font-size:19px; font-weight:600; }
+.hero-role{ font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--ink-dim); letter-spacing:.03em; }
+
+.hero-desc{ font-size:15.5px; line-height:1.7; color:var(--ink-dim); max-width:46ch; margin-bottom:36px; }
+
+.hero-cta{ display:flex; gap:16px; align-items:center; flex-wrap:wrap; }
+.btn-primary{
+  display:inline-flex; align-items:center; gap:10px;
+  background:var(--accent); color:#0A0C0A; font-family:'IBM Plex Mono', monospace;
+  font-size:11.5px; letter-spacing:.08em; font-weight:500; padding:14px 22px; border-radius:2px;
+  transition: transform .25s ease, background .25s ease; cursor:pointer; border:none;
+}
+.btn-primary:hover{ transform:translateY(-2px); background:#6C977F; }
+.btn-ghost{
+  font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:.08em; color:var(--ink-dim);
+  padding:14px 4px; border-bottom:1px solid var(--line); transition:color .25s ease, border-color .25s ease;
+}
+.btn-ghost:hover{ color:var(--ink); border-color:var(--ink-dim); }
+
+/* hero visual */
+.hero-visual{ position:relative; aspect-ratio: 4/5; border:1px solid var(--line); overflow:hidden; }
+.hero-visual-inner{
+  position:absolute; inset:0;
+  background:
+    radial-gradient(ellipse at 30% 20%, rgba(92,132,113,0.18), transparent 55%),
+    radial-gradient(ellipse at 75% 80%, rgba(201,166,107,0.10), transparent 50%),
+    linear-gradient(160deg, #14171E 0%, #0B0C10 60%, #0A0C0A 100%);
+  transition: transform .1s linear;
+}
+.hero-visual svg{ position:absolute; inset:0; width:100%; height:100%; }
+.hero-visual-caption{
+  position:absolute; bottom:16px; left:16px; right:16px;
+  font-family:'IBM Plex Mono', monospace; font-size:9.5px; letter-spacing:.06em; color: rgba(241,237,226,0.55);
+  display:flex; justify-content:space-between;
 }
 
-.areas-section{ padding: 8px 0 40px; }
-.areas-grid{ display:flex; flex-wrap:wrap; gap:9px; }
-.area-chip{
-  font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:.02em;
-  border-radius: 20px; padding: 7px 14px 7px 10px; cursor:pointer;
-  display:inline-flex; align-items:center; gap:7px;
-  transition: transform .12s ease;
+.hero-areas{ margin-top:44px; display:flex; flex-direction:column; gap:10px; }
+.hero-area-item{
+  display:flex; align-items:center; gap:12px; font-family:'IBM Plex Mono', monospace; font-size:11px;
+  letter-spacing:.05em; color:var(--ink-dim);
 }
-.area-chip:hover{ transform: translateY(-1px); }
-.area-chip .dot{ width:7px; height:7px; border-radius:50%; flex-shrink:0; }
-.area-chip.done{ background: var(--forest-2); color: var(--paper); border: 1px solid var(--forest-2); }
-.area-chip.done .dot{ background: #6FD3A8; }
-.area-chip.pending{ background: transparent; color: var(--ink-soft); border: 1px dashed var(--ink-soft); }
-.area-chip.pending .dot{ background: transparent; border: 1px solid var(--ink-soft); }
-.area-chip.active-chip{ outline: 2px solid var(--stamp); outline-offset: 2px; }
-.areas-subhead{
-  font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase;
-  color: var(--ink-soft); margin-bottom:9px;
-}
-.areas-note{
-  font-family:'IBM Plex Mono', monospace; font-size:11.5px; color: var(--ink-soft);
-  margin-top: 14px; min-height: 16px;
-}
+.hero-area-item .mark{ width:14px; height:14px; border:1px solid var(--accent); border-radius:3px; flex-shrink:0; }
 
-.stamp{
-  position:absolute; top: 56px; right: 8px;
-  width:150px; height:150px; border-radius:50%;
-  border: 2.5px solid var(--stamp); color: var(--stamp);
-  display:flex; align-items:center; justify-content:center; text-align:center;
-  transform: rotate(-11deg); opacity:.85; pointer-events:none;
-  font-family:'IBM Plex Mono', monospace; font-size:10.5px; letter-spacing:.08em; text-transform:uppercase;
-  line-height:1.5; padding:14px;
-}
-.stamp::before{
-  content:""; position:absolute; inset:9px; border:1px solid var(--stamp); border-radius:50%; opacity:.55;
-}
+/* ============ EXPLORE BAR ============ */
+.explore{ padding: 40px 0 30px; border-top:1px solid var(--line); }
+.explore-top{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; margin-bottom:18px; }
+.explore-label{ font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.12em; color:var(--ink-dim); }
+.legend{ display:flex; gap:18px; font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:var(--ink-faint); }
+.legend span{ display:flex; align-items:center; gap:6px; }
+.legend .dot{ width:6px; height:6px; border-radius:50%; }
+.legend .dot.done{ background:var(--accent); }
+.legend .dot.pending{ background:transparent; border:1px solid var(--ink-faint); }
 
-/* ---------- Filter tabs (folder dividers) ---------- */
-.tabs{
-  display:flex; gap:6px; flex-wrap:wrap; margin: 8px 0 46px; border-bottom: 1.5px solid var(--ink);
-}
+.tabs{ display:flex; flex-wrap:wrap; gap:10px; margin-bottom:16px; }
 .tab{
-  font-family:'IBM Plex Mono', monospace; font-size:12.5px; letter-spacing:.03em;
-  padding: 10px 18px 12px; background: var(--paper-line); color: var(--ink-soft);
-  border: 1.5px solid var(--ink); border-bottom:none;
-  border-radius: 6px 6px 0 0; cursor:pointer; transform: translateY(2px);
-  transition: transform .15s ease, background .15s ease, color .15s ease;
+  font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.05em; color:var(--ink-dim);
+  padding:9px 16px; border:1px solid var(--line); border-radius:20px; cursor:pointer;
+  transition: all .25s ease;
 }
-.tab:hover{ color: var(--ink); }
-.tab.active{
-  background: var(--card-bg); color: var(--ink); transform: translateY(0);
-  font-weight:600;
-}
+.tab:hover{ color:var(--ink); border-color:var(--ink-dim); }
+.tab.active{ color:var(--bg); background:var(--ink); border-color:var(--ink); }
 
-/* ---------- Layout: grid + side panel ---------- */
-.layout{ display:grid; grid-template-columns: 1fr 420px; gap: 30px; align-items:flex-start; padding-bottom:90px; }
-.layout.panel-open .grid{ grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+.pending-line{
+  font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:var(--ink-faint); letter-spacing:.02em;
+}
+.pending-line b{ color:var(--ink-dim); font-weight:500; }
 
-.grid{
-  display:grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 26px;
+.empty-note{
+  display:none; font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--ink-dim);
+  border:1px dashed var(--line); padding:22px; margin-top:10px; line-height:1.6;
 }
-.card{
-  background: var(--card-bg); border: 1.5px solid var(--ink);
-  border-radius: var(--radius); overflow:hidden;
-  display:flex; flex-direction:column;
-  transition: transform .18s ease, box-shadow .18s ease;
-}
-.card:hover{ transform: translateY(-4px); box-shadow: 6px 6px 0 var(--ink); }
-.card.hidden{ display:none; }
+.empty-note.show{ display:block; }
 
-.section-divider{
-  grid-column: 1 / -1; display:flex; align-items:baseline; gap:14px; flex-wrap:wrap;
-  padding: 18px 0 6px; border-top: 1.5px solid var(--ink); margin-top: 6px;
+/* ============ GALLERY (featured, asymmetric) ============ */
+.gallery{ padding-top: 20px; }
+.proj{
+  padding: 90px 0; border-top:1px solid var(--line);
+  opacity:0; transform:translateY(28px); transition: opacity .8s ease, transform .8s ease;
 }
-.section-divider-label{
-  font-family:'Fraunces', serif; font-weight:600; font-size:17px; color: var(--ink);
-}
-.section-divider-note{
-  font-family:'IBM Plex Mono', monospace; font-size:11.5px; color: var(--ink-soft);
+.proj.in-view{ opacity:1; transform:translateY(0); }
+.proj.hidden{ display:none; }
+
+.proj-row{ display:grid; grid-template-columns: 1fr 1fr; gap:56px; align-items:center; }
+.proj-row.reverse .proj-text{ order:2; }
+.proj-row.reverse .proj-visual-box{ order:1; }
+@media (max-width:900px){
+  .proj-row{ grid-template-columns:1fr; gap:30px; }
+  .proj-row.reverse .proj-text{ order:1; }
+  .proj-row.reverse .proj-visual-box{ order:2; }
+  .proj{ padding:56px 0; }
 }
 
-.preview{ height:172px; position:relative; overflow:hidden; border-bottom: 1.5px solid var(--ink); }
-.preview .dot-row{ position:absolute; top:12px; left:14px; display:flex; gap:5px; z-index:2; }
-.preview .dot{ width:7px; height:7px; border-radius:50%; }
-
-.card-body{ padding: 20px 22px 24px; display:flex; flex-direction:column; gap:12px; flex:1; }
-.card-top{ display:flex; justify-content:space-between; align-items:flex-start; gap:10px; }
-.ficha-num{ font-family:'IBM Plex Mono', monospace; font-size:11.5px; color: var(--ink-soft); }
-.card h3{
-  font-family:'Fraunces', serif; font-weight:600; font-size:22px; margin:0; line-height:1.15;
+.proj-num{ font-family:'IBM Plex Mono', monospace; font-size:13px; color:var(--gold); letter-spacing:.05em; margin-bottom:14px; }
+.proj-eyebrow{ font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.1em; color:var(--ink-dim); margin-bottom:16px; text-transform:uppercase; }
+.proj-title{ font-family:'Fraunces', serif; font-weight:500; font-size: clamp(28px, 3vw, 42px); line-height:1.05; margin-bottom:18px; }
+.proj-desc{ font-size:14.5px; line-height:1.65; color:var(--ink-dim); max-width:44ch; margin-bottom:22px; }
+.proj-tags{ font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--ink-faint); margin-bottom:24px; letter-spacing:.02em; }
+.proj-explore{
+  display:inline-flex; align-items:center; gap:9px; font-family:'IBM Plex Mono', monospace; font-size:11.5px;
+  letter-spacing:.06em; color:var(--ink); cursor:pointer; border-bottom:1px solid var(--line); padding-bottom:5px;
+  transition: gap .25s ease, border-color .25s ease;
 }
-.card p{ font-size:14.5px; line-height:1.55; color: var(--ink-soft); margin:0; }
+.proj-explore:hover{ gap:14px; border-color:var(--accent); }
+.proj-explore .arrow{ color:var(--accent); }
 
-.tags{ display:flex; flex-wrap:wrap; gap:6px; margin-top:auto; padding-top:6px; }
-.tag{
-  font-family:'IBM Plex Mono', monospace; font-size:10.5px; letter-spacing:.03em;
-  color: var(--ink); border: 1px solid var(--ink); border-radius: 20px; padding: 4px 10px;
-  background: transparent;
+.proj-visual-box{
+  position:relative; aspect-ratio: 4/3; border:1px solid var(--line); overflow:hidden; cursor:pointer;
 }
-.category{
-  font-family:'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing:.08em; text-transform:uppercase;
-  color: #fff; padding: 4px 9px; border-radius: 2px; align-self:flex-start;
+.proj-visual-box:hover .visual-inner{ transform:scale(1.035); }
+.visual-inner{ position:absolute; inset:0; transition: transform .7s cubic-bezier(.2,.7,.2,1); }
+.visual-caption{
+  position:absolute; bottom:14px; left:14px; font-family:'IBM Plex Mono', monospace; font-size:9px;
+  letter-spacing:.05em; color: rgba(241,237,226,0.5); text-transform:uppercase;
 }
-
-/* ---------- Preview illustrations (abstract, per project palette) ---------- */
-.pv-portal{ background: linear-gradient(160deg,#121a17,#1c2b26); }
-.pv-portal .bar{ position:absolute; background:#3FA98B; opacity:.85; border-radius:2px; }
-.pv-portal .card1{ position:absolute; background:#233933; border:1px solid #3FA98B44; border-radius:4px; }
-.pv-portal .line{ position:absolute; height:6px; background:#5C7C74; border-radius:3px; }
-
-.pv-inv{ background: linear-gradient(160deg,#171512,#2a231c); }
-.pv-inv .cell{ position:absolute; border:1px solid #D8B24244; background:#241F19; }
-.pv-inv .num{ position:absolute; color:#D8B242; font-family:'IBM Plex Mono',monospace; font-size:15px; font-weight:600; }
-
-.pv-copass{ background: linear-gradient(160deg,#2a1712,#3a2018); }
-.pv-copass .badge{ position:absolute; border-radius:50%; border:2px solid #E0876A; }
-.pv-copass .strip{ position:absolute; background:#E0876A; opacity:.9; border-radius:2px; }
-
-.pv-diario{ background: linear-gradient(160deg,#F3ECDC,#E8DDC6); }
-.pv-diario .txtline{ position:absolute; height:4px; background:#8A7F63; border-radius:2px; }
-.pv-diario .chip{ position:absolute; border:1.5px solid #B34632; border-radius:12px; color:#B34632; font-family:'IBM Plex Mono',monospace; font-size:10px; padding:3px 9px; }
-
-.pv-rel{ background: linear-gradient(160deg,#2E2630,#443443); }
-.pv-rel .jersey{ position:absolute; }
-.pv-rel .yoke{ position:absolute; background:#B98CA6; }
-.pv-rel .sleeve{ position:absolute; background:#D9A8B8; border-radius: 40px 4px 4px 40px; }
-
-.pv-cart{ display:flex; }
-.pv-cart .slab{ flex:1; position:relative; overflow:hidden; }
-.pv-cart .s1{ background: linear-gradient(160deg,#131b30,#1f2c4d); }
-.pv-cart .s2{ background: linear-gradient(160deg,#EFE3C8,#E3D2A9); }
-.pv-cart .s3{ background: linear-gradient(160deg,#12251d,#1c3b2d); }
-.pv-cart .moon{ position:absolute; width:26px;height:26px;border-radius:50%; background:#EFE3C8; top:16px; right:16px; }
-.pv-cart .rule{ position:absolute; left:14px; right:14px; height:1px; background:#8A6F3C55; }
-.pv-cart .leaf{ position:absolute; width:34px; height:10px; border-radius:50%; background:#5FA37E55; }
-
-.pv-mia{ background: linear-gradient(160deg,#171B26,#212A3D); }
-.pv-mia .frame{ position:absolute; border-radius:4px; }
-
-.pv-unreal{ background: linear-gradient(160deg,#111214,#1B1D22); }
-.pv-unreal .panel{ position:absolute; background:#232529; border:1px solid #33363c; border-radius:3px; }
-.pv-unreal .barfill{ position:absolute; background:#4C8DFF; border-radius:3px; }
-.pv-unreal .dotstatus{ position:absolute; width:8px; height:8px; border-radius:50%; background:#4CC38A; }
-.pv-unreal .row{ position:absolute; height:5px; background:#3B3E45; border-radius:2px; }
-
-.pv-stop{ background: linear-gradient(160deg,#101915,#1A2621); }
-.pv-stop .frame-cell{ position:absolute; background:#233128; border:1.5px solid #3FA98B55; border-radius:4px; }
-.pv-stop .slider-track{ position:absolute; height:4px; background:#3B4A42; border-radius:2px; }
-.pv-stop .slider-knob{ position:absolute; width:14px; height:14px; border-radius:50%; background:#3FA98B; }
-
-.pv-vr{ background: linear-gradient(160deg,#161022,#211a35); }
-.pv-vr .card-float{ position:absolute; background:#2B2245; border:1px solid #7B5FE055; border-radius:6px; }
-.pv-vr .lens{ position:absolute; border-radius:50%; border:2px solid #7B5FE0; }
-.pv-vr .waveline{ position:absolute; height:3px; background:#7B5FE0; border-radius:2px; }
-
-.pv-perf{ background: linear-gradient(160deg,#1a1512,#241d18); }
-.pv-perf .gauge{ position:absolute; border-radius:50%; border:6px solid #33261c; }
-.pv-perf .gaugefill{ position:absolute; border-radius:50%; border:6px solid #E0876A; border-right-color:transparent; border-bottom-color:transparent; }
-.pv-perf .barh{ position:absolute; background:#E0876A; border-radius:2px; opacity:.85; }
-
-/* ---------- Footer ---------- */
-footer{
-  border-top: 1.5px solid var(--ink); padding: 30px 0 50px;
-  display:flex; justify-content:space-between; flex-wrap:wrap; gap:14px;
-  font-family:'IBM Plex Mono', monospace; font-size:12px; color: var(--ink-soft);
+.visual-corner{
+  position:absolute; top:14px; right:14px; width:22px; height:22px;
+  border-top:1px solid rgba(201,166,107,0); border-right:1px solid rgba(201,166,107,0);
+  transition: border-color .3s ease;
 }
+.proj-visual-box:hover .visual-corner{ border-color: var(--gold); }
 
-.card{ cursor:pointer; }
-.open-hint{
-  font-family:'IBM Plex Mono', monospace; font-size:11.5px; color: var(--forest-2);
-  display:flex; align-items:center; gap:6px; margin-top:2px;
+/* panoramic variant */
+.proj-panoramic .proj-visual-box{ aspect-ratio: 21/9; }
+.proj-panoramic .proj-row{ grid-template-columns:1fr; }
+.proj-panoramic .overlay-text{
+  position:absolute; bottom:0; left:0; right:0; padding: 40px 36px 30px;
+  background: linear-gradient(0deg, rgba(10,12,10,0.92) 0%, rgba(10,12,10,0.5) 55%, transparent 100%);
 }
-.card:hover .open-hint{ text-decoration: underline; }
+.proj-panoramic .proj-title{ margin-bottom:8px; }
+.proj-panoramic .proj-desc{ margin-bottom:14px; max-width:60ch; }
 
-.panel-slot{ position:relative; }
-.empty-state{
-  display:none; border: 1.5px dashed var(--ink-soft); border-radius:4px;
-  padding: 26px 24px; font-family:'IBM Plex Mono', monospace; font-size:12.5px;
-  color: var(--ink-soft); line-height:1.6; margin-bottom:20px;
+/* duo variant */
+.duo-wrap{ display:grid; grid-template-columns:1fr 1fr; gap:32px; }
+@media (max-width:760px){ .duo-wrap{ grid-template-columns:1fr; } }
+.duo-item{ display:flex; flex-direction:column; }
+.duo-item:nth-child(2){ margin-top:48px; }
+@media (max-width:760px){ .duo-item:nth-child(2){ margin-top:0; } }
+.duo-item .proj-visual-box{ aspect-ratio:5/4; margin-bottom:22px; }
+.duo-item .proj-title{ font-size: clamp(20px,2.4vw,26px); }
+.duo-item .proj-desc{ font-size:13.5px; }
+
+/* ============ VISUAL TYPES (abstract placeholders) ============ */
+.v-unreal{ background: radial-gradient(ellipse at 25% 20%, rgba(76,141,255,0.16), transparent 55%), linear-gradient(155deg,#11141C,#0A0B10); }
+.v-vr{ background: radial-gradient(ellipse at 70% 30%, rgba(123,95,224,0.18), transparent 55%), linear-gradient(155deg,#161022,#0B0A11); }
+.v-perf{ background: radial-gradient(ellipse at 30% 70%, rgba(224,135,106,0.16), transparent 55%), linear-gradient(155deg,#1A1512,#0C0B0A); }
+.v-web{ background: radial-gradient(ellipse at 65% 25%, rgba(92,132,113,0.20), transparent 55%), linear-gradient(155deg,#101812,#0A0C0A); }
+.v-canvas{ background: radial-gradient(ellipse at 30% 75%, rgba(63,169,139,0.16), transparent 50%), linear-gradient(155deg,#0F1613,#0A0C0A); }
+.v-design{ background: radial-gradient(ellipse at 60% 30%, rgba(185,140,166,0.20), transparent 55%), linear-gradient(155deg,#241B27,#100C13); }
+.v-inst{ background: linear-gradient(155deg,#131513,#0A0C0A); }
+
+/* ============ DESIGN FEATURE (Royal Enfield) ============ */
+.design-feature{ padding: 100px 0; border-top:1px solid var(--line); background: var(--bg-panel); }
+.design-feature-grid{ display:grid; grid-template-columns: 0.9fr 1.1fr; gap:60px; align-items:center; }
+@media (max-width:900px){ .design-feature-grid{ grid-template-columns:1fr; gap:36px; } }
+.design-visual-pair{ display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+.design-visual-pair .proj-visual-box{ aspect-ratio:3/4; }
+.design-visual-pair .proj-visual-box:first-child{ margin-top:36px; }
+
+/* ============ INSTITUTIONAL INDEX ============ */
+.inst-section{ padding: 90px 0; border-top:1px solid var(--line); }
+.inst-head{ margin-bottom:12px; }
+.inst-eyebrow{ font-family:'Fraunces', serif; font-size:22px; font-weight:500; margin-bottom:10px; }
+.inst-note{ font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--ink-faint); max-width:60ch; line-height:1.6; margin-bottom:42px; }
+
+.inst-row{
+  display:grid; grid-template-columns: 70px 1fr auto; gap:26px; align-items:center;
+  padding: 26px 0; border-top:1px solid var(--line-soft); cursor:pointer;
+  transition: background .25s ease;
 }
-.empty-state.show{ display:block; }
-
-/* ---------- Side panel (expediente) ---------- */
-.side-panel{
-  position: sticky; top: 24px;
-  background: var(--card-bg); border: 1.5px solid var(--ink); border-radius: 4px;
-  box-shadow: 7px 7px 0 rgba(27,46,39,.18);
-  display:none; max-height: calc(100vh - 48px); overflow-y:auto;
-}
-.side-panel.open{ display:block; animation: slide-in .22s ease; }
-@keyframes slide-in{ from{ transform: translateX(14px); opacity:0; } to{ transform: translateX(0); opacity:1; } }
-
-.side-panel-empty{
-  border: 1.5px dashed var(--ink-soft); border-radius:4px; padding: 30px 24px;
-  font-family:'IBM Plex Mono', monospace; font-size:12.5px; color: var(--ink-soft);
-  line-height:1.6; position: sticky; top:24px;
+.inst-row:hover{ background: rgba(255,255,255,0.015); }
+.inst-row:last-child{ border-bottom:1px solid var(--line-soft); }
+.inst-thumb{ width:52px; height:52px; border:1px solid var(--line); flex-shrink:0; }
+.inst-num{ font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--gold); }
+.inst-body h3{ font-family:'Fraunces', serif; font-weight:500; font-size:19px; margin-bottom:5px; }
+.inst-body p{ font-size:13px; color:var(--ink-dim); line-height:1.5; max-width:56ch; }
+.inst-tags{ font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:var(--ink-faint); margin-top:6px; }
+.inst-arrow{ font-family:'IBM Plex Mono', monospace; color:var(--ink-dim); font-size:16px; }
+@media (max-width:700px){
+  .inst-row{ grid-template-columns: 44px 1fr; }
+  .inst-arrow{ display:none; }
 }
 
-.dossier-head{
-  display:flex; justify-content:space-between; align-items:flex-start; gap:14px;
-  padding: 24px 26px; border-bottom: 1.5px solid var(--ink);
-}
-.dossier-head .category{ margin-bottom:10px; display:inline-block; }
-.dossier-head h2{ font-family:'Fraunces', serif; font-weight:600; font-size:26px; margin:0 0 8px; line-height:1.1; }
-.dossier-head .meta{ font-family:'IBM Plex Mono', monospace; font-size:11.5px; color: var(--ink-soft); line-height:1.5; }
-.close-btn{
-  font-family:'IBM Plex Mono', monospace; font-size:20px; line-height:1;
-  background:none; border:1.5px solid var(--ink); border-radius:50%;
-  width:32px; height:32px; cursor:pointer; flex-shrink:0; color:var(--ink);
-}
-.close-btn:hover{ background: var(--ink); color: var(--paper); }
+/* Carteleras minor feature */
+.design-minor{ padding: 90px 0; border-top:1px solid var(--line); }
+.design-minor .proj-row{ grid-template-columns: 1fr 1.2fr; }
+.design-minor .proj-visual-box{ aspect-ratio:16/10; }
 
-.dossier-body{ padding: 22px 26px 30px; }
-.dossier-section{ margin-bottom: 24px; }
-.dossier-section:last-child{ margin-bottom:0; }
-.sec-label{
-  font-family:'IBM Plex Mono', monospace; font-size:10.5px; letter-spacing:.1em; text-transform:uppercase;
-  color: var(--stamp); margin-bottom:10px; display:flex; align-items:center; gap:8px;
+/* ============ DETAIL OVERLAY ============ */
+.detail-overlay{
+  position:fixed; inset:0; z-index:200; background:var(--bg);
+  transform: translateY(100%); transition: transform .5s cubic-bezier(.2,.8,.2,1);
+  overflow-y:auto;
 }
-.sec-label::after{ content:""; flex:1; height:1px; background: var(--paper-line); }
-.dossier-section p{ font-size:14px; line-height:1.6; color: var(--ink); margin: 0 0 10px; }
-.dossier-section ul{ margin:0; padding-left: 18px; }
-.dossier-section li{ font-size:13.5px; line-height:1.55; color: var(--ink); margin-bottom:8px; }
-.dossier-section code{
-  font-family:'IBM Plex Mono', monospace; font-size:12px; background: var(--paper-line);
-  padding: 1.5px 6px; border-radius:3px;
+.detail-overlay.open{ transform:translateY(0); }
+.detail-close{
+  position:fixed; top:26px; right:38px; z-index:201;
+  font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.08em; color:var(--ink-dim);
+  display:flex; align-items:center; gap:8px; cursor:pointer; padding:10px 16px; border:1px solid var(--line);
+  background: var(--bg); transition: color .25s ease, border-color .25s ease;
+}
+.detail-close:hover{ color:var(--ink); border-color:var(--ink-dim); }
+@media (max-width:600px){ .detail-close{ right:18px; top:18px; } }
+
+.detail-inner{ max-width:840px; margin:0 auto; padding: 130px 32px 140px; }
+.detail-num{ font-family:'IBM Plex Mono', monospace; font-size:14px; color:var(--gold); margin-bottom:18px; }
+.detail-eyebrow{ font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:.1em; color:var(--ink-dim); text-transform:uppercase; margin-bottom:20px; }
+.detail-title{ font-family:'Fraunces', serif; font-weight:500; font-size: clamp(32px,5vw,58px); line-height:1.03; margin-bottom:22px; }
+.detail-meta{ font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--ink-faint); margin-bottom:50px; padding-bottom:36px; border-bottom:1px solid var(--line); }
+
+.detail-visual{ aspect-ratio:16/9; border:1px solid var(--line); margin-bottom:60px; position:relative; overflow:hidden; }
+
+.detail-section{ margin-bottom:56px; }
+.detail-sec-label{
+  font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--gold); margin-bottom:18px; display:flex; align-items:center; gap:12px;
+}
+.detail-sec-label::after{ content:""; flex:1; height:1px; background:var(--line); }
+.detail-section p{ font-size:16px; line-height:1.75; color:var(--ink); max-width:66ch; }
+.detail-section ul{ list-style:none; }
+.detail-section li{
+  font-size:15px; line-height:1.7; color:var(--ink-dim); margin-bottom:14px; max-width:66ch;
+  padding-left:20px; position:relative;
+}
+.detail-section li::before{ content:"—"; position:absolute; left:0; color:var(--accent); }
+.detail-section code{
+  font-family:'IBM Plex Mono', monospace; font-size:13px; background:var(--bg-panel); color:var(--ink);
+  padding:2px 7px; border-radius:2px;
 }
 
-@media (max-width: 980px){
-  .layout{ grid-template-columns: 1fr; }
-  .side-panel{ position:fixed; inset:0; z-index:50; border-radius:0; max-height:100vh; }
-  .side-panel-empty{ display:none; }
-}
-
-@media (max-width: 560px){
-  .stamp{ display:none; }
-  .grid{ grid-template-columns: 1fr; }
-}
+/* ============ FOOTER ============ */
+footer{ border-top:1px solid var(--line); padding: 56px 0 46px; }
+.footer-row{ display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:20px; }
+.footer-name{ font-family:'Fraunces', serif; font-size:20px; font-weight:500; margin-bottom:6px; }
+.footer-role{ font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--ink-dim); letter-spacing:.04em; }
+.footer-rights{ font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:var(--ink-faint); }
 </style>
 </head>
 <body>
 
+<header id="siteHeader">
+  <div class="wrap header-row">
+    <div class="logo-group">
+      <div class="logo-mark">MT</div>
+      <div>
+        <div class="logo-text-name">MIA TABORDA</div>
+        <div class="logo-text-sub">DEVELOPER · CREATIVE TECHNOLOGY</div>
+      </div>
+    </div>
+    <nav class="main-nav">
+      <a href="#proyectos" class="active">PROYECTOS</a>
+      <a href="#explore">HABILIDADES</a>
+      <a href="#educacion">EXPERIENCIA</a>
+      <a href="#footer-contact">CONTACTO</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="hero-eyebrow">DEVELOPER · CREATIVE TECHNOLOGIST</div>
+      <h1 class="hero-title">Desarrollo experiencias que conectan <em>tecnología</em>, <span class="gold">creatividad</span> e interacción.</h1>
+      <div class="hero-name-line">
+        <span class="hero-name">Mia Taborda</span>
+        <span class="hero-role">Developer · 3D · VR · Web · Interactive Experiences</span>
+      </div>
+      <p class="hero-desc">Construyo experiencias interactivas en Unreal Engine, VR y web — desde plugins con interfaz nativa hasta sistemas de reconocimiento de voz en tiempo real. El diseño visual y la ilustración son parte del mismo criterio, no un área aparte.</p>
+      <div class="hero-cta">
+        <a href="#proyectos" class="btn-primary">VER PROYECTOS →</a>
+        <a href="#educacion" class="btn-ghost">EXPERIENCIA COMPLETA</a>
+      </div>
+
+      <div class="hero-areas">
+        <div class="hero-area-item"><span class="mark"></span> UNREAL ENGINE · C++ · BLUEPRINTS</div>
+        <div class="hero-area-item"><span class="mark"></span> VIRTUAL REALITY — META QUEST 2/3</div>
+        <div class="hero-area-item"><span class="mark"></span> WEB · CANVAS · JAVASCRIPT</div>
+        <div class="hero-area-item"><span class="mark"></span> DISEÑO E ILUSTRACIÓN DE MARCA</div>
+      </div>
+    </div>
+
+    <div class="hero-visual" id="heroVisual">
+      <div class="hero-visual-inner v-vr" id="heroVisualInner">
+        <svg viewBox="0 0 500 625" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <linearGradient id="archGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#C9A66B" stop-opacity="0.55"/>
+              <stop offset="100%" stop-color="#5C8471" stop-opacity="0.25"/>
+            </linearGradient>
+          </defs>
+          <path d="M 150 560 L 150 300 Q 150 190 250 190 Q 350 190 350 300 L 350 560" fill="none" stroke="url(#archGrad)" stroke-width="1.2"/>
+          <path d="M 180 560 L 180 310 Q 180 225 250 225 Q 320 225 320 310 L 320 560" fill="none" stroke="url(#archGrad)" stroke-width="0.7" opacity="0.6"/>
+          <circle cx="250" cy="300" r="90" fill="none" stroke="#C9A66B" stroke-width="0.5" opacity="0.35"/>
+          <circle cx="250" cy="300" r="140" fill="none" stroke="#5C8471" stroke-width="0.5" opacity="0.25"/>
+          <line x1="60" y1="470" x2="440" y2="470" stroke="#5C8471" stroke-width="0.4" opacity="0.3"/>
+          <line x1="60" y1="470" x2="150" y2="560" stroke="#5C8471" stroke-width="0.4" opacity="0.3"/>
+          <line x1="440" y1="470" x2="350" y2="560" stroke="#5C8471" stroke-width="0.4" opacity="0.3"/>
+        </svg>
+      </div>
+      <div class="hero-visual-caption">
+        <span>VISTA CONCEPTUAL</span>
+        <span>UNREAL / VR — PLACEHOLDER</span>
+      </div>
+    </div>
+  </div>
+</section>
+
 <div class="wrap">
-  <div class="topbar">
-    <div class="brand"><b>Mia Taborda</b> · Developer Log</div>
-    <div class="brand">Interactive Systems — Medellín, CO</div>
-  </div>
-
-  <div class="hero">
-    <div class="stamp">registro<br>técnico<br>· en desarrollo ·</div>
-    <div class="eyebrow">Interactive 3D Development · Unreal Engine · Unity · WebGL</div>
-    <h1>Construyo la lógica<br>detrás de lo <em>interactivo</em>,<br>no solo la superficie.</h1>
-    <p class="lede">Desarrollo experiencias interactivas y en tiempo real — plugins con UI propia en Unreal Engine, aplicaciones en Unity, herramientas web con JavaScript y WebGL/Three.js. He trabajado como freelance senior en proyectos de VR, AR y MR, incluyendo entregas por hitos para clientes en Upwork. El diseño gráfico, la ilustración y algunas aplicaciones educativas también forman parte de mi trabajo — como aplicaciones de estas mismas capacidades, no como el centro de mi perfil.</p>
-    <div class="skillbar" id="skillbar"></div>
-  </div>
-
-  <div class="areas-section">
-    <div class="sec-label" style="margin-bottom:14px;">Áreas de práctica</div>
-    <div class="areas-subhead">Con proyectos documentados</div>
-    <div class="areas-grid" id="areasGridDone"></div>
-    <div class="areas-subhead" style="margin-top:20px;">Experiencia real, proyectos por documentar</div>
-    <div class="areas-grid" id="areasGridPending"></div>
-    <div class="areas-note" id="areasNote">Selecciona un área para ver sus fichas — las marcadas como pendientes aún no tienen proyecto documentado.</div>
-  </div>
-
-  <div class="tabs" id="tabs">
-    <div class="tab active" data-cat="todos">Todos</div>
-    <div class="tab" data-cat="3d">Unreal &amp; Unity</div>
-    <div class="tab" data-cat="xr">VR · AR · MR</div>
-    <div class="tab" data-cat="web">Web &amp; Herramientas</div>
-    <div class="tab" data-cat="disenio">Diseño &amp; Ilustración</div>
-    <div class="tab" data-cat="edu">Educación</div>
-  </div>
-
-  <div class="layout" id="layout">
-  <div class="grid-wrap">
-  <div class="empty-state" id="emptyState">
-    Todavía no hay fichas documentadas en esta categoría — cuéntame proyectos concretos de VR, AR o MR y los agrego con el mismo nivel de detalle que el resto.
-  </div>
-  <div class="grid" id="grid">
-
-<div class="card" data-id="assetsync" data-cat="3d cpp interactive" onclick="openDossier('assetsync')">
-      <div class="preview pv-unreal">
-        <div class="dot-row"><div class="dot" style="background:#4C8DFF"></div><div class="dot" style="background:#4CC38A"></div><div class="dot" style="background:#F0B44E"></div></div>
-        <div class="panel" style="top:44px;left:16px;width:90px;height:82px;"></div>
-        <div class="row" style="top:56px;left:24px;width:60px;"></div>
-        <div class="row" style="top:68px;left:24px;width:44px;"></div>
-        <div class="row" style="top:80px;left:24px;width:66px;"></div>
-        <div class="row" style="top:92px;left:24px;width:36px;"></div>
-        <div class="panel" style="top:44px;left:116px;width:120px;height:82px;"></div>
-        <div class="dotstatus" style="top:54px;left:126px;"></div>
-        <div class="row" style="top:52px;left:140px;width:80px;"></div>
-        <div class="barfill" style="top:100px;left:126px;width:70px;height:6px;border-radius:3px;"></div>
-        <div class="barfill" style="top:100px;left:126px;width:40px;height:6px;background:#233; opacity:.3;"></div>
-      </div>
-      <div class="card-body">
-        <div class="card-top">
-          <span class="category" style="background:#2E4E8F">Unreal Engine Plugin</span>
-          <span class="ficha-num">FICHA 01</span>
-        </div>
-        <h3>AssetSyncManager</h3>
-        <p>Plugin nativo para Unreal Engine con interfaz propia dentro del editor: autenticación, escaneo y sincronización de assets. Desarrollado por hitos para un cliente de Upwork.</p>
-        <div class="tags">
-          <span class="tag">Unreal Engine</span>
-          <span class="tag">C++</span>
-          <span class="tag">Cliente Upwork</span>
-        </div>
-        <div class="open-hint">Ver expediente →</div>
-      </div>
+  <section class="explore" id="explore">
+    <div class="explore-top">
+      <div class="explore-label">EXPLORA POR ÁREA</div>
+      <div class="legend"><span><span class="dot done"></span>CON PROYECTOS</span><span><span class="dot pending"></span>PENDIENTE</span></div>
     </div>
-
-<div class="card" data-id="vr-speech" data-cat="xr vr 3d blueprints interactive" onclick="openDossier('vr-speech')">
-      <div class="preview pv-vr">
-        <div class="dot-row"><div class="dot" style="background:#7B5FE0"></div><div class="dot" style="background:#4CC38A"></div><div class="dot" style="background:#F0B44E"></div></div>
-        <div class="card-float" style="top:44px;left:20px;width:56px;height:38px;"></div>
-        <div class="card-float" style="top:60px;left:90px;width:56px;height:38px;"></div>
-        <div class="card-float" style="top:44px;left:160px;width:56px;height:38px;"></div>
-        <div class="lens" style="top:112px;left:100px;width:40px;height:40px;"></div>
-        <div class="waveline" style="top:128px;left:150px;width:14px;"></div>
-        <div class="waveline" style="top:122px;left:168px;width:14px;"></div>
-        <div class="waveline" style="top:134px;left:186px;width:14px;"></div>
-      </div>
-      <div class="card-body">
-        <div class="card-top">
-          <span class="category" style="background:#4C3A9E">VR · Unreal Engine</span>
-          <span class="ficha-num">FICHA 02</span>
-        </div>
-        <h3>100Q — Experiencia VR con reconocimiento de voz</h3>
-        <p>Experiencia VR para Meta Quest 2/3: 100 preguntas como tarjetas flotantes que el usuario explora y pregunta en voz alta; el sistema reconoce la palabra clave y reproduce el video de respuesta correspondiente.</p>
-        <div class="tags">
-          <span class="tag">Unreal Engine</span>
-          <span class="tag">Blueprint</span>
-          <span class="tag">Cliente Upwork</span>
-        </div>
-        <div class="open-hint">Ver expediente →</div>
-      </div>
+    <div class="tabs" id="tabs">
+      <div class="tab active" data-cat="todos">TODOS</div>
+      <div class="tab" data-cat="3d,xr">UNREAL &amp; VR</div>
+      <div class="tab" data-cat="web">WEB &amp; HERRAMIENTAS</div>
+      <div class="tab" data-cat="interactive">INTERACTIVE EXPERIENCES</div>
+      <div class="tab" data-cat="disenio">DISEÑO &amp; ILUSTRACIÓN</div>
+      <div class="tab" data-cat="edu">EDUCACIÓN</div>
     </div>
-
-<div class="card" data-id="vr-perf" data-cat="xr vr 3d blueprints interactive" onclick="openDossier('vr-perf')">
-      <div class="preview pv-perf">
-        <div class="dot-row"><div class="dot" style="background:#E0876A"></div><div class="dot" style="background:#D8B242"></div><div class="dot" style="background:#3FA98B"></div></div>
-        <div class="gauge" style="top:44px;left:24px;width:70px;height:70px;"></div>
-        <div class="gaugefill" style="top:44px;left:24px;width:70px;height:70px;transform:rotate(45deg);"></div>
-        <div class="barh" style="top:130px;left:110px;width:100px;height:8px;"></div>
-        <div class="barh" style="top:145px;left:110px;width:60px;height:8px;background:#3FA98B;"></div>
-      </div>
-      <div class="card-body">
-        <div class="card-top">
-          <span class="category" style="background:#8A5A2E">VR · Optimización</span>
-          <span class="ficha-num">FICHA 03</span>
-        </div>
-        <h3>Optimización de rendimiento VR — Vehículos</h3>
-        <p>Refactorización de blueprints de Unreal para un juego VR de Quest 2/3, donde los blueprints de vehículos de un asset de terceros consumían el 88% del tiempo de fotograma objetivo.</p>
-        <div class="tags">
-          <span class="tag">Unreal Engine</span>
-          <span class="tag">Blueprint</span>
-          <span class="tag">Git</span>
-        </div>
-        <div class="open-hint">Ver expediente →</div>
-      </div>
-    </div>
-
-<div class="card" data-id="stopmotion" data-cat="web canvas interactive" onclick="openDossier('stopmotion')">
-      <div class="preview pv-stop">
-        <div class="dot-row"><div class="dot" style="background:#E0876A"></div><div class="dot" style="background:#D8B242"></div><div class="dot" style="background:#3FA98B"></div></div>
-        <div class="frame-cell" style="top:44px;left:18px;width:52px;height:52px;"></div>
-        <div class="frame-cell" style="top:44px;left:78px;width:52px;height:52px;"></div>
-        <div class="frame-cell" style="top:44px;left:138px;width:52px;height:52px;"></div>
-        <div class="frame-cell" style="top:44px;left:198px;width:52px;height:52px;"></div>
-        <div class="slider-track" style="top:110px;left:18px;width:190px;"></div>
-        <div class="slider-knob" style="top:106px;left:120px;"></div>
-      </div>
-      <div class="card-body">
-        <div class="card-top">
-          <span class="category" style="background:#2A4238">Web App · Multimedia</span>
-          <span class="ficha-num">FICHA 04</span>
-        </div>
-        <h3>Stop Motion Web App</h3>
-        <p>Aplicación de navegador para crear animaciones stop motion: captura fotografías desde la cámara del dispositivo, arma secuencias y las convierte en GIF, con control de velocidad e intervalo entre cuadros.</p>
-        <div class="tags">
-          <span class="tag">JavaScript</span>
-          <span class="tag">Captura de cámara</span>
-          <span class="tag">GitHub Pages</span>
-        </div>
-        <div class="open-hint">Ver expediente →</div>
-      </div>
-    </div>
-
-<div class="card" data-id="mia-gif" data-cat="web edu canvas" onclick="openDossier('mia-gif')">
-      <div class="preview pv-mia">
-        <div class="dot-row"><div class="dot" style="background:#E0876A"></div><div class="dot" style="background:#D8B242"></div><div class="dot" style="background:#3FA98B"></div></div>
-        <div class="frame" style="top:44px;left:18px;width:40px;height:40px;background:#E0876A;"></div>
-        <div class="frame" style="top:44px;left:66px;width:40px;height:40px;background:#D8B242;"></div>
-        <div class="frame" style="top:44px;left:114px;width:40px;height:40px;background:#3FA98B;"></div>
-        <div class="frame" style="top:44px;left:162px;width:40px;height:40px;background:#7B8FE0;"></div>
-        <div class="frame" style="top:94px;left:18px;width:184px;height:6px;background:#2C3650;"></div>
-      </div>
-      <div class="card-body">
-        <div class="card-top">
-          <span class="category" style="background:#3B4B75">Motor de animación · Canvas/JS</span>
-          <span class="ficha-num">FICHA 05</span>
-        </div>
-        <h3>Generador de GIFs por palabra clave</h3>
-        <p>Pequeño motor de animación en Canvas/JavaScript: genera una secuencia de 16 cuadros a partir de una palabra clave y construye el GIF completo en el navegador, sin backend ni API externa.</p>
-        <div class="tags">
-          <span class="tag">Canvas / JS</span>
-          <span class="tag">Motor de animación</span>
-          <span class="tag">Offline-first</span>
-        </div>
-        <div class="open-hint">Ver expediente →</div>
-      </div>
-    </div>
-
-<div class="card" data-id="rel" data-cat="disenio" onclick="openDossier('rel')">
-      <div class="preview pv-rel">
-        <div class="dot-row"><div class="dot" style="background:#D9A8B8"></div><div class="dot" style="background:#B98CA6"></div><div class="dot" style="background:#F3ECDC"></div></div>
-        <div class="yoke" style="top:40px;left:86px;width:70px;height:36px;border-radius:30px 30px 0 0;"></div>
-        <div class="sleeve" style="top:52px;left:36px;width:56px;height:24px;"></div>
-        <div class="sleeve" style="top:52px;right:36px;width:56px;height:24px;border-radius:4px 40px 40px 4px;"></div>
-        <div class="jersey" style="top:76px;left:86px;width:70px;height:70px;background:#3A2E3E;border-radius:0 0 8px 8px;"></div>
-      </div>
-      <div class="card-body">
-        <div class="card-top">
-          <span class="category" style="background:#7A5A78">Identidad de marca</span>
-          <span class="ficha-num">FICHA 06</span>
-        </div>
-        <h3>Royal Enfield Ladies</h3>
-        <p>Identidad de marca para un grupo de motociclistas: emblema ilustrado con casco y corona, y mockups de jersey en carbón, malva y rosa polvo.</p>
-        <div class="tags">
-          <span class="tag">Branding</span>
-          <span class="tag">Ilustración vectorial</span>
-          <span class="tag">Mockups</span>
-        </div>
-        <div class="open-hint">Ver expediente →</div>
-      </div>
-    </div>
-
-    <div class="section-divider">
-      <span class="section-divider-label">Interactive Web Applications · Educational Technology</span>
-      <span class="section-divider-note">Mismo nivel de ingeniería, aplicado a un contexto institucional.</span>
-    </div>
-
-<div class="card" data-id="portal-docente" data-cat="web edu" onclick="openDossier('portal-docente')">
-      <div class="preview pv-portal">
-        <div class="dot-row"><div class="dot" style="background:#E0876A"></div><div class="dot" style="background:#D8B242"></div><div class="dot" style="background:#3FA98B"></div></div>
-        <div class="card1" style="top:44px;left:16px;width:78px;height:44px;"></div>
-        <div class="card1" style="top:44px;left:104px;width:78px;height:44px;"></div>
-        <div class="card1" style="top:44px;left:192px;width:78px;height:44px;"></div>
-        <div class="bar" style="top:66px;left:24px;width:40px;height:5px;"></div>
-        <div class="bar" style="top:66px;left:112px;width:30px;height:5px;background:#D8B242"></div>
-        <div class="bar" style="top:66px;left:200px;width:50px;height:5px;background:#E0876A"></div>
-        <div class="line" style="top:106px;left:16px;width:200px;"></div>
-        <div class="line" style="top:120px;left:16px;width:150px;"></div>
-        <div class="line" style="top:134px;left:16px;width:170px;"></div>
-      </div>
-      <div class="card-body">
-        <div class="card-top">
-          <span class="category" style="background:var(--forest-2)">Web App</span>
-          <span class="ficha-num">FICHA 07</span>
-        </div>
-        <h3>Portal Docente</h3>
-        <p>Aplicación web completa (backend + frontend) para gestión y envío masivo de documentos, con seguimiento de estado de entrega, previsualización embebida y generación de PDF.</p>
-        <div class="tags">
-          <span class="tag">Apps Script</span>
-          <span class="tag">Tema oscuro</span>
-          <span class="tag">UX de datos</span>
-        </div>
-        <div class="open-hint">Ver expediente →</div>
-      </div>
-    </div>
-
-<div class="card" data-id="inventario" data-cat="web edu" onclick="openDossier('inventario')">
-      <div class="preview pv-inv">
-        <div class="dot-row"><div class="dot" style="background:#E0876A"></div><div class="dot" style="background:#D8B242"></div><div class="dot" style="background:#3FA98B"></div></div>
-        <div class="cell" style="top:48px;left:16px;width:100px;height:60px;"></div>
-        <div class="num" style="top:64px;left:34px;">128</div>
-        <div class="cell" style="top:48px;left:126px;width:100px;height:60px;"></div>
-        <div class="num" style="top:64px;left:144px;">42</div>
-        <div class="cell" style="top:118px;left:16px;width:210px;height:34px;"></div>
-      </div>
-      <div class="card-body">
-        <div class="card-top">
-          <span class="category" style="background:#8A6320">Dashboard</span>
-          <span class="ficha-num">FICHA 08</span>
-        </div>
-        <h3>Panel de Inventario</h3>
-        <p>Sistema de sincronización de datos: automatiza el paso de archivos fuente a una base central y publica un dashboard en vivo, con reconciliación automática cuando la estructura de datos cambia.</p>
-        <div class="tags">
-          <span class="tag">Apps Script</span>
-          <span class="tag">GitHub Pages</span>
-          <span class="tag">Sync de datos</span>
-        </div>
-        <div class="open-hint">Ver expediente →</div>
-      </div>
-    </div>
-
-<div class="card" data-id="copass" data-cat="web edu" onclick="openDossier('copass')">
-      <div class="preview pv-copass">
-        <div class="dot-row"><div class="dot" style="background:#F3ECDC"></div><div class="dot" style="background:#D8B242"></div><div class="dot" style="background:#3FA98B"></div></div>
-        <div class="badge" style="top:44px;left:20px;width:54px;height:54px;"></div>
-        <div class="badge" style="top:44px;left:90px;width:54px;height:54px;"></div>
-        <div class="badge" style="top:44px;left:160px;width:54px;height:54px;"></div>
-        <div class="strip" style="top:130px;left:16px;width:220px;height:8px;border-radius:6px;"></div>
-      </div>
-      <div class="card-body">
-        <div class="card-top">
-          <span class="category" style="background:var(--stamp)">Web App</span>
-          <span class="ficha-num">FICHA 09</span>
-        </div>
-        <h3>COPASS 2026</h3>
-        <p>Plataforma de coordinación multi-sede con dos capas: interfaz de usuario para registro y participación gamificada, y panel administrativo con validación de evidencias y auditoría de actividad.</p>
-        <div class="tags">
-          <span class="tag">Apps Script</span>
-          <span class="tag">Panel admin</span>
-          <span class="tag">Gamificación</span>
-        </div>
-        <div class="open-hint">Ver expediente →</div>
-      </div>
-    </div>
-
-<div class="card" data-id="diario-campo" data-cat="web edu" onclick="openDossier('diario-campo')">
-      <div class="preview pv-diario">
-        <div class="dot-row"><div class="dot" style="background:#B34632"></div><div class="dot" style="background:#B08A3E"></div><div class="dot" style="background:#5C5A4D"></div></div>
-        <div class="chip" style="top:46px;left:16px;">✎ reescribir con IA</div>
-        <div class="txtline" style="top:88px;left:16px;width:210px;"></div>
-        <div class="txtline" style="top:100px;left:16px;width:180px;"></div>
-        <div class="txtline" style="top:112px;left:16px;width:200px;"></div>
-        <div class="txtline" style="top:124px;left:16px;width:140px;"></div>
-      </div>
-      <div class="card-body">
-        <div class="card-top">
-          <span class="category" style="background:var(--forest-2)">Web App + IA</span>
-          <span class="ficha-num">FICHA 10</span>
-        </div>
-        <h3>Diario de Campo</h3>
-        <p>Herramienta de generación de texto asistida por IA: cadena de respaldo entre múltiples modelos vía OpenRouter, con validación de salidas y reconstrucción automática de datos.</p>
-        <div class="tags">
-          <span class="tag">Apps Script</span>
-          <span class="tag">IA / OpenRouter</span>
-          <span class="tag">Redacción asistida</span>
-        </div>
-        <div class="open-hint">Ver expediente →</div>
-      </div>
-    </div>
-
-<div class="card" data-id="carteleras" data-cat="disenio edu" onclick="openDossier('carteleras')">
-      <div class="preview pv-cart">
-        <div class="slab s1"><div class="moon"></div></div>
-        <div class="slab s2"><div class="rule" style="top:24px;"></div><div class="rule" style="top:40px;"></div><div class="rule" style="top:56px;"></div></div>
-        <div class="slab s3"><div class="leaf" style="top:30px;left:12px;"></div><div class="leaf" style="top:50px;left:20px;"></div></div>
-      </div>
-      <div class="card-body">
-        <div class="card-top">
-          <span class="category" style="background:#3C6E56">Diseño editorial</span>
-          <span class="ficha-num">FICHA 11</span>
-        </div>
-        <h3>Carteleras de Autores</h3>
-        <p>Tres piezas A3 de diseño editorial, cada una con sistema de paleta e identidad propia construido a partir del tono y la obra del autor que representa.</p>
-        <div class="tags">
-          <span class="tag">Diseño editorial</span>
-          <span class="tag">Print / A3</span>
-          <span class="tag">Identidad por autor</span>
-        </div>
-        <div class="open-hint">Ver expediente →</div>
-      </div>
-    </div>
-
-  </div>
-  </div>
-
-  <div class="panel-slot">
-    <aside class="side-panel-empty" id="panelEmpty">
-      Selecciona una ficha de la izquierda<br>para ver su expediente completo:<br>estructura de código y decisiones de UI/UX.
-    </aside>
-    <div class="side-panel" id="sidePanel"></div>
-  </div>
-  </div>
-
-  <footer>
-    <div>11 fichas registradas · última actualización agosto 2026</div>
-    <div>© Ángela Taborda — Todos los derechos reservados.</div>
-  </footer>
+    <div class="pending-line">Por documentar: <b>Unity · AR · MR · WebGL · Three.js · Game Development</b></div>
+    <div class="empty-note" id="emptyNote"></div>
+  </section>
 </div>
 
+<main id="proyectos">
+  <div class="wrap">
+    <div class="gallery" id="gallery"></div>
+  </div>
+
+  <div class="design-feature-wrap" id="designFeatureWrap"></div>
+
+  <div class="wrap">
+    <div id="instWrap"></div>
+    <div id="designMinorWrap"></div>
+  </div>
+</main>
+
+<div class="detail-overlay" id="detailOverlay">
+  <div class="detail-close" id="detailClose">← VOLVER</div>
+  <div class="detail-inner" id="detailInner"></div>
+</div>
+
+<footer id="footer-contact">
+  <div class="wrap footer-row">
+    <div>
+      <div class="footer-name">MIA TABORDA</div>
+      <div class="footer-role">Developer · Creative Technology · Interactive Experiences</div>
+    </div>
+    <div class="footer-rights">© Ángela Taborda — Todos los derechos reservados.</div>
+  </div>
+</footer>
+
 <script>
-const DOSSIERS = {
-  'portal-docente': {
-    cat: 'Web App', catColor:'#2A4238',
-    title: 'Portal Docente', meta: 'Google Apps Script · JavaScript vanilla · Google Sheets como base de datos',
-    resumen: '<p>Los boletines se enviaban a mano, un correo a la vez. El Portal Docente centraliza la lista de estudiantes, genera el PDF del boletín, lo previsualiza y lo envía por correo a los acudientes — con visibilidad clara de qué envíos fallaron.</p>',
-    codigo: `<ul>
-      <li>Backend en <code>google.script.run</code> sobre Apps Script, sin framework — funciones puras como <code>renderizarLista()</code>, <code>enviarNotas()</code>, <code>guardarPreInforme()</code> y <code>generarPDFReporte()</code>.</li>
-      <li>La vista previa del PDF pasó de un mecanismo "clic para cargar" a un <code>&lt;iframe&gt;</code> apuntando directo a la URL de preview de Drive (<code>drive.google.com/file/d/{id}/preview</code>), con <code>loading="lazy"</code> — menos código, carga más rápida.</li>
-      <li>Estados de entrega por correo (NDR / error de envío) se detectan y se reflejan en la UI en vez de asumir que "enviado" significa "recibido".</li>
-      <li>Sistema de datos vivo: la hoja de "Periodos" define fechas de corte sin tocar código — se edita una fila en Sheets y el sistema se ajusta solo, sin tocar código.</li>
-    </ul>`,
-    uiux: `<ul>
-      <li>Tema oscuro con variables CSS personalizadas, pensado para uso prolongado en jornadas de calificación.</li>
-      <li>Tarjetas de estadística arriba, para saber de un vistazo el estado general sin desplazarse.</li>
-      <li>Banner de aviso naranja cuando un período cierra sin reflexión pedagógica registrada — desaparece solo al completarla, sin depender de que alguien lo recuerde manualmente.</li>
-      <li>Modal imprimible para el reporte, en vez de forzar la exportación como único camino.</li>
-    </ul>`
+/* ======================= DATA ======================= */
+const PROJECTS = [
+  {
+    id:'assetsync', num:'01', group:'featured', layout:'large-right', visual:'v-unreal', cat:['3d','interactive'],
+    eyebrow:'UNREAL ENGINE · TOOLS', title:'AssetSyncManager',
+    desc:'Plugin nativo para Unreal Engine con interfaz propia dentro del editor: autenticación, escaneo y sincronización de assets. Desarrollado por hitos para un cliente de Upwork.',
+    tags:'C++ · Unreal Engine · Editor Tools · Upwork',
+    meta:'Unreal Engine · C++ · UI nativa del editor · Cliente Upwork',
+    problem:'Plugin para Unreal Engine desarrollado por hitos para un cliente de Upwork, orientado a autenticación, escaneo y sincronización de assets, con arquitectura pensada para herramientas de producción.',
+    approach:[
+      'Plugin nativo en C++ para Unreal Engine, con interfaz gráfica propia integrada en el editor.',
+      'Módulo de autenticación como parte del flujo del plugin.',
+      'Escaneo de assets.',
+      'Sincronización de assets entre el repositorio y el proyecto.',
+      'Gestión de contenido/assets.',
+      'Entregado por hitos, formato habitual de un proyecto freelance de producción.'
+    ],
+    uiux:['Interfaz gráfica integrada directamente en el editor de Unreal, en vez de una herramienta externa aparte.']
   },
-  'inventario': {
-    cat: 'Dashboard', catColor:'#8A6320',
-    title: 'Panel de Inventario', meta: 'Google Apps Script · GitHub Pages · Google Sheets',
-    resumen: '<p>El inventario y la cartera de la institución vivían en archivos Excel sueltos. Este panel sincroniza esos archivos desde Drive hacia una hoja central y publica un dashboard público de solo lectura en GitHub Pages.</p>',
-    codigo: `<ul>
-      <li>Un script de Apps Script sincroniza <code>CARTERA.xlsx</code> e <code>INVENTARIO.xlsx</code> desde Drive hacia una hoja "Inventario General", que actúa como fuente de verdad.</li>
-      <li>El frontend en <code>iefac-edu.github.io/inventario/</code> lee esos datos vía la API pública del Sheet — hosting estático, sin servidor propio que mantener.</li>
-      <li>Bug resuelto: el dashboard mostraba todo en cero porque los encabezados de columna quedaban obsoletos entre sincronizaciones. La solución fue forzar la reescritura de encabezados en cada corrida, no solo de los datos.</li>
-      <li>Restricción de arquitectura documentada: Apps Script no puede correr funciones de servidor dentro de GitHub Pages (hosting estático), así que toda la lógica vive en el script de sincronización, no en el frontend.</li>
-    </ul>`,
-    uiux: `<ul>
-      <li>Dashboard de solo lectura — prioriza que cualquier persona de la institución entienda el estado del inventario sin necesitar training.</li>
-      <li>Tarjetas numéricas grandes para las cifras clave, tabla detallada debajo para quien necesite profundizar.</li>
-      <li>Diseño pensado para que un cambio en la fuente de datos (el Excel) se refleje sin que nadie tenga que tocar el sitio publicado.</li>
-    </ul>`
+  {
+    id:'vr-speech', num:'02', group:'featured', layout:'large-left', visual:'v-vr', cat:['3d','xr','vr','blueprints','interactive'],
+    eyebrow:'VR · UNREAL ENGINE', title:'100Q — Experiencia VR con reconocimiento de voz',
+    desc:'Experiencia VR para Meta Quest 2/3: 100 preguntas como tarjetas flotantes que el usuario explora y pregunta en voz alta; el sistema reconoce la palabra clave y reproduce el video de respuesta.',
+    tags:'Unreal Engine · Blueprint · Speech-to-Text · Upwork',
+    meta:'Unreal Engine · Blueprint · Meta Quest 2/3 · Cliente Upwork',
+    problem:'Experiencia de VR para Meta Quest 2/3: 100 preguntas presentadas como tarjetas flotantes en el espacio 3D. El usuario explora y pregunta en voz alta; el sistema debía reconocer la pregunta y reproducir el video con la respuesta asociada. Proyecto para cliente de Upwork, entregado en tres hitos.',
+    approach:[
+      'Diseño del blueprint de reconocimiento de voz dentro de Unreal Engine, evaluando SDKs de speech-to-text (entre ellos Google Voice y Wit.ai) para integrarlos a la experiencia ya existente.',
+      'Sistema de indexación por palabras clave para asociar lo que el usuario decía con el video de respuesta correcto.',
+      'Trabajo dividido en 3 hitos definidos por mí: (1) integración del SDK de reconocimiento de voz, (2) sistema de indexación por palabra clave y asociación de video, (3) mejoras de transición y pruebas finales.',
+      'Investigación técnica directa sobre la API de Google Cloud Speech-to-Text para resolver problemas de reconocimiento durante el desarrollo.'
+    ],
+    uiux:[
+      'Las 100 preguntas se presentaban como tarjetas flotantes en el espacio VR, para que el usuario pudiera explorar visualmente antes de elegir qué preguntar.',
+      'Se propusieron transiciones animadas (fade in/out, micro-animaciones) entre pregunta y respuesta, para sostener la sensación de inmersión en vez de cortes abruptos.'
+    ]
   },
-  'copass': {
-    cat: 'Web App', catColor:'#B34632',
-    title: 'COPASS 2026', meta: 'Google Apps Script · Panel docente + panel admin',
-    resumen: '<p>Sistema de registro para las brigadas de emergencia de la institución, con tres sedes, cuatro tipos de brigada y turnos AM/PM. Incluye una capa de gamificación ("retos") para sostener la participación del equipo.</p>',
-    codigo: `<ul>
-      <li>Vista docente: registro a brigadas y una interfaz de "retos" con evidencias que se validan desde el panel admin.</li>
-      <li>Panel admin: dashboard integrado, gestión de retos, validación de evidencias y bitácora de actividad — todo en una sola vista de control.</li>
-      <li>Bug crítico corregido: el borrado de registros usaba números de fila, que se volvían inválidos en cuanto alguien más editaba la hoja. Se cambió a búsqueda por correo electrónico como identificador estable.</li>
-      <li>Se agregaron secciones de estadísticas y configuración para que el sistema no dependiera de cambios de código entre ciclos.</li>
-    </ul>`,
-    uiux: `<ul>
-      <li>Separación clara entre lo que ve un docente (simple: elegir sede, tipo de brigada, turno) y lo que ve un administrador (denso: validación, bitácora, config).</li>
-      <li>Los retos usan un lenguaje de "logro" antes que de "tarea pendiente", para sostener la participación voluntaria.</li>
-      <li>La bitácora de actividad existe para que cualquier decisión del admin quede trazable — pensado para un contexto institucional donde varias personas comparten el panel.</li>
-    </ul>`
+  {
+    id:'vr-perf', num:'03', group:'featured', layout:'panoramic', visual:'v-perf', cat:['3d','xr','vr','blueprints','interactive'],
+    eyebrow:'VR · OPTIMIZACIÓN', title:'Optimización de rendimiento VR — Vehículos',
+    desc:'Refactorización de blueprints de Unreal para un juego VR de Quest 2/3, donde los blueprints de vehículos de un asset de terceros consumían el 88% del tiempo de fotograma objetivo.',
+    tags:'Unreal Engine · Blueprint · Session Frontend · Git · Upwork',
+    meta:'Unreal Engine · Blueprint · Meta Quest 2/3 · Cliente Upwork',
+    problem:'Optimización de rendimiento para un juego de VR en Quest 2/3 con seguimiento de manos y soporte de controladores. El punto de partida documentado por el cliente: los blueprints de vehículos, un asset de terceros (Unreal Marketplace), consumían el 88.38% del tiempo de fotograma objetivo.',
+    approach:[
+      'Optimización y refactorización de blueprints de Unreal existentes, con foco en los vehículos y en el comportamiento de los enemigos.',
+      'Uso de herramientas de profiling/debugging de Unreal (Session Frontend) para identificar cuellos de botella de rendimiento.',
+      'Ajustes sobre funcionalidad que ya operaba con seguimiento de manos pero no con controladores, para que funcionara en ambos modos.',
+      'Control de versiones con Git para el trabajo de refactorización.'
+    ],
+    uiux:['Trabajo centrado en rendimiento, no en interfaz visible: el objetivo era que el juego se sintiera fluido en Quest 2/3 sin cambiar la experiencia ni los controles del jugador.']
   },
-  'diario-campo': {
-    cat: 'Web App + IA', catColor:'#2A4238',
-    title: 'Diario de Campo', meta: 'Google Apps Script · OpenRouter (multi-modelo) · Google Sheets',
-    resumen: '<p>Convierte anotaciones breves del día a día en el aula en prosa reflexiva y coherente, en primera persona, lista para el diario pedagógico oficial — sin que el docente tenga que redactar desde cero cada semana.</p>',
-    codigo: `<ul>
-      <li>Cadena de respaldo entre varios modelos gratuitos de OpenRouter: si un modelo falla (401/403, 404, 429, error de red), pasa automáticamente al siguiente con un mensaje de error específico por tipo de falla, no genérico.</li>
-      <li>Panel de gestión de API keys (⚙️) con sincronizar/eliminar, guardado en <code>PropertiesService</code>.</li>
-      <li>Validación de salidas: se descartan respuestas basura (por ejemplo un modelo devolviendo literalmente <code>"User Safety: safe"</code> en vez de una reflexión real) en vez de guardarlas como si fueran válidas.</li>
-      <li>Reconstrucción automática de la hoja "Diario" en cada carga: elimina filas inválidas, agrega las faltantes en bloque con <code>setValues</code> (no <code>appendRow</code>, por rendimiento) y reordena todo cronológicamente.</li>
-      <li>Excluye automáticamente los festivos oficiales de Colombia 2026 y los recesos institucionales al calcular días faltantes de registro.</li>
-    </ul>`,
-    uiux: `<ul>
-      <li>Botones tipo píldora con ✅/❌ por período académico, para ver de un vistazo qué reflexiones de cierre de período faltan.</li>
-      <li>Selector desplegable de días faltantes que usa la fecha real de cada día, no la fecha de hoy — evita que una reflexión quede mal fechada por completarse tarde.</li>
-      <li>El resumen por grupo se pega como texto libre en vez de pasar por una interfaz de tabla compleja — y no pasa por la IA, se guarda exactamente como se escribió, sin riesgo de que se invente un número.</li>
-    </ul>`
+  {
+    id:'stopmotion', num:'04', group:'featured', layout:'duo', visual:'v-web', cat:['web','canvas','interactive'],
+    eyebrow:'WEB · MULTIMEDIA', title:'Stop Motion Web App',
+    desc:'Aplicación de navegador para crear animaciones stop motion: captura fotografías, arma secuencias y las convierte en GIF, con control de velocidad.',
+    tags:'JavaScript · Captura · GitHub Pages',
+    meta:'JavaScript · Captura desde navegador · GitHub Pages',
+    problem:'Aplicación de navegador para crear animaciones stop motion a partir de fotografías capturadas por el usuario, con control de velocidad y publicación pública en GitHub Pages.',
+    approach:[
+      'Captura de imágenes desde el navegador.',
+      'Creación de secuencias con las imágenes capturadas.',
+      'Control de velocidad de la animación.',
+      'Generación de GIF a partir de la secuencia.',
+      'Bug corregido: la acción de capturar una imagen modificaba accidentalmente el valor de velocidad configurado — se separó ese control del flujo de captura.',
+      'Publicada en GitHub Pages como aplicación independiente.'
+    ],
+    uiux:['Interfaz para capturar, ver la secuencia y ajustar la velocidad antes de generar el resultado final.']
   },
-  'rel': {
-    cat: 'Identidad de marca', catColor:'#7A5A78',
-    title: 'Royal Enfield Ladies', meta: 'Identidad de marca · Ilustración vectorial · Mockups de indumentaria',
-    resumen: '<p>Identidad de marca para un grupo de motociclistas, construida a partir de un concepto propio ya iniciado — un jinete con casco y corona — que necesitaba pulirse sin perder su carácter original.</p>',
-    codigo: `<ul>
-      <li>Emblema circular en SVG: figura motociclista ilustrada con casco, gafas, corona y ramas de laurel, estilo vector-flat.</li>
-      <li>Mockups de jersey frente y espalda con corte raglán: panel de yugo en malva, mangas en rosa polvo, cuerpo en carbón.</li>
-      <li>Se preparó un brief de diseño reutilizable en texto plano — paleta con códigos hex, composición del logo, especificaciones de jersey y restricciones de estilo — para poder regenerar variantes de forma consistente.</li>
-    </ul>`,
-    uiux: `<ul>
-      <li>Se mantuvo el concepto original del cliente (figura ilustrada, no un ícono geométrico genérico) porque ahí vivía la identidad real del grupo.</li>
-      <li>Paleta acotada — carbón, malva, rosa polvo, azul grisáceo — para que el mismo sistema funcione en logo, uniforme y merchandising sin inventar colores nuevos cada vez.</li>
-      <li>Restricciones de estilo explícitas (sin texto en inglés, sin fotorrealismo, sin rostro ilustrado) documentadas para que cualquier iteración futura respete la dirección de marca.</li>
-    </ul>`
+  {
+    id:'mia-gif', num:'05', group:'featured', layout:'duo', visual:'v-canvas', cat:['web','edu','canvas','interactive'],
+    eyebrow:'MOTOR DE ANIMACIÓN · CANVAS/JS', title:'GIF Animation Engine',
+    desc:'Motor de animación en Canvas/JavaScript: genera una secuencia de 16 cuadros a partir de una palabra clave y construye el GIF completo en el navegador, sin backend.',
+    tags:'JavaScript · Canvas · Animation',
+    meta:'Canvas API · JavaScript · 100% en el navegador',
+    problem:'Motor de animación construido en Canvas/JavaScript: a partir de una palabra clave, genera una secuencia de 16 cuadros y construye el GIF completo en el navegador. Nació con contexto educativo, pero la pieza técnica es un motor de generación de animación por navegador — no una herramienta pedagógica en su núcleo.',
+    approach:[
+      'Reemplaza una dependencia inicial de API externa por un diccionario local de palabra clave → función de dibujo, eliminando la llamada de red en cada generación.',
+      'Cada función dibuja sobre <code>&lt;canvas&gt;</code> para construir los 16 cuadros de la secuencia.',
+      'El GIF se ensambla completamente en el navegador, sin backend.'
+    ],
+    uiux:['Interfaz mínima: una entrada de texto y un botón de generar.','Respuesta inmediata al no depender de una llamada externa.']
   },
-  'carteleras': {
-    cat: 'Diseño editorial', catColor:'#3C6E56',
-    title: 'Carteleras de Autores', meta: 'HTML → PDF · Diseño editorial · Formato A3 para impresión',
-    resumen: '<p>Tres carteleras de aula para un salón de Lengua Castellana, una por autor colombiano (José Asunción Silva, Piedad Bonnett, Pilar Quintana), cada una con identidad visual propia inspirada en la obra del autor.</p>',
-    codigo: `<ul>
-      <li>Cada cartelera se construyó como una página HTML independiente en formato A3 con fondo a sangre completa, luego exportada a PDF lista para imprimir.</li>
-      <li>Estructura común y reutilizable: verso o cita destacada, dos columnas (tips de lectura / razones para leer), bloque "¿Sabías qué?" y chips de obras recomendadas.</li>
-      <li>Iteración real de diseño: en la cartelera de Silva, la luna decorativa se superponía al texto — se detectó en revisión visual y se redujo y reposicionó.</li>
-    </ul>`,
-    uiux: `<ul>
-      <li>Paleta distinta por autor, no decorativa sino temática: nocturna con luna y estrellas para Silva (por "Nocturno III"), tono papel cálido con líneas de renglón para Bonnett, verde selva profundo para Quintana (por el Pacífico de "La perra").</li>
-      <li>Se identificó espacio vertical sin usar en las tres piezas y se resolvió agregando la sección de obras recomendadas — mejora visual y funcional al mismo tiempo, no solo relleno.</li>
-      <li>Pensadas para lectura a distancia en un salón: jerarquía tipográfica fuerte, poco texto corrido.</li>
-    </ul>`
+  {
+    id:'rel', num:'06', group:'design-feature', layout:'feature', visual:'v-design', cat:['disenio','interactive'],
+    eyebrow:'IDENTIDAD DE MARCA · ILUSTRACIÓN', title:'Royal Enfield Ladies',
+    desc:'Identidad de marca para un grupo de motociclistas: emblema ilustrado con casco y corona, mockups de jersey en carbón, malva y rosa polvo.',
+    tags:'Illustrator · Vector · Branding · Mockups',
+    meta:'Identidad de marca · Ilustración vectorial · Mockups de indumentaria',
+    problem:'Identidad de marca para un grupo de motociclistas, construida a partir de un concepto propio ya iniciado — un jinete con casco y corona — que necesitaba pulirse sin perder su carácter original.',
+    approach:[
+      'Emblema circular en SVG: figura motociclista ilustrada con casco, gafas, corona y ramas de laurel, estilo vector-flat.',
+      'Mockups de jersey frente y espalda con corte raglán: panel de yugo en malva, mangas en rosa polvo, cuerpo en carbón.',
+      'Se preparó un brief de diseño reutilizable en texto plano — paleta con códigos hex, composición del logo, especificaciones de jersey y restricciones de estilo — para poder regenerar variantes de forma consistente.'
+    ],
+    uiux:[
+      'Se mantuvo el concepto original del cliente (figura ilustrada, no un ícono geométrico genérico) porque ahí vivía la identidad real del grupo.',
+      'Paleta acotada — carbón, malva, rosa polvo, azul grisáceo — para que el mismo sistema funcione en logo, uniforme y merchandising.',
+      'Restricciones de estilo explícitas (sin texto en inglés, sin fotorrealismo, sin rostro ilustrado) documentadas para futuras iteraciones.'
+    ]
   },
-  'mia-gif': {
-    cat: 'Motor de animación · Canvas/JS', catColor:'#3B4B75',
-    title: 'Generador de GIFs por palabra clave', meta: 'Canvas API · JavaScript · 100% en el navegador',
-    resumen: '<p>Motor de animación construido en Canvas/JavaScript: a partir de una palabra clave, genera una secuencia de 16 cuadros y construye el GIF completo en el navegador. Nació con contexto educativo, pero la pieza técnica es un motor de generación de animación por navegador — no una herramienta pedagógica en su núcleo.</p>',
-    codigo: `<ul>
-      <li>Reemplaza una dependencia inicial de API externa por un diccionario local de palabra clave → función de dibujo, eliminando la llamada de red en cada generación.</li>
-      <li>Cada función dibuja sobre <code>&lt;canvas&gt;</code> para construir los 16 cuadros de la secuencia.</li>
-      <li>El GIF se ensambla completamente en el navegador, sin backend.</li>
-    </ul>`,
-    uiux: `<ul>
-      <li>Interfaz mínima: una entrada de texto y un botón de generar.</li>
-      <li>Respuesta inmediata al no depender de una llamada externa.</li>
-    </ul>`
+  {
+    id:'portal-docente', num:'07', group:'institutional', cat:['web','edu'],
+    eyebrow:'WEB APP', title:'Portal Docente',
+    desc:'Aplicación web completa (backend + frontend) para gestión y envío masivo de documentos, con seguimiento de estado de entrega, previsualización embebida y generación de PDF.',
+    tags:'Apps Script · JavaScript · Google Sheets',
+    meta:'Google Apps Script · JavaScript vanilla · Google Sheets como base de datos',
+    problem:'Los boletines se enviaban a mano, un correo a la vez. El Portal Docente centraliza la lista de estudiantes, genera el PDF del boletín, lo previsualiza y lo envía por correo a los acudientes — con visibilidad clara de qué envíos fallaron.',
+    approach:[
+      'Backend en <code>google.script.run</code> sobre Apps Script, sin framework — funciones puras como <code>renderizarLista()</code>, <code>enviarNotas()</code>, <code>guardarPreInforme()</code> y <code>generarPDFReporte()</code>.',
+      'La vista previa del PDF pasó de un mecanismo "clic para cargar" a un <code>&lt;iframe&gt;</code> apuntando directo a la URL de preview de Drive, con <code>loading="lazy"</code>.',
+      'Estados de entrega por correo (NDR / error de envío) se detectan y se reflejan en la UI en vez de asumir que "enviado" significa "recibido".',
+      'La hoja de "Periodos" define fechas de corte sin tocar código — se edita una fila en Sheets y el sistema se ajusta solo.'
+    ],
+    uiux:[
+      'Tema oscuro con variables CSS personalizadas, pensado para uso prolongado en jornadas de calificación.',
+      'Tarjetas de estadística arriba, para saber de un vistazo el estado general sin desplazarse.',
+      'Banner de aviso cuando un período cierra sin reflexión pedagógica registrada.',
+      'Modal imprimible para el reporte, en vez de forzar la exportación como único camino.'
+    ]
   },
-  'assetsync': {
-    cat: 'Unreal Engine Plugin', catColor:'#2E4E8F',
-    title: 'AssetSyncManager', meta: 'Unreal Engine · C++ · UI nativa del editor · Cliente Upwork',
-    resumen: '<p>Plugin para Unreal Engine desarrollado por hitos para un cliente de Upwork, orientado a autenticación, escaneo y sincronización de assets, con arquitectura pensada para herramientas de producción.</p>',
-    codigo: `<ul>
-      <li>Plugin nativo en C++ para Unreal Engine, con interfaz gráfica propia integrada en el editor.</li>
-      <li>Módulo de autenticación como parte del flujo del plugin.</li>
-      <li>Escaneo de assets.</li>
-      <li>Sincronización de assets entre el repositorio y el proyecto.</li>
-      <li>Gestión de contenido/assets.</li>
-      <li>Entregado por hitos, formato habitual de un proyecto freelance de producción.</li>
-    </ul>`,
-    uiux: `<ul>
-      <li>Interfaz gráfica integrada directamente en el editor de Unreal, en vez de una herramienta externa aparte.</li>
-    </ul>`
+  {
+    id:'inventario', num:'08', group:'institutional', cat:['web','edu'],
+    eyebrow:'DASHBOARD', title:'Panel de Inventario',
+    desc:'Sistema de sincronización de datos: automatiza el paso de archivos fuente a una base central y publica un dashboard en vivo, con reconciliación automática.',
+    tags:'Apps Script · JavaScript · GitHub Pages',
+    meta:'Google Apps Script · GitHub Pages · Google Sheets',
+    problem:'El inventario y la cartera de la institución vivían en archivos Excel sueltos. Este panel sincroniza esos archivos desde Drive hacia una hoja central y publica un dashboard público de solo lectura en GitHub Pages.',
+    approach:[
+      'Un script de Apps Script sincroniza <code>CARTERA.xlsx</code> e <code>INVENTARIO.xlsx</code> desde Drive hacia una hoja "Inventario General", que actúa como fuente de verdad.',
+      'El frontend lee esos datos vía la API pública del Sheet — hosting estático, sin servidor propio que mantener.',
+      'Bug resuelto: el dashboard mostraba todo en cero porque los encabezados de columna quedaban obsoletos entre sincronizaciones. La solución fue forzar la reescritura de encabezados en cada corrida.',
+      'Restricción de arquitectura documentada: Apps Script no puede correr funciones de servidor dentro de GitHub Pages, así que toda la lógica vive en el script de sincronización.'
+    ],
+    uiux:[
+      'Dashboard de solo lectura — prioriza que cualquier persona de la institución entienda el estado sin necesitar training.',
+      'Tarjetas numéricas grandes para las cifras clave, tabla detallada debajo para quien necesite profundizar.'
+    ]
   },
-  'vr-speech': {
-    cat: 'VR · Unreal Engine', catColor:'#4C3A9E',
-    title: '100Q — Experiencia VR con reconocimiento de voz', meta: 'Unreal Engine · Blueprint · Meta Quest 2/3 · Cliente Upwork',
-    resumen: '<p>Experiencia de VR para Meta Quest 2/3: 100 preguntas presentadas como tarjetas flotantes en el espacio 3D. El usuario explora y pregunta en voz alta; el sistema debía reconocer la pregunta y reproducir el video con la respuesta asociada. Proyecto para cliente de Upwork, entregado en tres hitos.</p>',
-    codigo: `<ul>
-      <li>Diseño del blueprint de reconocimiento de voz dentro de Unreal Engine, evaluando SDKs de speech-to-text (entre ellos Google Voice y Wit.ai) para integrarlos a la experiencia ya existente.</li>
-      <li>Sistema de indexación por palabras clave para asociar lo que el usuario decía con el video de respuesta correcto.</li>
-      <li>Trabajo dividido en 3 hitos definidos por mí: (1) integración del SDK de reconocimiento de voz, (2) sistema de indexación por palabra clave y asociación de video, (3) mejoras de transición y pruebas finales.</li>
-      <li>Investigación técnica directa sobre la API de Google Cloud Speech-to-Text para resolver problemas de reconocimiento durante el desarrollo.</li>
-    </ul>`,
-    uiux: `<ul>
-      <li>Las 100 preguntas se presentaban como tarjetas flotantes en el espacio VR, para que el usuario pudiera explorar visualmente antes de elegir qué preguntar.</li>
-      <li>Se propusieron transiciones animadas (fade in/out, micro-animaciones) entre pregunta y respuesta, para sostener la sensación de inmersión en vez de cortes abruptos.</li>
-    </ul>`
+  {
+    id:'copass', num:'09', group:'institutional', cat:['web','edu'],
+    eyebrow:'WEB APP', title:'COPASS 2026',
+    desc:'Plataforma de coordinación multi-sede: interfaz de registro y participación gamificada, y panel administrativo con validación de evidencias y auditoría de actividad.',
+    tags:'Apps Script · JavaScript · Gamificación',
+    meta:'Google Apps Script · Panel docente + panel admin',
+    problem:'Sistema de registro para las brigadas de emergencia de la institución, con tres sedes, cuatro tipos de brigada y turnos AM/PM. Incluye una capa de gamificación ("retos") para sostener la participación del equipo.',
+    approach:[
+      'Vista de registro a brigadas y una interfaz de "retos" con evidencias que se validan desde el panel admin.',
+      'Panel admin: dashboard integrado, gestión de retos, validación de evidencias y bitácora de actividad — todo en una sola vista de control.',
+      'Bug crítico corregido: el borrado de registros usaba números de fila, que se volvían inválidos en cuanto alguien más editaba la hoja. Se cambió a búsqueda por correo electrónico como identificador estable.',
+      'Se agregaron secciones de estadísticas y configuración para que el sistema no dependiera de cambios de código entre ciclos.'
+    ],
+    uiux:[
+      'Separación clara entre la vista simple de registro y la vista densa de administración.',
+      'Los retos usan un lenguaje de "logro" antes que de "tarea pendiente", para sostener la participación voluntaria.',
+      'La bitácora de actividad existe para que cualquier decisión del admin quede trazable.'
+    ]
   },
-  'vr-perf': {
-    cat: 'VR · Optimización', catColor:'#8A5A2E',
-    title: 'Optimización de rendimiento VR — Vehículos', meta: 'Unreal Engine · Blueprint · Meta Quest 2/3 · Cliente Upwork',
-    resumen: '<p>Optimización de rendimiento para un juego de VR en Quest 2/3 con seguimiento de manos y soporte de controladores. El punto de partida documentado por el cliente: los blueprints de vehículos, un asset de terceros (Unreal Marketplace), consumían el 88.38% del tiempo de fotograma objetivo.</p>',
-    codigo: `<ul>
-      <li>Optimización y refactorización de blueprints de Unreal existentes, con foco en los vehículos y en el comportamiento de los enemigos.</li>
-      <li>Uso de herramientas de profiling/debugging de Unreal (Session Frontend) para identificar cuellos de botella de rendimiento.</li>
-      <li>Ajustes sobre funcionalidad que ya operaba con seguimiento de manos pero no con controladores, para que funcionara en ambos modos.</li>
-      <li>Control de versiones con Git para el trabajo de refactorización.</li>
-    </ul>`,
-    uiux: `<ul>
-      <li>Trabajo centrado en rendimiento, no en interfaz visible: el objetivo era que el juego se sintiera fluido en Quest 2/3 sin cambiar la experiencia ni los controles del jugador.</li>
-    </ul>`
+  {
+    id:'diario-campo', num:'10', group:'institutional', cat:['web','edu'],
+    eyebrow:'WEB APP + IA', title:'Diario de Campo',
+    desc:'Herramienta de generación de texto asistida por IA: cadena de respaldo entre múltiples modelos, con validación de salidas y reconstrucción automática de datos.',
+    tags:'Apps Script · OpenRouter · IA',
+    meta:'Google Apps Script · OpenRouter (multi-modelo) · Google Sheets',
+    problem:'Convierte anotaciones breves del día a día en prosa reflexiva y coherente, en primera persona, lista para el diario pedagógico oficial — sin redactar desde cero cada semana.',
+    approach:[
+      'Cadena de respaldo entre varios modelos gratuitos de OpenRouter: si un modelo falla, pasa automáticamente al siguiente con un mensaje de error específico por tipo de falla.',
+      'Panel de gestión de API keys con sincronizar/eliminar, guardado en <code>PropertiesService</code>.',
+      'Validación de salidas: se descartan respuestas basura en vez de guardarlas como si fueran válidas.',
+      'Reconstrucción automática de la hoja "Diario" en cada carga: elimina filas inválidas, agrega las faltantes en bloque y reordena todo cronológicamente.',
+      'Excluye automáticamente los festivos oficiales de Colombia 2026 y los recesos institucionales.'
+    ],
+    uiux:[
+      'Botones tipo píldora con ✅/❌ por período académico.',
+      'Selector de días faltantes que usa la fecha real de cada día, no la fecha de hoy.',
+      'El resumen por grupo se guarda como texto libre, sin pasar por IA — cero riesgo de que se invente un dato.'
+    ]
   },
-  'stopmotion': {
-    cat: 'Web App · Multimedia', catColor:'#2A4238',
-    title: 'Stop Motion Web App', meta: 'JavaScript · Captura desde navegador · GitHub Pages',
-    resumen: '<p>Aplicación de navegador para crear animaciones stop motion a partir de fotografías capturadas por el usuario, con control de velocidad y publicación pública en GitHub Pages.</p>',
-    codigo: `<ul>
-      <li>Captura de imágenes desde el navegador.</li>
-      <li>Creación de secuencias con las imágenes capturadas.</li>
-      <li>Control de velocidad de la animación.</li>
-      <li>Generación de GIF a partir de la secuencia.</li>
-      <li>Bug corregido: la acción de capturar una imagen modificaba accidentalmente el valor de velocidad configurado — se separó ese control del flujo de captura.</li>
-      <li>Publicada en GitHub Pages como aplicación independiente.</li>
-    </ul>`,
-    uiux: `<ul>
-      <li>Interfaz para capturar, ver la secuencia y ajustar la velocidad antes de generar el resultado final.</li>
-    </ul>`
+  {
+    id:'carteleras', num:'11', group:'design-minor', layout:'feature-small', visual:'v-design', cat:['disenio','edu'],
+    eyebrow:'DISEÑO EDITORIAL', title:'Carteleras de Autores',
+    desc:'Tres piezas A3 de diseño editorial, cada una con sistema de paleta e identidad propia construido a partir del tono y la obra del autor que representa.',
+    tags:'HTML → PDF · Diseño editorial · Formato A3',
+    meta:'HTML → PDF · Diseño editorial · Formato A3 para impresión',
+    problem:'Tres carteleras de aula para un salón de Lengua Castellana, una por autor colombiano (José Asunción Silva, Piedad Bonnett, Pilar Quintana), cada una con identidad visual propia inspirada en la obra del autor.',
+    approach:[
+      'Cada cartelera se construyó como una página HTML independiente en formato A3 con fondo a sangre completa, luego exportada a PDF lista para imprimir.',
+      'Estructura común: verso o cita destacada, dos columnas de contenido, bloque "¿Sabías qué?" y chips de obras recomendadas.',
+      'Iteración real de diseño: en la cartelera de Silva, la luna decorativa se superponía al texto — se detectó en revisión visual y se reposicionó.'
+    ],
+    uiux:[
+      'Paleta distinta por autor, temática y no decorativa: nocturna para Silva, papel cálido para Bonnett, verde selva para Quintana.',
+      'Pensadas para lectura a distancia en un salón: jerarquía tipográfica fuerte, poco texto corrido.'
+    ]
   }
-};
+];
 
-let activeId = null;
-
-function openDossier(id){
-  const d = DOSSIERS[id];
-  if(!d) return;
-  activeId = id;
-
-  document.getElementById('sidePanel').innerHTML = `
-    <div class="dossier-head">
-      <div>
-        <span class="category" style="background:${d.catColor}">${d.cat}</span>
-        <h2>${d.title}</h2>
-        <div class="meta">${d.meta}</div>
-      </div>
-      <button class="close-btn" onclick="closeDossier()">×</button>
-    </div>
-    <div class="dossier-body">
-      <div class="dossier-section">
-        <div class="sec-label">El problema</div>
-        ${d.resumen}
-      </div>
-      <div class="dossier-section">
-        <div class="sec-label">Estructura de código</div>
-        ${d.codigo}
-      </div>
-      <div class="dossier-section">
-        <div class="sec-label">UI / UX</div>
-        ${d.uiux}
-      </div>
-    </div>
-  `;
-  document.getElementById('sidePanel').classList.add('open');
-  document.getElementById('panelEmpty').style.display = 'none';
-  document.getElementById('layout').classList.add('panel-open');
-
-  document.querySelectorAll('.card').forEach(c=>{
-    c.style.outline = (c.dataset.id === id) ? '2px solid var(--forest-2)' : 'none';
-  });
-
-  if(window.innerWidth <= 980){
-    document.body.style.overflow = 'hidden';
-  }
+/* ======================= VISUAL SVG MOTIFS ======================= */
+function svgFor(visual){
+  const svgs = {
+    'v-unreal': `<svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice"><polygon points="200,60 320,130 320,220 200,290 80,220 80,130" fill="none" stroke="#4C8DFF" stroke-width="0.8" opacity="0.5"/><polygon points="200,110 270,150 270,210 200,250 130,210 130,150" fill="none" stroke="#C9A66B" stroke-width="0.6" opacity="0.5"/><line x1="200" y1="60" x2="200" y2="290" stroke="#4C8DFF" stroke-width="0.4" opacity="0.3"/></svg>`,
+    'v-vr': `<svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice"><rect x="60" y="90" width="80" height="55" fill="none" stroke="#7B5FE0" stroke-width="0.8" opacity="0.55"/><rect x="170" y="70" width="80" height="55" fill="none" stroke="#7B5FE0" stroke-width="0.8" opacity="0.55"/><rect x="280" y="100" width="80" height="55" fill="none" stroke="#7B5FE0" stroke-width="0.8" opacity="0.55"/><circle cx="200" cy="220" r="42" fill="none" stroke="#C9A66B" stroke-width="0.6" opacity="0.5"/></svg>`,
+    'v-perf': `<svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice"><circle cx="140" cy="160" r="70" fill="none" stroke="#3A2B1E" stroke-width="10"/><path d="M 140 90 A 70 70 0 0 1 205 195" fill="none" stroke="#E0876A" stroke-width="10"/><line x1="240" y1="130" x2="360" y2="130" stroke="#E0876A" stroke-width="6" opacity="0.7"/><line x1="240" y1="150" x2="330" y2="150" stroke="#E0876A" stroke-width="6" opacity="0.5"/><line x1="240" y1="170" x2="300" y2="170" stroke="#E0876A" stroke-width="6" opacity="0.3"/></svg>`,
+    'v-web': `<svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice"><rect x="70" y="80" width="60" height="60" fill="none" stroke="#5C8471" stroke-width="0.8" opacity="0.55"/><rect x="150" y="80" width="60" height="60" fill="none" stroke="#5C8471" stroke-width="0.8" opacity="0.55"/><rect x="230" y="80" width="60" height="60" fill="none" stroke="#5C8471" stroke-width="0.8" opacity="0.55"/><line x1="70" y1="180" x2="290" y2="180" stroke="#C9A66B" stroke-width="0.6" opacity="0.5"/><circle cx="120" cy="180" r="5" fill="#C9A66B" opacity="0.5"/></svg>`,
+    'v-canvas': `<svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice"><rect x="100" y="70" width="200" height="140" fill="none" stroke="#3FA98B" stroke-width="0.8" opacity="0.5"/><path d="M 110 190 Q 150 100 200 150 T 290 90" fill="none" stroke="#C9A66B" stroke-width="0.7" opacity="0.55"/></svg>`,
+    'v-design': `<svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice"><circle cx="200" cy="150" r="85" fill="none" stroke="#B98CA6" stroke-width="0.8" opacity="0.55"/><circle cx="200" cy="150" r="60" fill="none" stroke="#D9A8B8" stroke-width="0.6" opacity="0.5"/><path d="M 160 190 Q 200 150 240 190" fill="none" stroke="#C9A66B" stroke-width="0.7" opacity="0.5"/></svg>`,
+    'v-inst': `<svg viewBox="0 0 100 100"><rect x="20" y="20" width="60" height="60" fill="none" stroke="#5C8471" stroke-width="1" opacity="0.4"/></svg>`
+  };
+  return svgs[visual] || svgs['v-inst'];
 }
 
-function closeDossier(){
-  activeId = null;
-  document.getElementById('sidePanel').classList.remove('open');
-  document.getElementById('sidePanel').innerHTML = '';
-  document.getElementById('panelEmpty').style.display = 'block';
-  document.getElementById('layout').classList.remove('panel-open');
-  document.querySelectorAll('.card').forEach(c=> c.style.outline = 'none');
+/* ======================= RENDER ======================= */
+function visualBox(p, small){
+  return `<div class="proj-visual-box" data-open="${p.id}">
+    <div class="visual-inner ${p.visual}">${svgFor(p.visual)}</div>
+    <div class="visual-corner"></div>
+    <div class="visual-caption">Vista conceptual — pendiente imagen real</div>
+  </div>`;
+}
+
+function renderTextBlock(p){
+  return `
+    <div class="proj-num">${p.num}</div>
+    <div class="proj-eyebrow">${p.eyebrow}</div>
+    <h3 class="proj-title">${p.title}</h3>
+    <p class="proj-desc">${p.desc}</p>
+    <div class="proj-tags">${p.tags}</div>
+    <div class="proj-explore" data-open="${p.id}">EXPLORAR <span class="arrow">→</span></div>
+  `;
+}
+
+function renderGallery(){
+  const featured = PROJECTS.filter(p=>p.group==='featured');
+  const gallery = document.getElementById('gallery');
+  let html = '';
+  let i = 0;
+  while(i < featured.length){
+    const p = featured[i];
+    if(p.layout === 'large-right'){
+      html += `<div class="proj" data-id="${p.id}" data-cat="${p.cat.join(' ')}"><div class="proj-row"><div class="proj-text">${renderTextBlock(p)}</div><div class="proj-visual-box-wrap">${visualBox(p)}</div></div></div>`;
+      i++;
+    } else if(p.layout === 'large-left'){
+      html += `<div class="proj" data-id="${p.id}" data-cat="${p.cat.join(' ')}"><div class="proj-row reverse"><div class="proj-text">${renderTextBlock(p)}</div><div class="proj-visual-box-wrap">${visualBox(p)}</div></div></div>`;
+      i++;
+    } else if(p.layout === 'panoramic'){
+      html += `<div class="proj proj-panoramic" data-id="${p.id}" data-cat="${p.cat.join(' ')}"><div class="proj-row"><div class="proj-visual-box-wrap" style="position:relative;">${visualBox(p)}<div class="overlay-text"><div class="proj-num">${p.num}</div><div class="proj-eyebrow">${p.eyebrow}</div><h3 class="proj-title">${p.title}</h3><p class="proj-desc">${p.desc}</p><div class="proj-tags">${p.tags}</div><div class="proj-explore" data-open="${p.id}">EXPLORAR <span class="arrow">→</span></div></div></div></div></div>`;
+      i++;
+    } else if(p.layout === 'duo'){
+      const p2 = featured[i+1];
+      html += `<div class="proj" data-id="${p.id}${p2 ? ' '+p2.id : ''}" data-cat="${p.cat.join(' ')}${p2 ? ' '+p2.cat.join(' ') : ''}"><div class="duo-wrap">
+        <div class="duo-item" data-id="${p.id}" data-cat="${p.cat.join(' ')}">${visualBox(p)}${renderTextBlock(p)}</div>
+        ${p2 ? `<div class="duo-item" data-id="${p2.id}" data-cat="${p2.cat.join(' ')}">${visualBox(p2)}${renderTextBlock(p2)}</div>` : ''}
+      </div></div>`;
+      i += 2;
+    } else { i++; }
+  }
+  gallery.innerHTML = html;
+
+  // design feature (REL)
+  const rel = PROJECTS.find(p=>p.id==='rel');
+  document.getElementById('designFeatureWrap').innerHTML = `
+    <div class="design-feature proj" data-id="rel" data-cat="${rel.cat.join(' ')}">
+      <div class="wrap design-feature-grid">
+        <div>${renderTextBlock(rel)}</div>
+        <div class="design-visual-pair">${visualBox(rel)}${visualBox(rel)}</div>
+      </div>
+    </div>`;
+
+  // institutional index
+  const inst = PROJECTS.filter(p=>p.group==='institutional');
+  document.getElementById('instWrap').innerHTML = `
+    <div class="inst-section proj" id="educacion" data-id="${inst.map(p=>p.id).join(' ')}" data-cat="${[...new Set(inst.flatMap(p=>p.cat))].join(' ')}">
+      <div class="inst-head">
+        <div class="inst-eyebrow">Interactive Web Applications · Educational Technology</div>
+        <div class="inst-note">Mismo nivel de ingeniería que el resto del portafolio, aplicado a un contexto institucional. La educación es donde apliqué estas capacidades — no mi identidad profesional.</div>
+      </div>
+      ${inst.map(p => `
+        <div class="inst-row" data-open="${p.id}" data-id="${p.id}" data-cat="${p.cat.join(' ')}">
+          <div><span class="inst-num">${p.num}</span><div class="inst-thumb ${p.visual || 'v-inst'}" style="margin-top:8px;"></div></div>
+          <div class="inst-body"><h3>${p.title}</h3><p>${p.desc}</p><div class="inst-tags">${p.tags}</div></div>
+          <div class="inst-arrow">→</div>
+        </div>`).join('')}
+    </div>`;
+
+  // carteleras (design-minor)
+  const cart = PROJECTS.find(p=>p.id==='carteleras');
+  document.getElementById('designMinorWrap').innerHTML = `
+    <div class="design-minor proj" data-id="carteleras" data-cat="${cart.cat.join(' ')}">
+      <div class="proj-row">
+        <div class="proj-text">${renderTextBlock(cart)}</div>
+        <div class="proj-visual-box-wrap">${visualBox(cart)}</div>
+      </div>
+    </div>`;
+
+  // bind click-to-open
+  document.querySelectorAll('[data-open]').forEach(el=>{
+    el.addEventListener('click', ()=> openDetail(el.dataset.open));
+  });
+
+  // scroll reveal
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in-view'); });
+  }, { threshold:0.12 });
+  document.querySelectorAll('.proj').forEach(el=> io.observe(el));
+}
+
+/* ======================= DETAIL OVERLAY ======================= */
+function openDetail(id){
+  const p = PROJECTS.find(x=>x.id===id);
+  if(!p) return;
+  document.getElementById('detailInner').innerHTML = `
+    <div class="detail-num">${p.num} / ${p.eyebrow}</div>
+    <h2 class="detail-title">${p.title}</h2>
+    <div class="detail-meta">${p.meta}</div>
+    <div class="detail-visual"><div class="visual-inner ${p.visual || 'v-inst'}" style="position:absolute;inset:0;">${svgFor(p.visual)}</div><div class="visual-caption">Vista conceptual — pendiente imagen real del proyecto</div></div>
+    <div class="detail-section"><div class="detail-sec-label">El problema</div><p>${p.problem}</p></div>
+    <div class="detail-section"><div class="detail-sec-label">Enfoque técnico</div><ul>${p.approach.map(a=>`<li>${a}</li>`).join('')}</ul></div>
+    <div class="detail-section"><div class="detail-sec-label">UI / UX</div><ul>${p.uiux.map(a=>`<li>${a}</li>`).join('')}</ul></div>
+  `;
+  document.getElementById('detailOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeDetail(){
+  document.getElementById('detailOverlay').classList.remove('open');
   document.body.style.overflow = '';
 }
+document.getElementById('detailClose').addEventListener('click', closeDetail);
+document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeDetail(); });
 
-document.addEventListener('keydown', (e)=>{
-  if(e.key === 'Escape' && activeId) closeDossier();
-});
-
-const SKILLS = ['Unreal Engine','Unity','Blueprints','C++','VR','AR','MR','Game Dev','WebGL / Three.js','JavaScript','3D & Assets','Diseño / Ilustración'];
-document.getElementById('skillbar').innerHTML = SKILLS.map(s=>`<span class="skill">${s}</span>`).join('');
-
-function filterByCat(cat, emptyMsg){
-  let visibleCount = 0;
-  document.querySelectorAll('.card').forEach(card=>{
-    const cardCats = card.dataset.cat.split(' ');
-    if(cat==='todos' || cardCats.includes(cat)){
-      card.classList.remove('hidden');
-      visibleCount++;
-    } else {
-      card.classList.add('hidden');
+/* ======================= FILTERING ======================= */
+function filterByCat(catStr){
+  const cats = catStr.split(',');
+  let visible = 0;
+  document.querySelectorAll('.proj, .inst-row, .duo-item').forEach(el=>{
+    if(!el.dataset.cat) return;
+    const elCats = el.dataset.cat.split(' ');
+    const match = catStr === 'todos' || cats.some(c => elCats.includes(c));
+    el.classList.toggle('hidden', !match);
+    if(match) visible++;
+  });
+  // hide parent .proj if all its duo-items are hidden
+  document.querySelectorAll('.proj').forEach(proj=>{
+    const duoItems = proj.querySelectorAll('.duo-item');
+    if(duoItems.length){
+      const anyVisible = Array.from(duoItems).some(d=>!d.classList.contains('hidden'));
+      proj.classList.toggle('hidden', !anyVisible);
     }
   });
-  const empty = document.getElementById('emptyState');
-  empty.classList.toggle('show', visibleCount === 0);
-  if(visibleCount === 0 && emptyMsg){
-    empty.textContent = emptyMsg;
-  } else if(visibleCount === 0){
+  const empty = document.getElementById('emptyNote');
+  if(visible === 0){
     empty.textContent = 'Todavía no hay fichas documentadas en esta categoría — cuéntame proyectos concretos y los agrego con el mismo nivel de detalle que el resto.';
+    empty.classList.add('show');
+  } else {
+    empty.classList.remove('show');
   }
-  document.getElementById('layout').scrollIntoView({behavior:'smooth', block:'start'});
 }
-
 document.querySelectorAll('.tab').forEach(tab=>{
   tab.addEventListener('click', ()=>{
     document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
     tab.classList.add('active');
-    document.querySelectorAll('.area-chip').forEach(c=>c.classList.remove('active-chip'));
     filterByCat(tab.dataset.cat);
   });
 });
 
-const AREAS = [
-  { label:'Unreal Engine', cat:'3d', status:'done' },
-  { label:'C++', cat:'cpp', status:'done' },
-  { label:'Blueprints', cat:'blueprints', status:'done' },
-  { label:'VR', cat:'vr', status:'done' },
-  { label:'Interactive Systems', cat:'interactive', status:'done' },
-  { label:'JavaScript', cat:'web', status:'done' },
-  { label:'Canvas', cat:'canvas', status:'done' },
-  { label:'Web Applications', cat:'web', status:'done' },
-  { label:'3D / Interactive Development', cat:'3d', status:'done' },
-  { label:'Unity', cat:'unity', status:'pending' },
-  { label:'AR', cat:'ar', status:'pending' },
-  { label:'MR', cat:'mr', status:'pending' },
-  { label:'WebGL', cat:'webgl', status:'pending' },
-  { label:'Three.js', cat:'threejs', status:'pending' },
-  { label:'Game Development', cat:'gamedev', status:'pending' },
-];
+/* ======================= HEADER / SCROLL FX ======================= */
+const header = document.getElementById('siteHeader');
+const heroVisualInner = document.getElementById('heroVisualInner');
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+window.addEventListener('scroll', ()=>{
+  header.classList.toggle('scrolled', window.scrollY > 40);
+  if(!reduceMotion && heroVisualInner){
+    const y = Math.min(window.scrollY * 0.06, 40);
+    heroVisualInner.style.transform = `translateY(${y}px)`;
+  }
+}, { passive:true });
 
-document.getElementById('areasGridDone').innerHTML = AREAS.filter(a=>a.status==='done').map(a =>
-  `<div class="area-chip done" data-cat="${a.cat}" data-label="${a.label}"><span class="dot"></span>${a.label}</div>`
-).join('');
-document.getElementById('areasGridPending').innerHTML = AREAS.filter(a=>a.status==='pending').map(a =>
-  `<div class="area-chip pending" data-cat="${a.cat}" data-label="${a.label}"><span class="dot"></span>${a.label}</div>`
-).join('');
-
-document.querySelectorAll('.area-chip').forEach(chip=>{
-  chip.addEventListener('click', ()=>{
-    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-    document.querySelectorAll('.area-chip').forEach(c=>c.classList.remove('active-chip'));
-    chip.classList.add('active-chip');
-    const label = chip.dataset.label;
-    const msg = chip.classList.contains('pending')
-      ? `Todavía no hay una ficha real de ${label} — cuéntame un proyecto concreto y lo documento aquí con el mismo detalle que el resto.`
-      : null;
-    filterByCat(chip.dataset.cat, msg);
-  });
-});
+/* ======================= INIT ======================= */
+renderGallery();
 </script>
 
 </body>
