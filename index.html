@@ -206,6 +206,14 @@ h1.hero-title .gold{ color:var(--gold); font-weight:600; font-style:italic; }
 }
 .proj-visual-box:hover .visual-inner{ transform:scale(1.035); }
 .visual-inner{ position:absolute; inset:0; transition: transform .7s cubic-bezier(.2,.7,.2,1); }
+img.visual-inner{ width:100%; height:100%; object-fit:cover; }
+.proj-visual-box.img-missing{ background: var(--bg-panel); }
+.proj-visual-box.img-missing img{ display:none; }
+.proj-visual-box.img-missing::after{
+  content:"Imagen no encontrada — revisa el nombre del archivo en /images"; position:absolute; inset:0;
+  display:flex; align-items:center; justify-content:center; text-align:center; padding:20px;
+  font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:var(--ink-faint);
+}
 .visual-caption{
   position:absolute; bottom:14px; left:14px; font-family:'IBM Plex Mono', monospace; font-size:9px;
   letter-spacing:.05em; color: rgba(241,237,226,0.5); text-transform:uppercase;
@@ -306,6 +314,13 @@ h1.hero-title .gold{ color:var(--gold); font-weight:600; font-style:italic; }
 .detail-meta{ font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--ink-faint); margin-bottom:50px; padding-bottom:36px; border-bottom:1px solid var(--line); }
 
 .detail-visual{ aspect-ratio:16/9; border:1px solid var(--line); margin-bottom:60px; position:relative; overflow:hidden; }
+.detail-visual.img-missing{ background: var(--bg-panel); }
+.detail-visual.img-missing img{ display:none; }
+.detail-visual.img-missing::after{
+  content:"Imagen no encontrada — revisa el nombre del archivo en /images"; position:absolute; inset:0;
+  display:flex; align-items:center; justify-content:center; text-align:center; padding:20px;
+  font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--ink-faint);
+}
 
 .detail-section{ margin-bottom:56px; }
 .detail-sec-label{
@@ -454,6 +469,7 @@ footer{ border-top:1px solid var(--line); padding: 56px 0 46px; }
 const PROJECTS = [
   {
     id:'assetsync', num:'01', group:'featured', layout:'large-right', visual:'v-unreal', cat:['3d','interactive'],
+    image:'images/assetsync.jpg',
     eyebrow:'UNREAL ENGINE · TOOLS', title:'AssetSyncManager',
     desc:'Plugin nativo para Unreal Engine con interfaz propia dentro del editor: autenticación, escaneo y sincronización de assets. Desarrollado por hitos para un cliente de Upwork.',
     tags:'C++ · Unreal Engine · Editor Tools · Upwork',
@@ -471,6 +487,7 @@ const PROJECTS = [
   },
   {
     id:'vr-speech', num:'02', group:'featured', layout:'large-left', visual:'v-vr', cat:['3d','xr','vr','blueprints','interactive'],
+    image:'images/vr-speech.jpg',
     eyebrow:'VR · UNREAL ENGINE', title:'100Q — Experiencia VR con reconocimiento de voz',
     desc:'Experiencia VR para Meta Quest 2/3: 100 preguntas como tarjetas flotantes que el usuario explora y pregunta en voz alta; el sistema reconoce la palabra clave y reproduce el video de respuesta.',
     tags:'Unreal Engine · Blueprint · Speech-to-Text · Upwork',
@@ -489,6 +506,7 @@ const PROJECTS = [
   },
   {
     id:'vr-perf', num:'03', group:'featured', layout:'panoramic', visual:'v-perf', cat:['3d','xr','vr','blueprints','interactive'],
+    image:'images/vr-perf.jpg',
     eyebrow:'VR · OPTIMIZACIÓN', title:'Optimización de rendimiento VR — Vehículos',
     desc:'Refactorización de blueprints de Unreal para un juego VR de Quest 2/3, donde los blueprints de vehículos de un asset de terceros consumían el 88% del tiempo de fotograma objetivo.',
     tags:'Unreal Engine · Blueprint · Session Frontend · Git · Upwork',
@@ -504,6 +522,7 @@ const PROJECTS = [
   },
   {
     id:'stopmotion', num:'04', group:'featured', layout:'duo', visual:'v-web', cat:['web','canvas','interactive'],
+    image:'images/stopmotion.jpg',
     eyebrow:'WEB · MULTIMEDIA', title:'Stop Motion Web App',
     desc:'Aplicación de navegador para crear animaciones stop motion: captura fotografías, arma secuencias y las convierte en GIF, con control de velocidad.',
     tags:'JavaScript · Captura · GitHub Pages',
@@ -521,6 +540,7 @@ const PROJECTS = [
   },
   {
     id:'mia-gif', num:'05', group:'featured', layout:'duo', visual:'v-canvas', cat:['web','edu','canvas','interactive'],
+    image:'images/mia-gif.jpg',
     eyebrow:'MOTOR DE ANIMACIÓN · CANVAS/JS', title:'GIF Animation Engine',
     desc:'Motor de animación en Canvas/JavaScript: genera una secuencia de 16 cuadros a partir de una palabra clave y construye el GIF completo en el navegador, sin backend.',
     tags:'JavaScript · Canvas · Animation',
@@ -535,6 +555,7 @@ const PROJECTS = [
   },
   {
     id:'rel', num:'06', group:'design-feature', layout:'feature', visual:'v-design', cat:['disenio','interactive'],
+    image:'images/rel-1.jpg', image2:'images/rel-2.jpg',
     eyebrow:'IDENTIDAD DE MARCA · ILUSTRACIÓN', title:'Royal Enfield Ladies',
     desc:'Identidad de marca para un grupo de motociclistas: emblema ilustrado con casco y corona, mockups de jersey en carbón, malva y rosa polvo.',
     tags:'Illustrator · Vector · Branding · Mockups',
@@ -553,6 +574,7 @@ const PROJECTS = [
   },
   {
     id:'portal-docente', num:'07', group:'institutional', cat:['web','edu'],
+    image:'images/portal-docente.jpg',
     eyebrow:'WEB APP', title:'Portal Docente',
     desc:'Aplicación web completa (backend + frontend) para gestión y envío masivo de documentos, con seguimiento de estado de entrega, previsualización embebida y generación de PDF.',
     tags:'Apps Script · JavaScript · Google Sheets',
@@ -573,6 +595,7 @@ const PROJECTS = [
   },
   {
     id:'inventario', num:'08', group:'institutional', cat:['web','edu'],
+    image:'images/inventario.jpg',
     eyebrow:'DASHBOARD', title:'Panel de Inventario',
     desc:'Sistema de sincronización de datos: automatiza el paso de archivos fuente a una base central y publica un dashboard en vivo, con reconciliación automática.',
     tags:'Apps Script · JavaScript · GitHub Pages',
@@ -591,6 +614,7 @@ const PROJECTS = [
   },
   {
     id:'copass', num:'09', group:'institutional', cat:['web','edu'],
+    image:'images/copass.jpg',
     eyebrow:'WEB APP', title:'COPASS 2026',
     desc:'Plataforma de coordinación multi-sede: interfaz de registro y participación gamificada, y panel administrativo con validación de evidencias y auditoría de actividad.',
     tags:'Apps Script · JavaScript · Gamificación',
@@ -610,6 +634,7 @@ const PROJECTS = [
   },
   {
     id:'diario-campo', num:'10', group:'institutional', cat:['web','edu'],
+    image:'images/diario-campo.jpg',
     eyebrow:'WEB APP + IA', title:'Diario de Campo',
     desc:'Herramienta de generación de texto asistida por IA: cadena de respaldo entre múltiples modelos, con validación de salidas y reconstrucción automática de datos.',
     tags:'Apps Script · OpenRouter · IA',
@@ -630,6 +655,7 @@ const PROJECTS = [
   },
   {
     id:'carteleras', num:'11', group:'design-minor', layout:'feature-small', visual:'v-design', cat:['disenio','edu'],
+    image:'images/carteleras.jpg',
     eyebrow:'DISEÑO EDITORIAL', title:'Carteleras de Autores',
     desc:'Tres piezas A3 de diseño editorial, cada una con sistema de paleta e identidad propia construido a partir del tono y la obra del autor que representa.',
     tags:'HTML → PDF · Diseño editorial · Formato A3',
@@ -662,7 +688,14 @@ function svgFor(visual){
 }
 
 /* ======================= RENDER ======================= */
-function visualBox(p, small){
+function visualBox(p, imgOverride){
+  const img = imgOverride || p.image;
+  if(img){
+    return `<div class="proj-visual-box" data-open="${p.id}">
+      <img class="visual-inner" src="${img}" alt="${p.title}" loading="lazy" onerror="this.closest('.proj-visual-box').classList.add('img-missing')">
+      <div class="visual-corner"></div>
+    </div>`;
+  }
   return `<div class="proj-visual-box" data-open="${p.id}">
     <div class="visual-inner ${p.visual}">${svgFor(p.visual)}</div>
     <div class="visual-corner"></div>
@@ -714,7 +747,7 @@ function renderGallery(){
     <div class="design-feature proj" data-id="rel" data-cat="${rel.cat.join(' ')}">
       <div class="wrap design-feature-grid">
         <div>${renderTextBlock(rel)}</div>
-        <div class="design-visual-pair">${visualBox(rel)}${visualBox(rel)}</div>
+        <div class="design-visual-pair">${visualBox(rel)}${visualBox(rel, rel.image2)}</div>
       </div>
     </div>`;
 
@@ -728,7 +761,7 @@ function renderGallery(){
       </div>
       ${inst.map(p => `
         <div class="inst-row" data-open="${p.id}" data-id="${p.id}" data-cat="${p.cat.join(' ')}">
-          <div><span class="inst-num">${p.num}</span><div class="inst-thumb ${p.visual || 'v-inst'}" style="margin-top:8px;"></div></div>
+          <div><span class="inst-num">${p.num}</span><div class="inst-thumb ${p.image ? '' : (p.visual || 'v-inst')}" style="margin-top:8px;${p.image ? `background-image:url('${p.image}');background-size:cover;background-position:center;` : ''}"></div></div>
           <div class="inst-body"><h3>${p.title}</h3><p>${p.desc}</p><div class="inst-tags">${p.tags}</div></div>
           <div class="inst-arrow">→</div>
         </div>`).join('')}
@@ -764,7 +797,7 @@ function openDetail(id){
     <div class="detail-num">${p.num} / ${p.eyebrow}</div>
     <h2 class="detail-title">${p.title}</h2>
     <div class="detail-meta">${p.meta}</div>
-    <div class="detail-visual"><div class="visual-inner ${p.visual || 'v-inst'}" style="position:absolute;inset:0;">${svgFor(p.visual)}</div><div class="visual-caption">Vista conceptual — pendiente imagen real del proyecto</div></div>
+    <div class="detail-visual ${p.image ? '' : ''}" id="detailVisualBox">${p.image ? `<img class="visual-inner" src="${p.image}" alt="${p.title}" style="position:absolute;inset:0;" onerror="document.getElementById('detailVisualBox').classList.add('img-missing')">` : `<div class="visual-inner ${p.visual || 'v-inst'}" style="position:absolute;inset:0;">${svgFor(p.visual)}</div><div class="visual-caption">Vista conceptual — pendiente imagen real del proyecto</div>`}</div>
     <div class="detail-section"><div class="detail-sec-label">El problema</div><p>${p.problem}</p></div>
     <div class="detail-section"><div class="detail-sec-label">Enfoque técnico</div><ul>${p.approach.map(a=>`<li>${a}</li>`).join('')}</ul></div>
     <div class="detail-section"><div class="detail-sec-label">UI / UX</div><ul>${p.uiux.map(a=>`<li>${a}</li>`).join('')}</ul></div>
