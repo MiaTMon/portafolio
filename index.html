@@ -47,12 +47,29 @@ nav.main-nav a:hover, nav.main-nav a.active{ color:var(--ink); border-bottom:1px
 @media (max-width:900px){ nav.main-nav{ display:none; } }
 
 /* ===== HERO ===== */
-.hero{ padding:64px 0 48px; }
-.hero-grid{ display:grid; grid-template-columns: 0.95fr 1fr 0.62fr; gap:40px; align-items:center; }
-@media (max-width:1100px){ .hero-grid{ grid-template-columns:1fr; } }
+.hero{ position:relative; padding:120px 0 64px; overflow:hidden; min-height:560px; display:flex; align-items:flex-end; }
+
+.hero-bg{ position:absolute; inset:0; z-index:0; }
+.hero-bg img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; }
+.hero-visual-fallback{
+  position:absolute; inset:0; z-index:1; display:none;
+  background: radial-gradient(ellipse at 30% 20%, rgba(92,132,113,0.18), transparent 55%), linear-gradient(160deg,#14171E,#0A0C0A);
+}
+.hero-bg-scrim{
+  position:absolute; inset:0; z-index:2;
+  background:
+    linear-gradient(90deg, rgba(10,12,10,0.94) 0%, rgba(10,12,10,0.72) 32%, rgba(10,12,10,0.18) 58%, rgba(10,12,10,0.35) 100%),
+    linear-gradient(0deg, rgba(10,12,10,0.85) 0%, rgba(10,12,10,0.15) 35%, rgba(10,12,10,0.35) 100%);
+}
+
+.hero-content{ position:relative; z-index:3; display:flex; justify-content:space-between; align-items:flex-end; gap:40px; width:100%; }
+@media (max-width:1100px){ .hero-content{ flex-direction:column; align-items:flex-start; } }
+
+.hero-text-col{ max-width:620px; }
 
 h1.hero-title{
-  font-family:'Fraunces', serif; font-weight:500; font-size: clamp(32px,3.6vw,44px); line-height:1.12; letter-spacing:-0.01em; margin-bottom:18px;
+  font-family:'Fraunces', serif; font-weight:500; font-size: clamp(32px,4vw,48px); line-height:1.12; letter-spacing:-0.01em; margin-bottom:18px;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.5);
 }
 h1.hero-title em{ font-style:normal; color:var(--accent); font-weight:600; }
 h1.hero-title .gold{ color:var(--gold); font-weight:600; font-style:italic; }
@@ -66,40 +83,22 @@ h1.hero-title .gold{ color:var(--gold); font-weight:600; font-style:italic; }
 .btn-primary:hover{ transform:translateY(-2px); background:#6C977F; }
 .btn-ghost{
   display:inline-flex; align-items:center; gap:9px; font-family:'IBM Plex Mono', monospace; font-size:11px;
-  letter-spacing:.06em; color:var(--ink-dim); padding:13px 18px; border:1px solid var(--line); border-radius:3px;
-  transition: color .2s ease, border-color .2s ease;
+  letter-spacing:.06em; color:var(--ink); padding:13px 18px; border:1px solid rgba(255,255,255,0.25); border-radius:3px;
+  transition: color .2s ease, border-color .2s ease; backdrop-filter: blur(4px);
 }
 .btn-ghost:hover{ color:var(--ink); border-color:var(--ink-dim); }
 
-.hero-visual-wrap{ position:relative; }
-.hero-visual-wrap::before{
-  content:""; position:absolute; inset:-14%; z-index:0;
-  background: radial-gradient(ellipse at center, rgba(92,132,113,0.20) 0%, rgba(20,23,30,0.10) 45%, transparent 72%);
-  filter: blur(28px); pointer-events:none;
+.hero-icon-list{
+  display:flex; flex-direction:column; gap:14px; background:rgba(9,11,9,0.55); border:1px solid rgba(255,255,255,0.1);
+  border-radius:8px; padding:20px 22px; backdrop-filter: blur(6px); flex-shrink:0;
 }
-.hero-visual{
-  position:relative; z-index:1; aspect-ratio:4/3; overflow:hidden; border:none;
-}
-.hero-visual img{
-  position:relative; z-index:1; width:100%; height:100%; object-fit:cover; display:block;
-}
-.hero-visual::after{
-  content:""; position:absolute; inset:0; z-index:2; pointer-events:none;
-  background: radial-gradient(ellipse 68% 68% at center, transparent 48%, var(--bg) 100%);
-}
-.hero-visual-fallback{
-  position:absolute; inset:0; z-index:1; display:none;
-  background: radial-gradient(ellipse at 30% 20%, rgba(92,132,113,0.18), transparent 55%), linear-gradient(160deg,#14171E,#0A0C0A);
-}
-
-.hero-icon-list{ display:flex; flex-direction:column; gap:16px; }
 .hero-icon-item{ display:flex; align-items:center; gap:12px; }
 .hero-icon-mark{
   width:26px; height:26px; border:1px solid var(--accent); border-radius:6px; flex-shrink:0;
   display:flex; align-items:center; justify-content:center; color:var(--accent); font-size:12px;
 }
 .hero-icon-label{ font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.05em; color:var(--ink-dim); }
-@media (max-width:1100px){ .hero-icon-list{ flex-direction:row; flex-wrap:wrap; margin-top:10px; } }
+@media (max-width:1100px){ .hero-icon-list{ flex-direction:row; flex-wrap:wrap; } }
 
 /* ===== EXPLORE BAR ===== */
 .explore{ padding:34px 0 30px; border-top:1px solid var(--line); }
@@ -296,20 +295,18 @@ footer{ border-top:1px solid var(--line); padding:34px 0; }
 </header>
 
 <section class="hero" id="hero">
-  <div class="wrap hero-grid">
-    <div>
+  <div class="hero-bg">
+    <img src="images/hero.png" alt="Composición 3D — Mia Taborda" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+    <div class="hero-visual-fallback"></div>
+    <div class="hero-bg-scrim"></div>
+  </div>
+  <div class="wrap hero-content">
+    <div class="hero-text-col">
       <h1 class="hero-title">Desarrollo <em>experiencias</em> que conectan <span class="gold">tecnología</span>, creatividad e interacción.</h1>
       <p class="hero-desc">Developer de experiencias interactivas en 3D, VR y Web. Construyo sistemas robustos con enfoque en rendimiento, usabilidad y diseño visual — desde plugins de Unreal Engine hasta identidad de marca.</p>
       <div class="hero-cta">
         <a href="#proyectos" class="btn-primary">VER PROYECTOS →</a>
         <a href="#footer" class="btn-ghost">CONTACTO</a>
-      </div>
-    </div>
-
-    <div class="hero-visual-wrap">
-      <div class="hero-visual">
-        <img src="images/hero.png" alt="Composición 3D — Mia Taborda" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-        <div class="hero-visual-fallback"></div>
       </div>
     </div>
 
@@ -687,7 +684,7 @@ function renderGrid(){
   grid.innerHTML = PROJECTS.map((p, i) => `
     <div class="card" data-id="${p.id}" data-cat="${p.cat.join(' ')}" data-open="${p.id}" style="animation-delay:${i*0.03}s">
       <div class="card-media">
-        ${p.image ? `<img src="${p.image}" alt="${p.title}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"><div class="card-media-fallback" style="display:none;"></div>` : `<div class="card-media-fallback ${p.visual}">${svgFor(p.visual)}</div>`}
+        ${p.image ? `<img src="${p.image}" alt="${p.title}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"><div class="card-media-fallback ${p.visual}" style="display:none;">${svgFor(p.visual)}</div>` : `<div class="card-media-fallback ${p.visual}">${svgFor(p.visual)}</div>`}
         <div class="card-badges"><span class="card-num">${p.num}</span><span class="card-cat">${p.eyebrow}</span></div>
       </div>
       <div class="card-body">
