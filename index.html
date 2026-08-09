@@ -49,9 +49,12 @@ nav.main-nav a:hover, nav.main-nav a.active{ color:var(--ink); border-bottom:1px
 /* ===== HERO ===== */
 .hero{ position:relative; padding:120px 0 64px; overflow:hidden; min-height:560px; display:flex; align-items:flex-end; }
 
-.hero-bg{ position:absolute; inset:0; z-index:0; }
-.hero-bg img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:38% 42%; display:block; }
-@media (max-width:900px){ .hero-bg img{ object-position:30% 42%; } }
+.hero-bg{ position:absolute; inset:0; z-index:0; background:var(--bg); }
+.hero-bg img{
+  position:absolute; top:0; right:0; width:76%; height:100%;
+  object-fit:cover; object-position:55% 42%; display:block;
+}
+@media (max-width:900px){ .hero-bg img{ width:100%; object-position:35% 42%; } }
 .hero-visual-fallback{
   position:absolute; inset:0; z-index:1; display:none;
   background: radial-gradient(ellipse at 30% 20%, rgba(92,132,113,0.18), transparent 55%), linear-gradient(160deg,#14171E,#0A0C0A);
@@ -59,7 +62,7 @@ nav.main-nav a:hover, nav.main-nav a.active{ color:var(--ink); border-bottom:1px
 .hero-bg-scrim{
   position:absolute; inset:0; z-index:2;
   background:
-    linear-gradient(90deg, rgba(10,12,10,0.72) 0%, rgba(10,12,10,0.42) 34%, rgba(10,12,10,0.02) 60%, rgba(10,12,10,0.22) 100%),
+    linear-gradient(90deg, var(--bg) 0%, var(--bg) 16%, rgba(10,12,10,0.85) 24%, rgba(10,12,10,0.35) 34%, transparent 46%),
     linear-gradient(0deg, rgba(10,12,10,0.5) 0%, rgba(10,12,10,0.02) 32%, rgba(10,12,10,0.18) 100%);
 }
 
@@ -90,17 +93,17 @@ h1.hero-title .gold{ color:var(--gold); font-weight:600; font-style:italic; }
 .btn-ghost:hover{ color:var(--ink); border-color:var(--ink-dim); }
 
 .hero-icon-list{
-  display:flex; flex-direction:column; gap:14px;
-  background: radial-gradient(ellipse 130% 100% at 70% 50%, rgba(9,11,9,0.62) 0%, rgba(9,11,9,0.32) 55%, transparent 100%);
-  border:none; border-radius:0; padding:24px 30px 24px 60px; flex-shrink:0;
+  display:flex; flex-direction:column; gap:16px;
+  background:none; border:none; padding:0; flex-shrink:0;
 }
-.hero-icon-item{ display:flex; align-items:center; gap:12px; }
+.hero-icon-item{ display:flex; align-items:center; gap:12px; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.85)); }
 .hero-icon-mark{
-  width:28px; height:28px; border:1px solid var(--accent); border-radius:6px; flex-shrink:0;
-  display:flex; align-items:center; justify-content:center; color:var(--accent);
+  width:28px; height:28px; border:1px solid rgba(241,237,226,0.7); border-radius:6px; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center; color:var(--ink);
+  background:rgba(9,11,9,0.35);
 }
 .hero-icon-mark svg{ width:15px; height:15px; }
-.hero-icon-label{ font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.05em; color:var(--ink-dim); }
+.hero-icon-label{ font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.05em; color:var(--ink); text-shadow:0 1px 6px rgba(0,0,0,0.9); }
 @media (max-width:1100px){ .hero-icon-list{ flex-direction:row; flex-wrap:wrap; } }
 
 /* ===== EXPLORE BAR ===== */
