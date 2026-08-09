@@ -797,7 +797,7 @@ document.querySelectorAll('.tab').forEach(tab=>{
 
 renderGrid();
 
-/* ===== NAV SCROLL-SPY ===== */
+/* ===== NAV SCROLL-SPY ===== */ 
 const navSections = ['proyectos','sobre-mi','habilidades','experiencia','contacto'].map(id => document.getElementById(id)).filter(Boolean);
 const navLinks = Array.from(document.querySelectorAll('.main-nav a'));
 const navObserver = new IntersectionObserver((entries)=>{
