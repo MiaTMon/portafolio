@@ -58,8 +58,8 @@ nav.main-nav a:hover, nav.main-nav a.active{ color:var(--ink); border-bottom:1px
 .hero-bg-scrim{
   position:absolute; inset:0; z-index:2;
   background:
-    linear-gradient(90deg, rgba(10,12,10,0.94) 0%, rgba(10,12,10,0.72) 32%, rgba(10,12,10,0.18) 58%, rgba(10,12,10,0.35) 100%),
-    linear-gradient(0deg, rgba(10,12,10,0.85) 0%, rgba(10,12,10,0.15) 35%, rgba(10,12,10,0.35) 100%);
+    linear-gradient(90deg, rgba(10,12,10,0.72) 0%, rgba(10,12,10,0.42) 34%, rgba(10,12,10,0.02) 60%, rgba(10,12,10,0.22) 100%),
+    linear-gradient(0deg, rgba(10,12,10,0.5) 0%, rgba(10,12,10,0.02) 32%, rgba(10,12,10,0.18) 100%);
 }
 
 .hero-content{ position:relative; z-index:3; display:flex; justify-content:space-between; align-items:flex-end; gap:40px; width:100%; }
@@ -69,11 +69,11 @@ nav.main-nav a:hover, nav.main-nav a.active{ color:var(--ink); border-bottom:1px
 
 h1.hero-title{
   font-family:'Fraunces', serif; font-weight:500; font-size: clamp(32px,4vw,48px); line-height:1.12; letter-spacing:-0.01em; margin-bottom:18px;
-  text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+  text-shadow: 0 2px 24px rgba(0,0,0,0.75), 0 1px 3px rgba(0,0,0,0.6);
 }
 h1.hero-title em{ font-style:normal; color:var(--accent); font-weight:600; }
 h1.hero-title .gold{ color:var(--gold); font-weight:600; font-style:italic; }
-.hero-desc{ font-size:14.5px; line-height:1.65; color:var(--ink-dim); max-width:46ch; margin-bottom:30px; }
+.hero-desc{ font-size:14.5px; line-height:1.65; color:var(--ink-dim); max-width:46ch; margin-bottom:30px; text-shadow: 0 1px 12px rgba(0,0,0,0.8); }
 .hero-cta{ display:flex; gap:14px; flex-wrap:wrap; }
 .btn-primary{
   display:inline-flex; align-items:center; gap:9px; background:var(--accent); color:#0A0C0A;
@@ -94,9 +94,10 @@ h1.hero-title .gold{ color:var(--gold); font-weight:600; font-style:italic; }
 }
 .hero-icon-item{ display:flex; align-items:center; gap:12px; }
 .hero-icon-mark{
-  width:26px; height:26px; border:1px solid var(--accent); border-radius:6px; flex-shrink:0;
-  display:flex; align-items:center; justify-content:center; color:var(--accent); font-size:12px;
+  width:28px; height:28px; border:1px solid var(--accent); border-radius:6px; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center; color:var(--accent);
 }
+.hero-icon-mark svg{ width:15px; height:15px; }
 .hero-icon-label{ font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.05em; color:var(--ink-dim); }
 @media (max-width:1100px){ .hero-icon-list{ flex-direction:row; flex-wrap:wrap; } }
 
@@ -311,12 +312,12 @@ footer{ border-top:1px solid var(--line); padding:34px 0; }
     </div>
 
     <div class="hero-icon-list">
-      <div class="hero-icon-item"><div class="hero-icon-mark">◆</div><div class="hero-icon-label">UNREAL ENGINE</div></div>
-      <div class="hero-icon-item"><div class="hero-icon-mark">◇</div><div class="hero-icon-label">VR · AR · MR</div></div>
-      <div class="hero-icon-item"><div class="hero-icon-mark">▢</div><div class="hero-icon-label">WEB DEVELOPMENT</div></div>
-      <div class="hero-icon-item"><div class="hero-icon-mark">△</div><div class="hero-icon-label">3D &amp; ASSETS</div></div>
-      <div class="hero-icon-item"><div class="hero-icon-mark">○</div><div class="hero-icon-label">INTERACTIVE SYSTEMS</div></div>
-      <div class="hero-icon-item"><div class="hero-icon-mark">✦</div><div class="hero-icon-label">CREATIVE TECHNOLOGY</div></div>
+      <div class="hero-icon-item"><div class="hero-icon-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2 3 7v10l9 5 9-5V7l-9-5Z"/><path d="M12 2v20M3 7l9 5 9-5M3 17l9-5 9 5"/></svg></div><div class="hero-icon-label">UNREAL ENGINE</div></div>
+      <div class="hero-icon-item"><div class="hero-icon-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="7" width="20" height="11" rx="4"/><circle cx="8" cy="12.5" r="1.6" fill="currentColor" stroke="none"/><circle cx="16" cy="12.5" r="1.6" fill="currentColor" stroke="none"/></svg></div><div class="hero-icon-label">VR · AR · MR</div></div>
+      <div class="hero-icon-item"><div class="hero-icon-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 5 2 12l6 7M16 5l6 7-6 7"/></svg></div><div class="hero-icon-label">WEB DEVELOPMENT</div></div>
+      <div class="hero-icon-item"><div class="hero-icon-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2 3 7v10l9 5 9-5V7l-9-5Z"/><path d="m3 7 9 5 9-5M12 12v10"/></svg></div><div class="hero-icon-label">3D &amp; ASSETS</div></div>
+      <div class="hero-icon-item"><div class="hero-icon-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="5" cy="6" r="2.4"/><circle cx="19" cy="6" r="2.4"/><circle cx="12" cy="19" r="2.4"/><path d="M6.9 7.6 10 17M17.1 7.6 14 17M7.4 6h9.2"/></svg></div><div class="hero-icon-label">INTERACTIVE SYSTEMS</div></div>
+      <div class="hero-icon-item"><div class="hero-icon-mark"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2c.6 3.2 1.8 5 5 5.6-3.2.6-4.4 2.4-5 5.6-.6-3.2-1.8-5-5-5.6 3.2-.6 4.4-2.4 5-5.6ZM19 13.5c.35 1.6.95 2.4 2.5 2.75-1.55.35-2.15 1.15-2.5 2.75-.35-1.6-.95-2.4-2.5-2.75 1.55-.35 2.15-1.15 2.5-2.75Z"/></svg></div><div class="hero-icon-label">CREATIVE TECHNOLOGY</div></div>
     </div>
   </div>
 </section>
